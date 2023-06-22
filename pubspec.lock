@@ -41,6 +41,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.17.1"
+  core_ui:
+    dependency: transitive
+    description:
+      path: core_ui
+      relative: true
+    source: path
+    version: "0.0.1"
   fake_async:
     dependency: transitive
     description:
@@ -99,6 +106,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  menu_view:
+    dependency: "direct main"
+    description:
+      path: "features/menu_view"
+      relative: true
+    source: path
+    version: "0.0.1"
   meta:
     dependency: transitive
     description:
@@ -178,3 +192,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=3.0.1 <4.0.0"
+  flutter: ">=1.17.0"
