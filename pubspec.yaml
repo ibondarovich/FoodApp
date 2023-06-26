@@ -9,9 +9,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  
   menu_view:
     path: ./features/menu_view
+  core:
+    path: ./core
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

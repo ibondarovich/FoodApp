@@ -7,22 +7,7 @@ class FoodApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Food app',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-            ),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          centerTitle: true,
-        ),
-        body:MenuViewScreen(),
-      ),
+      home: MenuViewScreen(),
     );
   }
 }

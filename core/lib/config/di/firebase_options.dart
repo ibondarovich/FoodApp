@@ -17,15 +17,24 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,40 +52,11 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCElwVm-Jjt_phi4A5C1dbMo0x-xQtQW1M',
-    appId: '1:137927868263:web:d308e420ea682b82d639c2',
-    messagingSenderId: '137927868263',
-    projectId: 'food-delivery-40493',
-    authDomain: 'food-delivery-40493.firebaseapp.com',
-    storageBucket: 'food-delivery-40493.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBALpziRZXjwp-jVUINInFJXoOEfauBQF4',
-    appId: '1:137927868263:android:58d8210b0e6e1323d639c2',
+    appId: '1:137927868263:android:28fdbfcdae284dcbd639c2',
     messagingSenderId: '137927868263',
     projectId: 'food-delivery-40493',
     storageBucket: 'food-delivery-40493.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBVI8aaS5vge2Hhyuluuzu_M5owdFMwR-c',
-    appId: '1:137927868263:ios:8e446781b908a79fd639c2',
-    messagingSenderId: '137927868263',
-    projectId: 'food-delivery-40493',
-    storageBucket: 'food-delivery-40493.appspot.com',
-    iosClientId: '137927868263-7c1rnkdl9cg10d9cq0ef9m1nm42qgcgu.apps.googleusercontent.com',
-    iosBundleId: 'com.example.foodDeliveryApp',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBVI8aaS5vge2Hhyuluuzu_M5owdFMwR-c',
-    appId: '1:137927868263:ios:ab6284e4ca079429d639c2',
-    messagingSenderId: '137927868263',
-    projectId: 'food-delivery-40493',
-    storageBucket: 'food-delivery-40493.appspot.com',
-    iosClientId: '137927868263-s8fk07qo03vjmdmbcg5r20sn0jmp37eo.apps.googleusercontent.com',
-    iosBundleId: 'com.example.foodDeliveryApp.RunnerTests',
   );
 }

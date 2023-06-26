@@ -1,7 +1,12 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
 class MenuItem extends StatefulWidget{
-  const MenuItem({super.key});
+  final DishModel dishModel;
+  const MenuItem({
+    super.key,
+    required this.dishModel
+  });
   @override
   State<StatefulWidget> createState() => MenuItemState();
 }
@@ -37,16 +42,16 @@ class MenuItemState extends State<MenuItem>{
             child:  SizedBox.expand(
               child: FittedBox(
                 fit: BoxFit.contain,
-                child: Image.network("https://www.kfc.by/admin/files/4575.png")
+                child: Image.network(widget.dishModel.url)
               ),
             )
           ),   
           const SizedBox(height: 5),
-          const Align(
+          Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Бургер де люкс",
-                style: TextStyle(
+                widget.dishModel.name,
+                style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
@@ -57,12 +62,12 @@ class MenuItemState extends State<MenuItem>{
             fit: BoxFit.contain,
             child: Row(
               children: [
-                const Text(
-                  '\$20.00',
-                  style: TextStyle(
+                Text(
+                  '${widget.dishModel.price}\$',
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xffa191fc),
+                    color: Color.fromARGB(255, 252, 218, 145),
                   ),
                 ),
                 const SizedBox(
@@ -71,8 +76,8 @@ class MenuItemState extends State<MenuItem>{
                 TextButton(
                   onPressed: (){}, 
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(const Color(0xffa191fc)),
-                    foregroundColor: MaterialStateProperty.all(const Color(0xffe6e0ff)),
+                    backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 253, 201, 91)),
+                    foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 248, 248, 248)),
                   ),
                   child: const Row(
                     children: [
