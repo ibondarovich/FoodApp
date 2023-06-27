@@ -8,8 +8,8 @@ class DishModel{
   DishModel({
     required this.name,
     required this.url,
-   required this.price,
+    required this.price,
     required this.decription,
-    required this.ingredients
+    required this.ingredients,
   });
 }

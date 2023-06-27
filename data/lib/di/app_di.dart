@@ -1,3 +1,3 @@
-import 'package:get_it/get_it.dart';
+import 'package:core/core.dart';
 
 final GetIt appLocator = GetIt.instance;

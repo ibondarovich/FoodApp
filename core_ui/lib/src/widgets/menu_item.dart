@@ -1,3 +1,4 @@
+import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
@@ -16,21 +17,26 @@ class MenuItemState extends State<MenuItem>{
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      margin: const EdgeInsets.only(left: 10,right: 10, bottom: 40),
-      padding: const EdgeInsets.only(right: 5.0, left: 5.0),
+      margin: const EdgeInsets.only(
+        left: AppDimens.containerMargin, 
+        right: AppDimens.containerMargin, 
+        bottom: AppDimens.containerMargin),
+      padding: const EdgeInsets.only(
+        right: AppDimens.containerPadding, 
+        left: AppDimens.containerPadding),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.white,
-          width: 5.0,
+          color: AppColors.white,
+          width: AppDimens.borderWidth,
           style: BorderStyle.solid,
         ),
-        borderRadius: BorderRadius.circular(15.0),
-        color: Colors.white,
+        borderRadius: BorderRadius.circular(AppDimens.borderRadius),
+        color: AppColors.white,
         boxShadow: const [
           BoxShadow(
-            color: Color(0xfff4f4f4),
-            spreadRadius: 2,
-            blurRadius: 15
+            color: AppColors.shadowWhite,
+            spreadRadius: AppDimens.spreadRadiusShadow,
+            blurRadius: AppDimens.blurRadiusShadow,
           ),
         ]
       ),
@@ -38,58 +44,35 @@ class MenuItemState extends State<MenuItem>{
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
-            height: 120,
-            child:  SizedBox.expand(
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Image.network(widget.dishModel.url)
-              ),
-            )
+            height: AppDimens.imageContainerHeight,
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: Image.network(widget.dishModel.url)
+            ),
           ),   
-          const SizedBox(height: 5),
+          const SizedBox(height: AppDimens.verticalSpacing),
           Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                widget.dishModel.name,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              widget.dishModel.name,
+              style: AppFonts.dishNameTextStyle
+            ),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(
+            height: AppDimens.verticalSpacing
+          ),
           FittedBox(
             fit: BoxFit.contain,
             child: Row(
-              children: [
+              children: <Widget>[
                 Text(
                   '${widget.dishModel.price}\$',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 252, 218, 145),
-                  ),
+                  style: AppFonts.priceTextStyle
                 ),
                 const SizedBox(
-                  width: 12, 
+                  width: AppDimens.horizontalSpacing, 
                 ),
-                TextButton(
-                  onPressed: (){}, 
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 253, 201, 91)),
-                    foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 248, 248, 248)),
-                  ),
-                  child: const Row(
-                    children: [
-                      Text('Add to cart'),
-                      SizedBox(width: 5),
-                      Icon(
-                        Icons.shopping_basket,
-                        size: 17,
-                      )
-                    ],
-                  ) 
-                )
+                const AddToCartButtonWidget()
               ]
             )
           )

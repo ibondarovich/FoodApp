@@ -19,8 +19,9 @@ class DishEntity{
       url: json['url'],
       price: json['price'],
       decription: json['description'],
-      ingredients: (json['ingredients'] as List<dynamic>).
-                                        map((e) => e.toString()).toList()
+      ingredients: (json['ingredients'] as List<dynamic>)
+            .map((e) => e.toString())
+            .toList()
     );
   }
 }

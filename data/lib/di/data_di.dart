@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:core/di/app_di.dart';
+import 'package:core/core.dart';
+import 'package:data/di/app_di.dart';
 import 'package:data/providers/firebase_provider.dart';
+import 'package:data/providers/provider.dart';
 import 'package:data/repositories/dish_repository_impl.dart';
 import 'package:domain/domain.dart';
 import 'package:domain/usecases/fetch_all_dishes.dart';
@@ -14,14 +15,16 @@ class DataDI{
   }
 
   void _initRemoteDataService(){
-    appLocator.registerLazySingleton<FirebaseProvider>(
-      () => FirebaseProvider(dishes: FirebaseFirestore.instance.collection('Menu'))
+    appLocator.registerLazySingleton<Provider>(
+      () => FirebaseProvider(
+        dishes: FirebaseFirestore.instance.collection('Menu'))
     );
   }
+  
   void _initDishes(){
     appLocator.registerLazySingleton<DishRepository>(
       () => DishRepositoryImpl(
-        provider: appLocator.get<FirebaseProvider>()
+        provider: appLocator.get<Provider>()
       )
     );
 

@@ -1,5 +1,5 @@
 import 'package:core/core.dart';
-import 'package:core/di/app_di.dart';
+import 'package:data/di/app_di.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/usecases/fetch_all_dishes.dart';
 import 'package:flutter/material.dart';
@@ -11,22 +11,17 @@ class MenuViewScreen extends StatelessWidget{
     return Scaffold(
       appBar: AppBar (
         title: const Text(
-          'Food app',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-          ),
+          StringConstants.appBarTitle,
+          style: AppFonts.appBarTextStyle
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.transparent,
         elevation: 0,
         centerTitle: true,
       ),
       body: BlocProvider<MenuViewBloc>(
         create: (BuildContext context) => MenuViewBloc(
           getAllDishesUseCase: appLocator.get<FetchAllDishesUseCase>()
-        )
-        ..add(InitEvent()),
+        ),
         child: BlocBuilder<MenuViewBloc, MenuViewState>(
           builder: (BuildContext context, MenuViewState state) {
             if(state is ErrorState){
@@ -35,13 +30,11 @@ class MenuViewScreen extends StatelessWidget{
               );
             }
             if(state is LoadingState){
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const AppLoaderWidget();
             }
             if(state is LoadedState){
               return  Container(
-                color: const Color(0xfffafafa),
+                color: AppColors.screenBackground,
                 height: MediaQuery.sizeOf(context).height,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,

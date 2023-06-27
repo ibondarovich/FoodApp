@@ -6,7 +6,7 @@ class FetchAllDishesUseCase implements UseCase<NoParams, List<DishModel>>{
   final DishRepository _dishRepository;
 
   FetchAllDishesUseCase({
-    required DishRepository dishRepository
+    required DishRepository dishRepository,
   }) : _dishRepository = dishRepository;
 
   @override

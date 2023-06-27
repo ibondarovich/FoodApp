@@ -1,9 +1,10 @@
+import 'package:data/entity/dish_entity.dart';
 import 'package:data/mappers/dish_mapper.dart';
-import 'package:data/providers/firebase_provider.dart';
+import 'package:data/providers/provider.dart';
 import 'package:domain/domain.dart';
 
 class DishRepositoryImpl implements DishRepository{
-  final FirebaseProvider _provider;
+  final Provider _provider;
 
   DishRepositoryImpl({
     required provider
@@ -11,7 +12,7 @@ class DishRepositoryImpl implements DishRepository{
 
   @override
   Future<List<DishModel>> fetchAllDishes() async{
-    final result = await _provider.getAllDishes();    
+    final List<DishEntity> result = await _provider.getAllDishes();    
     return result.map((item) => DishMapper.toModel(item)).toList();
   }
 }

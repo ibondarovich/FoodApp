@@ -13,6 +13,8 @@ dependencies:
     path: ./features/menu_view
   core:
     path: ./core
+  data:
+    path: ./data
 
 dev_dependencies:
   flutter_test:
