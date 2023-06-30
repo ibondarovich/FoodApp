@@ -12,7 +12,7 @@ class MenuViewScreen extends StatelessWidget{
       appBar: AppBar (
         title: const Text(
           StringConstants.appBarTitle,
-          style: AppFonts.appBarTextStyle
+          style: AppFonts.bold_25
         ),
         backgroundColor: AppColors.transparent,
         elevation: 0,
