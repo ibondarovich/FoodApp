@@ -32,7 +32,7 @@ class MenuItemState extends State<MenuItem>{
         ),
         borderRadius: BorderRadius.circular(AppDimens.borderRadius),
         color: AppColors.white,
-        boxShadow: const [
+        boxShadow: const <BoxShadow>[
           BoxShadow(
             color: AppColors.shadowWhite,
             spreadRadius: AppDimens.spreadRadiusShadow,
@@ -41,7 +41,7 @@ class MenuItemState extends State<MenuItem>{
         ]
       ),
       child: Column(
-        children: [
+        children: <Widget>[
           Container(
             width: MediaQuery.of(context).size.width,
             height: AppDimens.imageContainerHeight,
