@@ -1,4 +1,5 @@
 import 'package:core_ui/core_ui.dart';
+import 'package:core_ui/src/widgets/app_image.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
@@ -45,9 +46,8 @@ class MenuItemState extends State<MenuItem>{
           Container(
             width: MediaQuery.of(context).size.width,
             height: AppDimens.imageContainerHeight,
-            child: FittedBox(
-              fit: BoxFit.contain,
-              child: Image.network(widget.dishModel.url)
+            child: AppImage(
+              imageURL: widget.dishModel.url,
             ),
           ),   
           const SizedBox(height: AppDimens.verticalSpacing),
