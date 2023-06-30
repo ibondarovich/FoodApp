@@ -55,7 +55,7 @@ class MenuItemState extends State<MenuItem>{
             alignment: Alignment.centerLeft,
             child: Text(
               widget.dishModel.name,
-              style: AppFonts.dishNameTextStyle
+              style: AppFonts.bold_14
             ),
           ),
           const SizedBox(
@@ -67,7 +67,7 @@ class MenuItemState extends State<MenuItem>{
               children: <Widget>[
                 Text(
                   '${widget.dishModel.price}\$',
-                  style: AppFonts.priceTextStyle
+                  style: AppFonts.bold_20
                 ),
                 const SizedBox(
                   width: AppDimens.horizontalSpacing, 
