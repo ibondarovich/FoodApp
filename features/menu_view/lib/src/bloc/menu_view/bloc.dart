@@ -1,7 +1,5 @@
-import 'package:bloc/bloc.dart';
-import 'package:domain/models/dish_model.dart';
-import 'package:domain/usecases/fetch_all_dishes.dart';
-import 'package:domain/usecases/usecase.dart';
+import 'package:core/core.dart';
+import 'package:domain/domain.dart';
 import 'package:meta/meta.dart';
 
 part 'event.dart';
@@ -21,8 +19,9 @@ class MenuViewBloc extends Bloc<MenuViewEvent, MenuViewState> {
   void _init(InitEvent event, Emitter<MenuViewState> emit) async {
     emit(LoadingState());
     try{
-      final List<DishModel> dishes =
-          await _getAllDishesUseCase.execute(const NoParams());
+      final List<DishModel> dishes = await _getAllDishesUseCase.execute(
+        const NoParams(),
+      );
       emit(LoadedState(dishes: dishes));
     }catch(e){
       emit(ErrorState(errorMessage: e.toString()));      

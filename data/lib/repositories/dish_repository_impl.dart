@@ -7,7 +7,7 @@ class DishRepositoryImpl implements DishRepository{
   final Provider _provider;
 
   DishRepositoryImpl({
-    required provider
+    required provider,
   }) : _provider = provider;
 
   @override

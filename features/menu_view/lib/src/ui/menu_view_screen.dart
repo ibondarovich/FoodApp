@@ -1,7 +1,6 @@
 import 'package:core/core.dart';
-import 'package:data/di/app_di.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:domain/usecases/fetch_all_dishes.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:menu_view/src/bloc/menu_view/bloc.dart';
 
