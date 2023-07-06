@@ -10,4 +10,6 @@ class StringConstants{
   static const String navigationBarSettings = 'Settings';
   static const String navigationBarOrderHistory = 'Order history';
   static const String navigationBarCart = 'Cart';
+
+  static const String settingsThemeTitle = 'Dark Theme';
 }

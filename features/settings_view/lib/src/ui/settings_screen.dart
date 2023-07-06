@@ -29,12 +29,9 @@ class SettingsViewScreen extends StatelessWidget{
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    const Text( //TODO add AppFonts
-                      'Dark Theme:',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold
-                      )
+                    const Text(
+                      StringConstants.settingsThemeTitle,
+                      style: AppFonts.bold_21,
                     ),
                     Switch(
                       onChanged: (bool value) { 
