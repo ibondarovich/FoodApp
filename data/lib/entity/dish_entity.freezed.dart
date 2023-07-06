@@ -23,8 +23,8 @@ mixin _$DishEntity {
   String get name => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   num get price => throw _privateConstructorUsedError;
-  String? get decription => throw _privateConstructorUsedError;
-  List<String>? get ingredients => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  List<String> get ingredients => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,8 +42,8 @@ abstract class $DishEntityCopyWith<$Res> {
       {String name,
       String url,
       num price,
-      String? decription,
-      List<String>? ingredients});
+      String description,
+      List<String> ingredients});
 }
 
 /// @nodoc
@@ -62,8 +62,8 @@ class _$DishEntityCopyWithImpl<$Res, $Val extends DishEntity>
     Object? name = null,
     Object? url = null,
     Object? price = null,
-    Object? decription = freezed,
-    Object? ingredients = freezed,
+    Object? description = null,
+    Object? ingredients = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -78,14 +78,14 @@ class _$DishEntityCopyWithImpl<$Res, $Val extends DishEntity>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as num,
-      decription: freezed == decription
-          ? _value.decription
-          : decription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ingredients: freezed == ingredients
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredients: null == ingredients
           ? _value.ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
     ) as $Val);
   }
 }
@@ -102,8 +102,8 @@ abstract class _$$_DishEntityCopyWith<$Res>
       {String name,
       String url,
       num price,
-      String? decription,
-      List<String>? ingredients});
+      String description,
+      List<String> ingredients});
 }
 
 /// @nodoc
@@ -120,8 +120,8 @@ class __$$_DishEntityCopyWithImpl<$Res>
     Object? name = null,
     Object? url = null,
     Object? price = null,
-    Object? decription = freezed,
-    Object? ingredients = freezed,
+    Object? description = null,
+    Object? ingredients = null,
   }) {
     return _then(_$_DishEntity(
       name: null == name
@@ -136,14 +136,14 @@ class __$$_DishEntityCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as num,
-      decription: freezed == decription
-          ? _value.decription
-          : decription // ignore: cast_nullable_to_non_nullable
-              as String?,
-      ingredients: freezed == ingredients
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      ingredients: null == ingredients
           ? _value._ingredients
           : ingredients // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<String>,
     ));
   }
 }
@@ -155,8 +155,8 @@ class _$_DishEntity implements _DishEntity {
       {required this.name,
       required this.url,
       required this.price,
-      required this.decription,
-      required final List<String>? ingredients})
+      required this.description,
+      required final List<String> ingredients})
       : _ingredients = ingredients;
 
   factory _$_DishEntity.fromJson(Map<String, dynamic> json) =>
@@ -169,20 +169,18 @@ class _$_DishEntity implements _DishEntity {
   @override
   final num price;
   @override
-  final String? decription;
-  final List<String>? _ingredients;
+  final String description;
+  final List<String> _ingredients;
   @override
-  List<String>? get ingredients {
-    final value = _ingredients;
-    if (value == null) return null;
+  List<String> get ingredients {
     if (_ingredients is EqualUnmodifiableListView) return _ingredients;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_ingredients);
   }
 
   @override
   String toString() {
-    return 'DishEntity(name: $name, url: $url, price: $price, decription: $decription, ingredients: $ingredients)';
+    return 'DishEntity(name: $name, url: $url, price: $price, description: $description, ingredients: $ingredients)';
   }
 
   @override
@@ -193,15 +191,15 @@ class _$_DishEntity implements _DishEntity {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.price, price) || other.price == price) &&
-            (identical(other.decription, decription) ||
-                other.decription == decription) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, url, price, decription,
+  int get hashCode => Object.hash(runtimeType, name, url, price, description,
       const DeepCollectionEquality().hash(_ingredients));
 
   @JsonKey(ignore: true)
@@ -223,8 +221,8 @@ abstract class _DishEntity implements DishEntity {
       {required final String name,
       required final String url,
       required final num price,
-      required final String? decription,
-      required final List<String>? ingredients}) = _$_DishEntity;
+      required final String description,
+      required final List<String> ingredients}) = _$_DishEntity;
 
   factory _DishEntity.fromJson(Map<String, dynamic> json) =
       _$_DishEntity.fromJson;
@@ -236,9 +234,9 @@ abstract class _DishEntity implements DishEntity {
   @override
   num get price;
   @override
-  String? get decription;
+  String get description;
   @override
-  List<String>? get ingredients;
+  List<String> get ingredients;
   @override
   @JsonKey(ignore: true)
   _$$_DishEntityCopyWith<_$_DishEntity> get copyWith =>
