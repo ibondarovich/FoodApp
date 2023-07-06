@@ -20,6 +20,7 @@ class AppImage extends StatelessWidget{
       child: CachedNetworkImage(
         imageUrl: imageURL,
         placeholder: (BuildContext context, String url) => Container(
+          color: AppColors.white,
           child: const AppLoaderWidget(),
         ),
         fit: fit ?? BoxFit.contain,

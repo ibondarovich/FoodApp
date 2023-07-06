@@ -9,8 +9,8 @@ class DishEntity with _$DishEntity{
     required String name,
     required String url,
     required num price,
-    required String description,
-    required List<String> ingredients
+    required String? decription,
+    required List<String>? ingredients
   }) = _DishEntity;
 
   factory DishEntity.fromJson(Map<String, dynamic> json) =>

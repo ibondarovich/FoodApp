@@ -11,9 +11,9 @@ _$_DishEntity _$$_DishEntityFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       url: json['url'] as String,
       price: json['price'] as num,
-      description: json['description'] as String,
-      ingredients: (json['ingredients'] as List<dynamic>)
-          .map((e) => e as String)
+      decription: json['decription'] as String?,
+      ingredients: (json['ingredients'] as List<dynamic>?)
+          ?.map((e) => e as String)
           .toList(),
     );
 
@@ -22,6 +22,6 @@ Map<String, dynamic> _$$_DishEntityToJson(_$_DishEntity instance) =>
       'name': instance.name,
       'url': instance.url,
       'price': instance.price,
-      'description': instance.description,
+      'decription': instance.decription,
       'ingredients': instance.ingredients,
     };

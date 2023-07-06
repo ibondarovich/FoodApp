@@ -9,14 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  menu_view:
+    path: ./features/menu_view
   core:
     path: ./core
   data:
     path: ./data
-  core_ui:
-    path: ./core_ui
-  navigation:
-    path: ./navigation
 
 dev_dependencies:
   flutter_test:

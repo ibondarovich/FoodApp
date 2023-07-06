@@ -15,8 +15,6 @@ dependencies:
     path: ../domain
   core:
     path: ../core
-  navigation:
-    path: ../navigation
   cached_network_image: ^3.2.3
 
 dev_dependencies:

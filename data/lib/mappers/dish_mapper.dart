@@ -7,7 +7,7 @@ abstract class DishMapper{
       name: entity.name, 
       url: entity.url, 
       price: entity.price, 
-      description: entity.description, 
+      decription: entity.decription, 
       ingredients: entity.ingredients
     );
   }

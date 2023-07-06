@@ -8,14 +8,13 @@ class MenuViewScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar (
-        title: Text(
+        title: const Text(
           StringConstants.appBarTitle,
-          style: Theme.of(context).appBarTheme.titleTextStyle,
+          style: AppFonts.bold_25
         ),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: AppDimens.elevetion_0,
+        backgroundColor: AppColors.transparent,
+        elevation: 0,
         centerTitle: true,
       ),
       body: BlocProvider<MenuViewBloc>(
@@ -34,9 +33,9 @@ class MenuViewScreen extends StatelessWidget{
             }
             if(state is LoadedState){
               return  Container(
+                color: AppColors.screenBackground,
                 height: MediaQuery.sizeOf(context).height,
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.only(top: AppDimens.P_15),
                   scrollDirection: Axis.vertical,
                   child: Wrap(
                     children: List.generate(
