@@ -13,9 +13,26 @@ class AppFonts{
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle bold_25 = TextStyle(
+  static const TextStyle normal_14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+  );
+
+  static const TextStyle white_bold_14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
+  );
+
+  static const TextStyle titleDarkThemeStyle = TextStyle(
+    color: AppColors.white,
+    fontWeight: FontWeight.bold,
+    fontSize: 25, 
+  );
+  
+  static const TextStyle titleLightThemeStyle = TextStyle(
     color: AppColors.black,
     fontWeight: FontWeight.bold,
-    fontSize: 25,
+    fontSize: 25, 
   );
 }
