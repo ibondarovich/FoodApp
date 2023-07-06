@@ -17,10 +17,10 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    MenuViewRoute.name: (routeData) {
+    HomeRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
         routeData: routeData,
-        child: MenuViewScreen(),
+        child: HomeScreen(),
       );
     },
     DetailedDishRoute.name: (routeData) {
@@ -33,13 +33,59 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    MenuViewRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: MenuViewScreen(),
+      );
+    },
+    SettingsViewRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const SettingsViewScreen(),
+      );
+    },
+    ShoppingCartRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const ShoppingCartScreen(),
+      );
+    },
+    OrderHistoryRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: OrderHistoryScreen(),
+      );
+    },
   };
 
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          MenuViewRoute.name,
+          HomeRoute.name,
           path: '/',
+          children: [
+            RouteConfig(
+              MenuViewRoute.name,
+              path: 'menu',
+              parent: HomeRoute.name,
+            ),
+            RouteConfig(
+              SettingsViewRoute.name,
+              path: 'settings',
+              parent: HomeRoute.name,
+            ),
+            RouteConfig(
+              ShoppingCartRoute.name,
+              path: 'cart',
+              parent: HomeRoute.name,
+            ),
+            RouteConfig(
+              OrderHistoryRoute.name,
+              path: 'history',
+              parent: HomeRoute.name,
+            ),
+          ],
         ),
         RouteConfig(
           DetailedDishRoute.name,
@@ -49,15 +95,16 @@ class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
-/// [MenuViewScreen]
-class MenuViewRoute extends PageRouteInfo<void> {
-  const MenuViewRoute()
+/// [HomeScreen]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
       : super(
-          MenuViewRoute.name,
+          HomeRoute.name,
           path: '/',
+          initialChildren: children,
         );
 
-  static const String name = 'MenuViewRoute';
+  static const String name = 'HomeRoute';
 }
 
 /// generated route for
@@ -92,4 +139,52 @@ class DetailedDishRouteArgs {
   String toString() {
     return 'DetailedDishRouteArgs{key: $key, dishModel: $dishModel}';
   }
+}
+
+/// generated route for
+/// [MenuViewScreen]
+class MenuViewRoute extends PageRouteInfo<void> {
+  const MenuViewRoute()
+      : super(
+          MenuViewRoute.name,
+          path: 'menu',
+        );
+
+  static const String name = 'MenuViewRoute';
+}
+
+/// generated route for
+/// [SettingsViewScreen]
+class SettingsViewRoute extends PageRouteInfo<void> {
+  const SettingsViewRoute()
+      : super(
+          SettingsViewRoute.name,
+          path: 'settings',
+        );
+
+  static const String name = 'SettingsViewRoute';
+}
+
+/// generated route for
+/// [ShoppingCartScreen]
+class ShoppingCartRoute extends PageRouteInfo<void> {
+  const ShoppingCartRoute()
+      : super(
+          ShoppingCartRoute.name,
+          path: 'cart',
+        );
+
+  static const String name = 'ShoppingCartRoute';
+}
+
+/// generated route for
+/// [OrderHistoryScreen]
+class OrderHistoryRoute extends PageRouteInfo<void> {
+  const OrderHistoryRoute()
+      : super(
+          OrderHistoryRoute.name,
+          path: 'history',
+        );
+
+  static const String name = 'OrderHistoryRoute';
 }

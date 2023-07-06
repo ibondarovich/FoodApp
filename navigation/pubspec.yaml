@@ -17,6 +17,14 @@ dependencies:
     path: ../features/menu_view
   detailed_dish_view:
     path: ../features/detailed_dish_view
+  home:
+    path: ../features/home
+  settings_view:
+    path: ../features/settings_view
+  order_history_view:
+    path: ../features/order_history_view
+  shopping_cart_view:
+    path: ../features/shopping_cart_view
   core:
     path: ../core
   domain:
