@@ -480,7 +480,7 @@ packages:
     source: hosted
     version: "0.27.7"
   settings_view:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "features/settings_view"
       relative: true
