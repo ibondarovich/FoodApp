@@ -36,7 +36,7 @@ class MenuViewScreen extends StatelessWidget{
               return  Container(
                 height: MediaQuery.sizeOf(context).height,
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.only(top: AppDimens.P_15),
+                  padding: const EdgeInsets.only(top: AppDimens.padding15),
                   scrollDirection: Axis.vertical,
                   child: Wrap(
                     children: List.generate(

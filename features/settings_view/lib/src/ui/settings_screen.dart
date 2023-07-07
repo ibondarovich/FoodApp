@@ -22,7 +22,7 @@ class SettingsViewScreen extends StatelessWidget{
       body: BlocBuilder<SettingsViewBloc, SettingsViewState>(
         builder: (context, state) {
           return Container(
-            padding: const EdgeInsets.all(AppDimens.P_20),
+            padding: const EdgeInsets.all(AppDimens.padding20),
             child: Column(
               children: <Widget>[
                 Row(

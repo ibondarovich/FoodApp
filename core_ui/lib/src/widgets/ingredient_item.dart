@@ -13,13 +13,13 @@ class IngredientItem extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      padding: const EdgeInsets.all(AppDimens.P_15),
+      padding: const EdgeInsets.all(AppDimens.padding15),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         border: Border.all(
           color: AppColors.primaryColor,
         ),
-        borderRadius: BorderRadius.circular(AppDimens.P_40),
+        borderRadius: BorderRadius.circular(AppDimens.padding40),
       ),
       child: Text(
         title,

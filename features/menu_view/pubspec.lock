@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
+  auto_route:
+    dependency: transitive
+    description:
+      name: auto_route
+      sha256: "12047baeca0e01df93165ef33275b32119d72699ab9a49dc64c20e78f586f96d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.4"
   bloc:
     dependency: transitive
     description:
@@ -127,6 +135,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  detailed_dish_view:
+    dependency: transitive
+    description:
+      path: "../detailed_dish_view"
+      relative: true
+    source: path
+    version: "0.0.1"
   domain:
     dependency: "direct main"
     description:
@@ -293,6 +308,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
+  navigation:
+    dependency: transitive
+    description:
+      path: "../../navigation"
+      relative: true
+    source: path
+    version: "0.0.1"
   nested:
     dependency: transitive
     description:
