@@ -31,7 +31,7 @@ class DetailedDishScreen extends StatelessWidget{
         scrollDirection: Axis.vertical,
         child: Container(
           child: Column(
-            children: [
+            children: <Widget>[
               Align(
                 child: Container(
                   margin: const EdgeInsets.only(top: AppDimens.padding45),

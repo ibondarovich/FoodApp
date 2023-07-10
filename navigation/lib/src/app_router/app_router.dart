@@ -16,7 +16,7 @@ part 'app_router.gr.dart';
     AutoRoute(
       path: '/',
       page: HomeScreen,
-      children: [
+      children: <AutoRoute>[
         AutoRoute(
           path: 'menu',
           page: MenuViewScreen,
