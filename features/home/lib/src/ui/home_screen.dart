@@ -9,19 +9,19 @@ class HomeScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
-      routes: const [
+      routes: const <PageRouteInfo>[
         MenuViewRoute(),
         ShoppingCartRoute(),
         OrderHistoryRoute(),
         SettingsViewRoute(),
       ],
-      bottomNavigationBuilder: (_, tabsRouter) {
+      bottomNavigationBuilder: (BuildContext context, TabsRouter tabsRouter) {
         return BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           selectedItemColor: AppColors.primaryColor,
           unselectedItemColor: Theme.of(context).iconTheme.color,
-          items: const [
+          items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: AppIcons.restaurantMenu,
               label: StringConstants.navigationBarMenu,

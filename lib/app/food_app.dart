@@ -12,7 +12,7 @@ class FoodApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => SettingsViewBloc(),
       child: BlocBuilder<SettingsViewBloc, SettingsViewState>(
-        builder: (context, state) {
+        builder: (BuildContext context, SettingsViewState state) {
           return MaterialApp.router(
             routerDelegate: appLocator.get<AppRouter>().delegate(),
             routeInformationParser: appLocator.get<AppRouter>().defaultRouteParser(),

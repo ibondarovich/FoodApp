@@ -6,10 +6,10 @@ part 'state.dart';
 
 class SettingsViewBloc extends Bloc<SettingsViewEvent, SettingsViewState> {
   SettingsViewBloc() : super(SettingsViewState(isDark: false)) {
-    on<ThemeSwitchEvent>(_setTheme);
+    on<OnSwitchThemeEvent>(_onSetTheme);
   }
 
-  void _setTheme(ThemeSwitchEvent event, Emitter<SettingsViewState> emit){
+  void _onSetTheme(OnSwitchThemeEvent event, Emitter<SettingsViewState> emit){
     emit(SettingsViewState(isDark: event.isDark));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class OrderHistoryScreen extends StatelessWidget{
@@ -6,7 +7,7 @@ class OrderHistoryScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Order history'), //TODO add order history
+      child: Text(StringConstants.navigationBarOrderHistory),
     );
   }
 }

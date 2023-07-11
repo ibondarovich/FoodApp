@@ -7,7 +7,7 @@ class SettingsViewScreen extends StatelessWidget{
   const SettingsViewScreen({super.key});
 
   @override
-  Widget build(BuildContext context) { //TODO add settings
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar (
@@ -36,7 +36,7 @@ class SettingsViewScreen extends StatelessWidget{
                     Switch(
                       onChanged: (bool value) { 
                         BlocProvider.of<SettingsViewBloc>(context).add(
-                          ThemeSwitchEvent(isDark: value),
+                          OnSwitchThemeEvent(isDark: value),
                         );
                       }, 
                       value: state.isDark,

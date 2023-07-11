@@ -27,8 +27,6 @@ dependencies:
     path: ../features/shopping_cart_view
   core:
     path: ../core
-  domain:
-    path: ../domain
 
   
 

@@ -1,3 +1,4 @@
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
 
 class ShoppingCartScreen extends StatelessWidget{
@@ -6,7 +7,7 @@ class ShoppingCartScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Shopping cart'), //TODO add shopping cart
+      child: Text(StringConstants.navigationBarCart),
     );
   }
 }

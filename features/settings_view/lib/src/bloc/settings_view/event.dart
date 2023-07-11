@@ -3,10 +3,10 @@ part of 'bloc.dart';
 @immutable
 abstract class SettingsViewEvent {}
 
-class ThemeSwitchEvent extends SettingsViewEvent{
+class OnSwitchThemeEvent extends SettingsViewEvent{
   final bool isDark;
   
-  ThemeSwitchEvent({
+  OnSwitchThemeEvent({
     required this.isDark
   });
 }
