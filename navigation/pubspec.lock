@@ -271,7 +271,7 @@ packages:
     source: path
     version: "0.0.1"
   domain:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: "../domain"
       relative: true
@@ -412,6 +412,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
+  home:
+    dependency: "direct main"
+    description:
+      path: "../features/home"
+      relative: true
+    source: path
+    version: "0.0.1"
   http:
     dependency: transitive
     description:
@@ -531,6 +538,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  order_history_view:
+    dependency: "direct main"
+    description:
+      path: "../features/order_history_view"
+      relative: true
+    source: path
+    version: "0.0.1"
   package_config:
     dependency: transitive
     description:
@@ -667,6 +681,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  settings_view:
+    dependency: "direct main"
+    description:
+      path: "../features/settings_view"
+      relative: true
+    source: path
+    version: "0.0.1"
   shelf:
     dependency: transitive
     description:
@@ -683,6 +704,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  shopping_cart_view:
+    dependency: "direct main"
+    description:
+      path: "../features/shopping_cart_view"
+      relative: true
+    source: path
+    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter

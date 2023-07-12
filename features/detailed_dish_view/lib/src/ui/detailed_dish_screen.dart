@@ -31,15 +31,15 @@ class DetailedDishScreen extends StatelessWidget{
         scrollDirection: Axis.vertical,
         child: Container(
           child: Column(
-            children: [
+            children: <Widget>[
               Align(
                 child: Container(
-                  margin: const EdgeInsets.only(top: AppDimens.P_45),
+                  margin: const EdgeInsets.only(top: AppDimens.padding45),
                   width: MediaQuery.sizeOf(context).width / 1.5,
                   height: MediaQuery.sizeOf(context).height / 3.6,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(
-                      Radius.circular(AppDimens.P_20),
+                      Radius.circular(AppDimens.padding20),
                     ),
                     boxShadow:const <BoxShadow>[
                       BoxShadow(
@@ -76,8 +76,8 @@ class DetailedDishScreen extends StatelessWidget{
               ),
               Container(
                 padding: const EdgeInsets.only(
-                  right: AppDimens.P_35,
-                  left: AppDimens.P_35,
+                  right: AppDimens.padding35,
+                  left: AppDimens.padding35,
                 ),
                 child: Text(
                   dishModel.description,
@@ -98,7 +98,7 @@ class DetailedDishScreen extends StatelessWidget{
                   children: List.generate(
                     dishModel.ingredients.length,
                     (index) => Container(
-                      margin: const EdgeInsets.all(AppDimens.P_10),
+                      margin: const EdgeInsets.all(AppDimens.padding10),
                       width: MediaQuery.of(context).size.width / 3,
                       child: IngredientItem(
                         title: dishModel.ingredients[index],
@@ -118,15 +118,15 @@ class DetailedDishScreen extends StatelessWidget{
         onTap: () {}, //TODO add to cart logic
         width: MediaQuery.of(context).size.width / 7,
         margin: const EdgeInsets.only(
-          bottom: AppDimens.P_20,
-          right: AppDimens.P_15,
-          left: AppDimens.P_15,
+          bottom: AppDimens.padding20,
+          right: AppDimens.padding15,
+          left: AppDimens.padding15,
         ),
-        padding: AppDimens.P_20,
+        padding: AppDimens.padding20,
         title: StringConstants.addToCartString,
         textStyle: AppFonts.white_bold_14,
         boxDecoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(AppDimens.P_20)),
+          borderRadius: BorderRadius.all(Radius.circular(AppDimens.padding20)),
           gradient: AppColors.primaryGradient,
         ),
       ),

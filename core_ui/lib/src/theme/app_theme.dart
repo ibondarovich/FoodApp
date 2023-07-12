@@ -13,6 +13,9 @@ class AppTheme {
       textTheme: const TextTheme(
         titleSmall: AppFonts.bold_14
       ),
+      iconTheme: const IconThemeData(
+        color: AppColors.black,
+      ),
     );
   }
 
@@ -25,6 +28,9 @@ class AppTheme {
       ),
       textTheme: const TextTheme(
         titleSmall: AppFonts.bold_14
+      ),
+      iconTheme: const IconThemeData(
+        color: AppColors.white,
       ),
     );
   }

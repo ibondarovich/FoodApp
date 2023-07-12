@@ -17,6 +17,8 @@ dependencies:
     path: ./core_ui
   navigation:
     path: ./navigation
+  settings_view:
+    path: ./features/settings_view
 
 dev_dependencies:
   flutter_test:
