@@ -3,6 +3,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:menu_view/src/bloc/menu_view/bloc.dart';
+import 'components/menu_item.dart';
 
 class MenuViewScreen extends StatelessWidget{
   @override
@@ -15,7 +16,7 @@ class MenuViewScreen extends StatelessWidget{
           style: Theme.of(context).appBarTheme.titleTextStyle,
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: AppDimens.elevetion_0,
+        elevation: AppDimens.elevetion0,
         centerTitle: true,
       ),
       body: BlocProvider<MenuViewBloc>(

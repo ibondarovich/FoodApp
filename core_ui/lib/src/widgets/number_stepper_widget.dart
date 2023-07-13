@@ -16,7 +16,7 @@ class NumberStepperState extends State<NumberStepperWidget> {
       decoration: const BoxDecoration(
         gradient: AppColors.primaryGradient,
         borderRadius: BorderRadius.all(Radius.circular(
-          AppDimens.borderRadius_30,
+          AppDimens.borderRadius30,
         )),
       ),
       child: Row(
@@ -30,7 +30,7 @@ class NumberStepperState extends State<NumberStepperWidget> {
             ),
           ),
           const SizedBox(
-            width: AppDimens.horizontalSpacing_10,
+            width: AppDimens.horizontalSpacing10,
           ),
           const Text(
             '1', //TODO remove hardcode
@@ -39,7 +39,7 @@ class NumberStepperState extends State<NumberStepperWidget> {
             ),
           ),
           const SizedBox(
-            width: AppDimens.horizontalSpacing_10,
+            width: AppDimens.horizontalSpacing10,
           ),
           IconButton(
             onPressed: () {},

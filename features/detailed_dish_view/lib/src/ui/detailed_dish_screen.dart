@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'components/ingredient_item.dart';
 
 class DetailedDishScreen extends StatelessWidget{
   final DishModel dishModel;
@@ -21,7 +22,7 @@ class DetailedDishScreen extends StatelessWidget{
           style: Theme.of(context).appBarTheme.titleTextStyle
         ),
         backgroundColor:Theme.of(context).scaffoldBackgroundColor,
-      elevation: AppDimens.elevetion_0, 
+      elevation: AppDimens.elevetion0, 
         centerTitle: true,
         leading: const BackButton(
           color: AppColors.primaryColor
@@ -44,7 +45,7 @@ class DetailedDishScreen extends StatelessWidget{
                     boxShadow:const <BoxShadow>[
                       BoxShadow(
                         color: AppColors.shadowBlack,
-                        blurRadius: AppDimens.blurRadiusShadow_20, 
+                        blurRadius: AppDimens.blurRadiusShadow20, 
                         offset: AppDimens.boxShadowOffset,
                       ),
                     ],
@@ -54,25 +55,25 @@ class DetailedDishScreen extends StatelessWidget{
                 ),
               ),
               const SizedBox(
-                height: AppDimens.verticalSpacing_40,
+                height: AppDimens.verticalSpacing40,
               ),
               NumberStepperWidget(),
               const SizedBox(
-                height: AppDimens.verticalSpacing_40,
+                height: AppDimens.verticalSpacing40,
               ),
               Text(
                 dishModel.name,
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(
-                height: AppDimens.verticalSpacing_20,
+                height: AppDimens.verticalSpacing20,
               ),
               Text(
                 '${dishModel.price}\$',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(
-                height: AppDimens.verticalSpacing_20,
+                height: AppDimens.verticalSpacing20,
               ),
               Container(
                 padding: const EdgeInsets.only(
@@ -86,7 +87,7 @@ class DetailedDishScreen extends StatelessWidget{
                 ),
               ),
               const SizedBox(
-                height: AppDimens.verticalSpacing_20,
+                height: AppDimens.verticalSpacing20,
               ),
               const Text(
                 StringConstants.ingredientsTitle,
@@ -108,7 +109,7 @@ class DetailedDishScreen extends StatelessWidget{
                 ),
               ), 
               const SizedBox(
-                height: AppDimens.verticalSpacing_80,
+                height: AppDimens.verticalSpacing80,
               ),
             ],
           )
@@ -122,13 +123,9 @@ class DetailedDishScreen extends StatelessWidget{
           right: AppDimens.padding15,
           left: AppDimens.padding15,
         ),
-        padding: AppDimens.padding20,
+        padding: const EdgeInsets.all(AppDimens.padding20),
         title: StringConstants.addToCartString,
         textStyle: AppFonts.white_bold_14,
-        boxDecoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(AppDimens.padding20)),
-          gradient: AppColors.primaryGradient,
-        ),
       ),
     );
   }

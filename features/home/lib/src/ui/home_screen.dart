@@ -3,7 +3,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 
-class HomeScreen extends StatelessWidget{
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
@@ -15,7 +15,10 @@ class HomeScreen extends StatelessWidget{
         OrderHistoryRoute(),
         SettingsViewRoute(),
       ],
-      bottomNavigationBuilder: (BuildContext context, TabsRouter tabsRouter) {
+      bottomNavigationBuilder: (
+        BuildContext context,
+        TabsRouter tabsRouter,
+      ) {
         return BottomNavigationBar(
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,

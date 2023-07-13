@@ -8,7 +8,7 @@ abstract class DishMapper{
       url: entity.url, 
       price: entity.price, 
       description: entity.description, 
-      ingredients: entity.ingredients
+      ingredients: entity.ingredients,
     );
   }
 }

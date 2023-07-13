@@ -4,34 +4,35 @@ import 'package:data/providers/provider.dart';
 import 'package:data/repositories/dish_repository_impl.dart';
 import 'package:domain/domain.dart';
 
-final DataDI dataDI= DataDI();
+final DataDI dataDI = DataDI();
 
-class DataDI{
-  Future<void> initDependencies() async{
+class DataDI {
+  Future<void> initDependencies() async {
     _initRemoteDataService();
     _initDishes();
   }
 
-  void _initRemoteDataService(){
+  void _initRemoteDataService() {
     appLocator.registerLazySingleton<Provider>(
       () => FirebaseProvider(
         dishes: FirebaseFirestore.instance.collection(
           StringConstants.firebaseTableName,
-        ))
+        ),
+      ),
     );
   }
-  
-  void _initDishes(){
+
+  void _initDishes() {
     appLocator.registerLazySingleton<DishRepository>(
       () => DishRepositoryImpl(
-        provider: appLocator.get<Provider>()
-      )
+        provider: appLocator.get<Provider>(),
+      ),
     );
 
     appLocator.registerLazySingleton<FetchAllDishesUseCase>(
       () => FetchAllDishesUseCase(
-        dishRepository: appLocator.get<DishRepository>()
-      )
+        dishRepository: appLocator.get<DishRepository>(),
+      ),
     );
   }
 }

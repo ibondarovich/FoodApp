@@ -4,6 +4,7 @@ import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
 
+
 class MenuItem extends StatefulWidget{
   final DishModel dishModel;
   const MenuItem({
@@ -20,25 +21,25 @@ class MenuItemState extends State<MenuItem>{
     return Container(
       alignment: Alignment.center,
       margin: const EdgeInsets.only(
-        left: AppDimens.containerMargin, 
-        right: AppDimens.containerMargin, 
-        bottom: AppDimens.containerMargin),
+        left: AppDimens.containerMargin10, 
+        right: AppDimens.containerMargin10, 
+        bottom: AppDimens.containerMargin10),
       padding: const EdgeInsets.only(
-        right: AppDimens.containerPadding, 
-        left: AppDimens.containerPadding),
+        right: AppDimens.containerPadding5, 
+        left: AppDimens.containerPadding5),
       decoration: BoxDecoration(
         border: Border.all(
           color: Theme.of(context).cardColor,
           width: AppDimens.borderWidth,
           style: BorderStyle.solid,
         ),
-        borderRadius: BorderRadius.circular(AppDimens.borderRadius_15),
+        borderRadius: BorderRadius.circular(AppDimens.borderRadius15),
         color: Theme.of(context).cardColor,
         boxShadow: <BoxShadow>[
         BoxShadow(
           color: Theme.of(context).shadowColor,
           spreadRadius: AppDimens.spreadRadiusShadow,
-          blurRadius: AppDimens.blurRadiusShadow_20,
+          blurRadius: AppDimens.blurRadiusShadow20,
           ),
         ]
       ),
@@ -52,13 +53,13 @@ class MenuItemState extends State<MenuItem>{
             ),
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: AppDimens.imageContainerHeight,
+              height: AppDimens.containerHeight120,
               child: AppImage(
                 imageURL: widget.dishModel.url,
               ),
             ), 
           ),
-          const SizedBox(height: AppDimens.verticalSpacing_5),
+          const SizedBox(height: AppDimens.verticalSpacing5),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -67,7 +68,7 @@ class MenuItemState extends State<MenuItem>{
             ),
           ),
           const SizedBox(
-            height: AppDimens.verticalSpacing_5
+            height: AppDimens.verticalSpacing5
           ),
           FittedBox(
             fit: BoxFit.contain,

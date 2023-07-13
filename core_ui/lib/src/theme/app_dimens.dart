@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 
 class AppDimens {
   static const double spreadRadiusShadow = 2;
-  static const double blurRadiusShadow_15 = 15;
-  static const double blurRadiusShadow_20 = 20;
+  static const double blurRadiusShadow15 = 15;
+  static const double blurRadiusShadow20 = 20;
   static const double borderWidth = 5;
-  static const double borderRadius_15 = 15;
-  static const double borderRadius_20 = 20;
-  static const double borderRadius_30 = 30;
-  static const double elevetion_0 = 0;
+  static const double borderRadius15 = 15;
+  static const double borderRadius20 = 20;
+  static const double borderRadius30 = 30;
+  static const double elevetion0 = 0;
 
-  static const double containerMargin = 10;
-  static const double containerPadding = 5;
-  static const double imageContainerHeight = 120;
+  static const double containerMargin10 = 10;
+  static const double containerPadding5 = 5;
+  static const double containerHeight120 = 120;
 
-  static const double verticalSpacing_5 = 5;
-  static const double verticalSpacing_20 = 20;
-  static const double verticalSpacing_40 = 40;
-  static const double verticalSpacing_80 = 80;
+  static const double verticalSpacing5 = 5;
+  static const double verticalSpacing20 = 20;
+  static const double verticalSpacing40 = 40;
+  static const double verticalSpacing80 = 80;
 
-  static const double horizontalSpacing_10 = 10;
+  static const double horizontalSpacing10 = 10;
   static const double horizontalSpacing = 20;
 
 

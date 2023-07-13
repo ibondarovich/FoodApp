@@ -12,12 +12,15 @@ class FirebaseProvider implements Provider {
         .doc(StringConstants.firebaseDocumentName)
         .collection(StringConstants.firebaseCollectionName)
         .get();
-    final List<DishEntity> result =
-        response.docs
-        .map((doc) => DishEntity.fromJson(
-              doc.data(),
-            ))
+
+    final List<DishEntity> result = response.docs
+        .map(
+          (doc) => DishEntity.fromJson(
+            doc.data(),
+          ),
+        )
         .toList();
+        
     return result;
   }
 }
