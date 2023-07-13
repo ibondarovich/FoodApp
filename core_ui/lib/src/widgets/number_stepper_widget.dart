@@ -12,7 +12,7 @@ class NumberStepperState extends State<NumberStepperWidget> {
     return Container(
       width: MediaQuery.sizeOf(context).width / 3,
       padding: const EdgeInsets.symmetric(
-          vertical: AppDimens.P_8, horizontal: AppDimens.P_3),
+          vertical: AppDimens.padding8, horizontal: AppDimens.padding3),
       decoration: const BoxDecoration(
         gradient: AppColors.primaryGradient,
         borderRadius: BorderRadius.all(Radius.circular(

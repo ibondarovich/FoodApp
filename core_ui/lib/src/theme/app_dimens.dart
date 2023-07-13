@@ -23,14 +23,14 @@ class AppDimens {
   static const double horizontalSpacing = 20;
 
 
-  static const double P_3 = 3;
-  static const double P_8 = 8;
-  static const double P_10 = 10;
-  static const double P_15 = 15;
-  static const double P_20 = 20;
-  static const double P_35 = 35;
-  static const double P_40 = 40;
-  static const double P_45 = 45;
+  static const double padding3 = 3;
+  static const double padding8 = 8;
+  static const double padding10 = 10;
+  static const double padding15 = 15;
+  static const double padding20 = 20;
+  static const double padding35 = 35;
+  static const double padding40 = 40;
+  static const double padding45 = 45;
 
   static const Offset boxShadowOffset = Offset(0, 20);
 }

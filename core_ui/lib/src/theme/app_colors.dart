@@ -11,11 +11,11 @@ class AppColors{
     begin: Alignment.centerLeft,
     end: Alignment.centerRight,
   );
-  static const Color white = Color.fromRGBO(255, 255, 255, 1);
-  static const Color shadowWhite = Color.fromRGBO(244, 244, 244, 1);
-  static const Color shadowBlack = Color.fromARGB(10, 2, 32, 44);
-  static const Color transparent = Color.fromRGBO(0, 0, 0, 0);
-  static const Color lightThemeBackground = Color.fromRGBO(250, 250, 250, 1);
-  static const Color darkThemeBackground = Color.fromRGBO(48, 47, 47, 1);
-  static const Color black = Color.fromRGBO(0, 0, 0, 1);
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color shadowWhite = Color(0xFFF4F4F4);
+  static const Color shadowBlack = Color(0x2202202C);
+  static const Color transparent = Color(0x00000000);
+  static const Color lightThemeBackground = Color(0xFFFAFAFA);
+  static const Color darkThemeBackground = Color(0xFF302F2F);
+  static const Color black = Color(0xFF000000);
 }

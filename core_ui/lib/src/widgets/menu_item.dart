@@ -85,7 +85,7 @@ class MenuItemState extends State<MenuItem>{
                   onTap: (){ },
                   boxDecoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(
-                      Radius.circular(AppDimens.P_35),
+                      Radius.circular(AppDimens.padding35),
                     ),
                     gradient: AppColors.primaryGradient,
                   ),
