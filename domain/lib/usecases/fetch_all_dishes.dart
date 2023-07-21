@@ -2,7 +2,7 @@ import 'package:domain/models/dish_model.dart';
 import 'package:domain/repositories/dish_repository.dart';
 import 'package:domain/usecases/usecase.dart';
 
-class FetchAllDishesUseCase implements UseCase<NoParams, List<DishModel>>{
+class FetchAllDishesUseCase implements FutureUseCase<NoParams, List<DishModel>>{
   final DishRepository _dishRepository;
 
   FetchAllDishesUseCase({

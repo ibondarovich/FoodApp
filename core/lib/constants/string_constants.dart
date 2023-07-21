@@ -6,10 +6,20 @@ class StringConstants{
   static const String firebaseCollectionName = 'Item';
   static const String firebaseTableName = 'Menu';
 
+  static const String hiveBoxCartName = 'Cart';
+
   static const String navigationBarMenu = 'Menu';
   static const String navigationBarSettings = 'Settings';
   static const String navigationBarOrderHistory = 'Order history';
   static const String navigationBarCart = 'Cart';
 
   static const String settingsThemeTitle = 'Dark Theme';
+
+  static const String cartPagePayment = 'Process to payment';
+
+  static const String totalPriceTitle = 'Total';
+  static const String yourCartTitle = 'Your cart';
+  static const String goToMenuTitle = 'Go to menu';
+  static const String emptyCartTitle = 'Your cart is empty...';
+  static const String addedToCartSnackBarTitle = 'Item was added to cart';
 }
