@@ -1,10 +1,11 @@
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
-class AppButton extends StatelessWidget{
+class AppCircleIconButton extends StatelessWidget{
   final Function()? onTap;
-  final String title;
-  final TextStyle? textStyle;
+  final IconData icon;
+  final double iconSize;
+  final Color iconColor;
   final EdgeInsets padding;
   final EdgeInsets? margin;
   final BoxDecoration? boxDecoration;
@@ -13,23 +14,23 @@ class AppButton extends StatelessWidget{
   final Alignment alignment;
   final double borderRadius;
 
-  const AppButton({
+  const AppCircleIconButton({
     super.key,
     this.onTap,
-    required this.title,
-    this.padding = const EdgeInsets.all(10),
+    required this.icon,
+    this.iconSize = 16,
+    this.iconColor = AppColors.white,
+    this.padding = const EdgeInsets.all(2),
     this.margin,
     this.boxDecoration,
-    this.height,
-    this.width,
-    this.textStyle,
+    this.height = 24,
+    this.width = 24,
     this.alignment = Alignment.center,
     this.borderRadius = 20,
   });
-
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+     return GestureDetector(
       onTap: onTap, 
       child: Container(
         alignment: alignment,
@@ -38,14 +39,15 @@ class AppButton extends StatelessWidget{
         padding: padding,
         margin: margin,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
+          borderRadius: BorderRadius.circular(100),
           gradient: AppColors.primaryGradient,
         ),
-        child: Text(
-          title,
-          style: textStyle,
+        child: Icon(
+          icon,
+          size: iconSize,
+          color: iconColor,
         ),
-      )
+      ),
     );
   }
 }

@@ -16,4 +16,8 @@ class AppIcons{
   static const Icon settings = Icon(
     Icons.settings,
   );
+
+  static const IconData add = Icons.add;
+  static const IconData remove = Icons.remove;
+  static const IconData delete = Icons.delete;
 }

@@ -10,6 +10,7 @@ class AppColors{
   static const Color lightThemeBackground = Color(0xFFFAFAFA);
   static const Color darkThemeBackground = Color(0xFF302F2F);
   static const Color black = Color(0xFF000000);
+  static const Color red = Color(0xFFF44437);
   static const LinearGradient primaryGradient = LinearGradient(
     colors: [
       lightOrange,

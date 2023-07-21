@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/empty_router_widgets.dart';
 import 'package:detailed_dish_view/detailed_dish_view.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +19,24 @@ part 'app_router.gr.dart';
       page: HomeScreen,
       children: <AutoRoute>[
         AutoRoute(
-          path: 'menu',
-          page: MenuViewScreen,
+          name: 'EmptyRoute',
+          path: 'empty_route',
+          page: EmptyRouterPage,
+          children: <AutoRoute>[
+            AutoRoute(
+              initial: true,
+              path: 'menu',
+              page: MenuViewScreen,
+            ),
+            AutoRoute(
+              page: DetailedDishScreen,
+              path: 'detailed_dish'
+            ),
+            RedirectRoute(
+              path: 'detailed_dish', 
+              redirectTo: 'menu'
+            ),
+          ]
         ),
         AutoRoute(
           path: 'settings',
@@ -28,6 +45,7 @@ part 'app_router.gr.dart';
         AutoRoute(
           path: 'cart',
           page: ShoppingCartScreen,
+          maintainState: false,
         ),
         AutoRoute(
           path: 'history',
@@ -35,9 +53,6 @@ part 'app_router.gr.dart';
         ),
       ]
     ),
-    AutoRoute(
-      page: DetailedDishScreen,
-    )
   ],
 )
 

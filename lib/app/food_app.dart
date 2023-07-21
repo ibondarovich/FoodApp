@@ -6,7 +6,6 @@ import 'package:settings_view/settings_view.dart';
 
 class FoodApp extends StatelessWidget {
   const FoodApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -15,7 +14,8 @@ class FoodApp extends StatelessWidget {
         builder: (BuildContext context, SettingsViewState state) {
           return MaterialApp.router(
             routerDelegate: appLocator.get<AppRouter>().delegate(),
-            routeInformationParser: appLocator.get<AppRouter>().defaultRouteParser(),
+            routeInformationParser:
+                appLocator.get<AppRouter>().defaultRouteParser(),
             theme: state.isDark? AppTheme.dark : AppTheme.light,
           );
         },

@@ -13,6 +13,7 @@ class AppDimens {
   static const double containerMargin10 = 10;
   static const double containerPadding5 = 5;
   static const double containerHeight120 = 120;
+  static const double container80 = 80;
 
   static const double verticalSpacing5 = 5;
   static const double verticalSpacing20 = 20;
@@ -21,6 +22,8 @@ class AppDimens {
 
   static const double horizontalSpacing10 = 10;
   static const double horizontalSpacing = 20;
+  static const double horizontalSpacing30 = 30;
+  static const double horizontalSpacing50 = 50;
 
 
   static const double padding3 = 3;
@@ -31,6 +34,10 @@ class AppDimens {
   static const double padding35 = 35;
   static const double padding40 = 40;
   static const double padding45 = 45;
+
+  static const double iconSize16 = 16;
+
+  static const double imageSize100 = 100;
 
   static const Offset boxShadowOffset = Offset(0, 20);
 }

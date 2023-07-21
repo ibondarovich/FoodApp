@@ -2,20 +2,17 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:menu_view/src/bloc/menu_view/bloc.dart';
 import 'package:navigation/navigation.dart';
 
-
-class MenuItem extends StatefulWidget{
+class MenuItem extends StatelessWidget{
   final DishModel dishModel;
+  
   const MenuItem({
     super.key,
-    required this.dishModel
+    required this.dishModel,
   });
-  @override
-  State<StatefulWidget> createState() => MenuItemState();
-}
 
-class MenuItemState extends State<MenuItem>{
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,10 +33,10 @@ class MenuItemState extends State<MenuItem>{
         borderRadius: BorderRadius.circular(AppDimens.borderRadius15),
         color: Theme.of(context).cardColor,
         boxShadow: <BoxShadow>[
-        BoxShadow(
-          color: Theme.of(context).shadowColor,
-          spreadRadius: AppDimens.spreadRadiusShadow,
-          blurRadius: AppDimens.blurRadiusShadow20,
+          BoxShadow(
+            color: Theme.of(context).shadowColor,
+            spreadRadius: AppDimens.spreadRadiusShadow,
+            blurRadius: AppDimens.blurRadiusShadow20,
           ),
         ]
       ),
@@ -48,14 +45,13 @@ class MenuItemState extends State<MenuItem>{
           InkWell(
             onTap: () => context.pushRoute(
               DetailedDishRoute(
-                dishModel: widget.dishModel, 
-              )
+                dishModel: dishModel, 
+              ),
             ),
             child: Container(
-              width: MediaQuery.of(context).size.width,
               height: AppDimens.containerHeight120,
               child: AppImage(
-                imageURL: widget.dishModel.url,
+                imageURL: dishModel.url,
               ),
             ), 
           ),
@@ -63,7 +59,7 @@ class MenuItemState extends State<MenuItem>{
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              widget.dishModel.name,
+              dishModel.name,
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
@@ -75,26 +71,54 @@ class MenuItemState extends State<MenuItem>{
             child: Row(
               children: <Widget>[
                 Text(
-                  '${widget.dishModel.price}\$',
-                  style: AppFonts.bold_20
+                  '${dishModel.price}\$',
+                  style: AppFonts.bold_20.copyWith(
+                    color: AppColors.lightOrange,
+                  ),
                 ),
                 const SizedBox(
                   width: AppDimens.horizontalSpacing, 
                 ),
                 AppButton(
                   title: StringConstants.addToCartString,
-                  onTap: (){ },
+                  onTap: () {
+                    BlocProvider.of<MenuViewBloc>(context).add(
+                      OnSaveItemEvent(dishModel: dishModel)
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        behavior: SnackBarBehavior.floating, 
+                        duration: const Duration(seconds: 1),
+                        backgroundColor: AppColors.transparent,
+                        elevation: AppDimens.elevetion0,
+                        content: Container(
+                          padding: const EdgeInsets.all(AppDimens.padding20),
+                          decoration: const BoxDecoration(
+                            color: AppColors.lightOrange,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(AppDimens.padding20),
+                            ),
+                          ),
+                          child: const Text(
+                            StringConstants.addedToCartSnackBarTitle
+                          ),
+                        ),
+                      ), 
+                    );
+                  },
                   boxDecoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(
                       Radius.circular(AppDimens.padding35),
                     ),
                     gradient: AppColors.primaryGradient,
                   ),
-                  textStyle: AppFonts.white_bold_14,
-                )
+                  textStyle: AppFonts.bold_14.copyWith(
+                    color: AppColors.white,
+                  ),
+                ),
               ]
-            )
-          )
+            ),
+          ),
         ],
       ),
     );

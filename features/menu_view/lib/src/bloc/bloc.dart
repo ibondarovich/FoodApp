@@ -1,1 +1,1 @@
-export 'package:menu_view/menu_view.dart';
+export 'menu_view/bloc.dart';

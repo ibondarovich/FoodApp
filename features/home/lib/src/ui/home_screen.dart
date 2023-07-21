@@ -1,7 +1,10 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:home/src/bloc/bloc/bloc.dart';
 import 'package:navigation/navigation.dart';
+import '../bloc/bloc/bloc_observer.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,7 +13,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const <PageRouteInfo>[
-        MenuViewRoute(),
+        EmptyRoute(),
         ShoppingCartRoute(),
         OrderHistoryRoute(),
         SettingsViewRoute(),
@@ -19,29 +22,43 @@ class HomeScreen extends StatelessWidget {
         BuildContext context,
         TabsRouter tabsRouter,
       ) {
-        return BottomNavigationBar(
-          currentIndex: tabsRouter.activeIndex,
-          onTap: tabsRouter.setActiveIndex,
-          selectedItemColor: AppColors.primaryColor,
-          unselectedItemColor: Theme.of(context).iconTheme.color,
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: AppIcons.restaurantMenu,
-              label: StringConstants.navigationBarMenu,
-            ),
-            BottomNavigationBarItem(
-              icon: AppIcons.shoppingBasket,
-              label: StringConstants.navigationBarCart,
-            ),
-            BottomNavigationBarItem(
-              icon: AppIcons.orderHistory,
-              label: StringConstants.navigationBarOrderHistory,
-            ),
-            BottomNavigationBarItem(
-              icon: AppIcons.settings,
-              label: StringConstants.navigationBarSettings,
-            ),
-          ],
+        return BlocProvider(
+          create: (context) => HomeViewBloc(
+            fetchAllCartItemsUseCase:
+                appLocator.get<FetchAllCartItemsUseCase>(),
+          ),
+          child: BlocBuilder<HomeViewBloc, OnChangeCartQuntityState>(
+            builder: (context, state) {
+              Bloc.observer = HomeBlocObserver(context: context);
+              return BottomNavigationBar(
+                currentIndex: tabsRouter.activeIndex,
+                onTap: tabsRouter.setActiveIndex,
+                selectedItemColor: AppColors.primaryColor,
+                unselectedItemColor: Theme.of(context).iconTheme.color,
+                items: <BottomNavigationBarItem>[
+                  const BottomNavigationBarItem(
+                    icon: AppIcons.restaurantMenu,
+                    label: StringConstants.navigationBarMenu,
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Badge(
+                      label: Text('${state.quantity}'),
+                      child: AppIcons.shoppingBasket,
+                    ),
+                    label: StringConstants.navigationBarCart,
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: AppIcons.orderHistory,
+                    label: StringConstants.navigationBarOrderHistory,
+                  ),
+                  const BottomNavigationBarItem(
+                    icon: AppIcons.settings,
+                    label: StringConstants.navigationBarSettings,
+                  ),
+                ],
+              );
+            },
+          ),
         );
       },
     );
