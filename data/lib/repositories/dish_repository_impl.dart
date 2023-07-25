@@ -1,10 +1,10 @@
-import 'package:data/entity/dish_entity.dart';
+import 'package:data/entity/dish_entity/dish_entity.dart';
 import 'package:data/mappers/dish_mapper.dart';
-import 'package:data/providers/provider.dart';
+import 'package:data/providers/remote/remote_provider.dart';
 import 'package:domain/domain.dart';
 
 class DishRepositoryImpl implements DishRepository{
-  final Provider _provider;
+  final RemoteProvider _provider;
 
   DishRepositoryImpl({
     required provider,

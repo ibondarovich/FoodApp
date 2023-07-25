@@ -1,20 +1,30 @@
 part of 'bloc.dart';
 
-@immutable
-abstract class MenuViewState {}
-
-class EmptyState extends MenuViewState {}
-
-class LoadingState extends MenuViewState {}
-
-class LoadedState extends MenuViewState {
+class MenuState {
   final List<DishModel> dishes;
-
-  LoadedState({required this.dishes});
-}
-
-class ErrorState extends MenuViewState {
   final String errorMessage;
+  final bool isLoading;
+  final bool isDishAdded;
 
-  ErrorState({required this.errorMessage});
+  MenuState({
+    required this.dishes,
+    this.errorMessage = '',
+    this.isLoading = false,
+    this.isDishAdded = false,
+  });
+
+  MenuState copyWith({
+    List<DishModel>? dishes,
+    int? cartQuantity,
+    String? errorMessage,
+    bool? isLoading,
+    bool? isDishAdded,
+  }) {
+    return MenuState(
+      dishes: dishes ?? this.dishes,
+      errorMessage: errorMessage ?? this.errorMessage,
+      isLoading: isLoading ?? this.isLoading,
+      isDishAdded: isDishAdded ?? this.isDishAdded,
+    );
+  }
 }

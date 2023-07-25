@@ -16,6 +16,7 @@ dependencies:
   core:
     path: ../core
   freezed_annotation: ^2.2.0
+  hive_generator: ^2.0.0
 
 dev_dependencies:
   flutter_test:

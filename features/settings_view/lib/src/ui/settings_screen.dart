@@ -16,7 +16,7 @@ class SettingsViewScreen extends StatelessWidget{
           style: Theme.of(context).appBarTheme.titleTextStyle,
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: AppDimens.elevetion_0,
+        elevation: AppDimens.elevetion0,
         centerTitle: true,
       ),
       body: BlocBuilder<SettingsViewBloc, SettingsViewState>(

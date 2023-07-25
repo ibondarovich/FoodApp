@@ -17,6 +17,14 @@ dependencies:
     path: ../../core_ui
   core:
     path: ../../core
+  menu_view:
+    path: ../menu_view
+  domain:
+    path: ../../domain
+  shopping_cart_view:
+    path: ../shopping_cart_view
+  detailed_dish_view:
+    path: ../detailed_dish_view
 
 dev_dependencies:
   flutter_test:
