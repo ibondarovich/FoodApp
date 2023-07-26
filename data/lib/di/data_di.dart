@@ -28,7 +28,8 @@ class DataDI {
       () => HiveProvider(
         cartHiveBox: Hive.box(StringConstants.hiveBoxCartName), 
         menuHiveBox: Hive.box(StringConstants.hiveBoxMenuName), 
-        settingsHiveBox: Hive.box(StringConstants.hiveBoxSettingsName),
+        settingsHiveBox: Hive.box(StringConstants.hiveBoxSettingsName), 
+        scaleFactorHiveBox: Hive.box(StringConstants.hiveBoxScaleFactorName),
       ),
     );
   }
@@ -106,6 +107,18 @@ class DataDI {
 
     appLocator.registerLazySingleton(
       () => SaveThemeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => SaveScaleFactorUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => FetchScaleFactorUseCase(
         settingsRepository: appLocator.get<SettingsRepository>(),
       ),
     );

@@ -12,7 +12,9 @@ class FoodApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => SettingsViewBloc(
         fetchThemeUseCase: appLocator.get<FetchThemeUseCase>(), 
-        saveThemeUseCase: appLocator.get<SaveThemeUseCase>(),
+        saveThemeUseCase: appLocator.get<SaveThemeUseCase>(), 
+        fetchScaleFactorUseCase: appLocator.get<FetchScaleFactorUseCase>(),
+        saveScaleFactorUseCase: appLocator.get<SaveScaleFactorUseCase>(),
       ),
       child: BlocBuilder<SettingsViewBloc, SettingsViewState>(
         builder: (BuildContext context, SettingsViewState state) {
@@ -21,6 +23,12 @@ class FoodApp extends StatelessWidget {
             routeInformationParser:
                 appLocator.get<AppRouter>().defaultRouteParser(),
             theme: state.isDark? AppTheme.dark : AppTheme.light,
+            builder: (context, child) {
+              return MediaQuery(
+                data: MediaQuery.of(context).copyWith(textScaleFactor: state.scaleFactor),
+                child: child!,
+              );
+            },
           );
         },
       ),

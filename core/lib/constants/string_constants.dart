@@ -9,6 +9,7 @@ class StringConstants{
   static const String hiveBoxCartName = 'Cart';
   static const String hiveBoxMenuName = 'Menu';
   static const String hiveBoxSettingsName = 'Settings';
+  static const String hiveBoxScaleFactorName = 'ScaleFactor';
 
   static const String navigationBarMenu = 'Menu';
   static const String navigationBarSettings = 'Settings';
@@ -16,6 +17,7 @@ class StringConstants{
   static const String navigationBarCart = 'Cart';
 
   static const String settingsThemeTitle = 'Dark Theme';
+  static const String settingsScaleFactorTitle = 'Scale factor';
 
   static const String cartPagePayment = 'Process to payment';
 

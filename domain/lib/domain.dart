@@ -15,3 +15,5 @@ export 'package:domain/usecases/update_cart_item_quantity.dart';
 export 'package:domain/repositories/settings_repository.dart';
 export 'package:domain/usecases/save_theme.dart';
 export 'package:domain/usecases/fetch_theme.dart';
+export 'package:domain/usecases/fetch_scale_factor.dart';
+export 'package:domain/usecases/save_scale_factor.dart';

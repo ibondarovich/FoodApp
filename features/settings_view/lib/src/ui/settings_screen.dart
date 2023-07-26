@@ -43,7 +43,34 @@ class SettingsViewScreen extends StatelessWidget{
                       activeColor: AppColors.primaryColor,
                     ),
                   ],
-                )
+                ),
+                const Divider(
+                  color: AppColors.shadowBlack,
+                  thickness: 1,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(top: AppDimens.padding20,),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      StringConstants.settingsScaleFactorTitle,
+                      style: AppFonts.bold_21,
+                    ),
+                  ),
+                ),
+                Slider(
+                  value: state.scaleFactor,
+                  onChanged: (double value) {
+                    BlocProvider.of<SettingsViewBloc>(context).add(
+                      OnSetScaleFactor(scaleFactor: value),
+                    );
+                  },
+                  min: AppDimens.textScales.first,
+                  max: AppDimens.textScales.last,
+                  divisions: 2,
+                  activeColor: AppColors.lightOrange,
+                  inactiveColor: AppColors.primaryColor,
+                ),
               ],
             ),
           );

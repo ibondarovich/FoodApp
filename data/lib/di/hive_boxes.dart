@@ -9,5 +9,6 @@ class HiveBoxes{
     await Hive.openBox<CartItemEntity>(StringConstants.hiveBoxCartName);
     await Hive.openBox<DishEntity>(StringConstants.hiveBoxMenuName);
     await Hive.openBox<bool>(StringConstants.hiveBoxSettingsName);
+    await Hive.openBox<double>(StringConstants.hiveBoxScaleFactorName);
   }
 }
