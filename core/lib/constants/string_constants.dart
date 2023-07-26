@@ -7,6 +7,8 @@ class StringConstants{
   static const String firebaseTableName = 'Menu';
 
   static const String hiveBoxCartName = 'Cart';
+  static const String hiveBoxMenuName = 'Menu';
+  static const String hiveBoxSettingsName = 'Settings';
 
   static const String navigationBarMenu = 'Menu';
   static const String navigationBarSettings = 'Settings';
@@ -22,4 +24,7 @@ class StringConstants{
   static const String goToMenuTitle = 'Go to menu';
   static const String emptyCartTitle = 'Your cart is empty...';
   static const String addedToCartSnackBarTitle = 'Item was added to cart';
+
+  static const String internetConnectionError =
+      'You have some problems with internet connection!';
 }

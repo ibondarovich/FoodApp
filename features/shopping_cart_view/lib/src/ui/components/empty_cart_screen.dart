@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:navigation/navigation.dart';
+import 'package:shopping_cart_view/shopping_cart_view.dart';
 
 class EmptyCartScreen extends StatelessWidget{
   @override
@@ -19,8 +19,8 @@ class EmptyCartScreen extends StatelessWidget{
           ),
           AppButton(
             title: StringConstants.goToMenuTitle,
-            onTap: () => context.navigateTo(
-              const EmptyRoute(),
+            onTap: () => BlocProvider.of<ShoppingCartViewBloc>(context).add(
+              OnNavigateToMenuPageEvent(context: context),
             ),
             margin: const EdgeInsets.only(
               right: AppDimens.padding15,

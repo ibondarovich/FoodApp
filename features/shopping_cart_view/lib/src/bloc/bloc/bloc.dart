@@ -1,6 +1,8 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:navigation/navigation.dart';
 
 part 'event.dart';
 part 'state.dart';
@@ -26,6 +28,7 @@ class ShoppingCartViewBloc extends Bloc<ShoppingCartViewEvent, CartPageState> {
     on<OnDeleteItemEvent>(_onDeleteItem);
     on<OnIncreaseQuantityEvent>(_onIncreaseQuantity);
     on<OnReduceQuantityEvent>(_onReduceQuantity);
+    on<OnNavigateToMenuPageEvent>(_onNavigateToMenuPage);
     add(OnShowCartItems());
   }
 
@@ -105,6 +108,13 @@ class ShoppingCartViewBloc extends Bloc<ShoppingCartViewEvent, CartPageState> {
         emit(state.copyWith(errorMessage: e.toString()));
       }
     }
+  }
+
+  void _onNavigateToMenuPage(
+    OnNavigateToMenuPageEvent event,
+    Emitter<CartPageState> emit,
+  ) {
+    event.context.router.navigate(const EmptyRoute());
   }
 
   double getTotalPrice(List<CartItemModel> items) {

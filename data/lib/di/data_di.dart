@@ -5,6 +5,7 @@ import 'package:data/providers/remote/firebase_provider.dart';
 import 'package:data/providers/remote/remote_provider.dart';
 import 'package:data/repositories/cart_repository_impl.dart';
 import 'package:data/repositories/dish_repository_impl.dart';
+import 'package:data/repositories/settings_repository_impl.dart';
 import 'package:domain/domain.dart';
 
 final DataDI dataDI = DataDI();
@@ -12,7 +13,8 @@ final DataDI dataDI = DataDI();
 class DataDI {
   Future<void> initDependencies() async {
     _initRemoteDataService();
-    _initDishes();
+    _initNetworking();
+    _initData();
   }
 
   void _initRemoteDataService() {
@@ -24,15 +26,33 @@ class DataDI {
 
     appLocator.registerLazySingleton<LocalProvider>(
       () => HiveProvider(
-        hiveBox: Hive.box(StringConstants.hiveBoxCartName),
+        cartHiveBox: Hive.box(StringConstants.hiveBoxCartName), 
+        menuHiveBox: Hive.box(StringConstants.hiveBoxMenuName), 
+        settingsHiveBox: Hive.box(StringConstants.hiveBoxSettingsName),
       ),
     );
   }
 
-  void _initDishes() {
+  void _initNetworking(){
+    appLocator.registerLazySingleton<Connectivity>(
+      () => Connectivity(),
+    );
+
+    appLocator.registerLazySingleton<NetworkInfo>(
+      () => NetworkInfo(
+        connectivity: appLocator.get<Connectivity>(),
+      ),
+    );
+  }
+
+  void _initData() {
     appLocator.registerLazySingleton<DishRepository>(
       () => DishRepositoryImpl(
-        provider: appLocator.get<RemoteProvider>(),
+        remoteProvider: appLocator.get<RemoteProvider>(), 
+        localProvier: appLocator.get<LocalProvider>(), 
+        networkInfo: NetworkInfo(
+          connectivity: appLocator.get<Connectivity>()
+        ),
       ),
     );
 
@@ -69,6 +89,24 @@ class DataDI {
     appLocator.registerLazySingleton<UpdateCartItemQuantity>(
       () => UpdateCartItemQuantity(
         cartRepository: appLocator.get<CartRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<SettingsRepository>(
+      () => SettingsRepositoryImpl(
+        localProvider: appLocator.get<LocalProvider>(),
+      ), 
+    );
+
+    appLocator.registerLazySingleton<FetchThemeUseCase>(
+      () => FetchThemeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => SaveThemeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
       ),
     );
   }
