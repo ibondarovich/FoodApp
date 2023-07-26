@@ -11,3 +11,5 @@ export 'package:hive/hive.dart';
 export 'package:hive_flutter/hive_flutter.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'network/check_internet_connection.dart';
+export 'package:url_launcher/url_launcher.dart';
+export 'constants/url_constants.dart';

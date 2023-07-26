@@ -18,6 +18,7 @@ class StringConstants{
 
   static const String settingsThemeTitle = 'Dark Theme';
   static const String settingsScaleFactorTitle = 'Scale factor';
+  static const String settingsContactUsTitle = 'Contact us';
 
   static const String cartPagePayment = 'Process to payment';
 

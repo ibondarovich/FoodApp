@@ -71,6 +71,26 @@ class SettingsViewScreen extends StatelessWidget{
                   activeColor: AppColors.lightOrange,
                   inactiveColor: AppColors.primaryColor,
                 ),
+                const Divider(
+                  color: AppColors.shadowBlack,
+                  thickness: 1,
+                ),
+                AppButton(
+                  margin: const EdgeInsets.only(top: AppDimens.padding20,),
+                  title: StringConstants.settingsContactUsTitle,
+                  textStyle: AppFonts.bold_14.copyWith(
+                    color: AppColors.white,
+                  ),
+                  onTap: () async {
+                    final Uri url = Uri.parse(UrlConstants.contactUsUrl);
+                    await launchUrl(
+                      url,
+                      mode: LaunchMode.inAppWebView,
+                      webViewConfiguration:
+                          const WebViewConfiguration(enableJavaScript: true),
+                    );
+                  },
+                ),
               ],
             ),
           );
