@@ -12,7 +12,7 @@ class AppColors{
   static const Color black = Color(0xFF000000);
   static const Color red = Color(0xFFF44437);
   static const LinearGradient primaryGradient = LinearGradient(
-    colors: [
+    colors: <Color>[
       lightOrange,
       primaryColor,
     ],

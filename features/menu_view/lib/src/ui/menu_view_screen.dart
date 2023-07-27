@@ -22,31 +22,62 @@ class MenuViewScreen extends StatelessWidget {
       body: BlocProvider<MenuViewBloc>(
         create: (BuildContext context) => MenuViewBloc(
           getAllDishesUseCase: appLocator.get<FetchAllDishesUseCase>(),
-          saveCartItemUseCase: appLocator.get<SaveCartItemUseCase>(),
+          saveCartItemUseCase: appLocator.get<SaveCartItemUseCase>(), 
+          networkInfo: appLocator.get<NetworkInfo>(),
         ),
-        child: BlocBuilder<MenuViewBloc, MenuState>(
+        child: BlocConsumer<MenuViewBloc, MenuState>(
+          listener: (context, state) {
+            if (state.isShowSnakbar == true) {
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(
+                  SnackBar(
+                    behavior: SnackBarBehavior.floating,
+                    duration: const Duration(seconds: 4),
+                    backgroundColor: AppColors.transparent,
+                    elevation: AppDimens.elevetion0,
+                    content: Container(
+                      padding: const EdgeInsets.all(AppDimens.padding20),
+                      decoration: const BoxDecoration(
+                        color: AppColors.red,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(AppDimens.padding20),
+                        ),
+                      ),
+                      child:
+                          const Text(StringConstants.internetConnectionError),
+                    ),
+                  ),
+                );
+            }
+          },
           builder: (BuildContext context, MenuState state) {
             if (state.isLoading) {
               return const AppLoaderWidget();
             } else {
               if (state.dishes.isNotEmpty) {
-                return Container(
-                  height: MediaQuery.sizeOf(context).height,
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.only(top: AppDimens.padding15),
-                    scrollDirection: Axis.vertical,
-                    child: Wrap(
-                      children: List.generate(
-                        state.dishes.length,
-                        (index) => SizedBox(
-                          width: MediaQuery.of(context).size.width / 2,
-                          child: MenuItem(
-                            dishModel: state.dishes[index],
+                return RefreshIndicator(
+                  onRefresh: () async {
+                    BlocProvider.of<MenuViewBloc>(context).add(InitEvent());
+                  },
+                  child: Container(
+                    height: MediaQuery.sizeOf(context).height,
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.only(top: AppDimens.padding15),
+                      scrollDirection: Axis.vertical,
+                      child: Wrap(
+                        children: List.generate(
+                          state.dishes.length,
+                          (index) => SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: MenuItem(
+                              dishModel: state.dishes[index],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
+                  )
                 );
               }
             }

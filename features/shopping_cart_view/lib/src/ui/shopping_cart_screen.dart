@@ -93,7 +93,7 @@ class ShoppingCartScreenState extends State<ShoppingCartScreen>{
                       )
                     ),
                     AppButton(
-                      onTap: () {}, //TODO add to cart logic
+                      onTap: () {}, //TODO payment logic
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height / 13,
                       margin: const EdgeInsets.only(

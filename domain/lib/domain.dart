@@ -11,3 +11,7 @@ export 'package:domain/repositories/cart_repository.dart';
 export 'package:domain/models/cart_item_model.dart';
 export 'package:domain/usecases/remove_cart_item.dart';
 export 'package:domain/usecases/update_cart_item_quantity.dart';
+
+export 'package:domain/repositories/settings_repository.dart';
+export 'package:domain/usecases/save_theme.dart';
+export 'package:domain/usecases/fetch_theme.dart';
