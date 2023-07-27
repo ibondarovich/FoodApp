@@ -54,11 +54,11 @@ class HiveProvider implements LocalProvider {
   
   @override
   Future<void> saveTheme(bool input) async {
-    await settingsHiveBox.put('theme', input);
+    await settingsHiveBox.put(StringConstants.hiveBoxThemeName, input);
   }
 
   @override
   bool getTheme() {
-    return settingsHiveBox.get('theme') ?? false;
+    return settingsHiveBox.get(StringConstants.hiveBoxThemeName) ?? false;
   }
 }
