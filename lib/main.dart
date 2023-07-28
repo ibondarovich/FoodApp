@@ -9,6 +9,9 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Hive.initFlutter();
+  adapters.initAdapters();
+  await hiveBoxes.openBoxes();
   await dataDI.initDependencies();
   await navigationDI.setupNavigationDependencies();
   runApp(const FoodApp());

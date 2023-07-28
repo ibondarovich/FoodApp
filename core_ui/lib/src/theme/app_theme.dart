@@ -7,8 +7,10 @@ class AppTheme {
       brightness: Brightness.light,
       shadowColor: AppColors.shadowWhite,
       scaffoldBackgroundColor: AppColors.lightThemeBackground,
-      appBarTheme: const AppBarTheme(
-        titleTextStyle: AppFonts.titleLightThemeStyle
+      appBarTheme: AppBarTheme(
+        titleTextStyle: AppFonts.bold_25.copyWith(
+          color: AppColors.black,
+        ),
       ),
       textTheme: const TextTheme(
         titleSmall: AppFonts.bold_14
@@ -23,8 +25,10 @@ class AppTheme {
     return ThemeData(
       brightness: Brightness.dark,
       scaffoldBackgroundColor: AppColors.darkThemeBackground,
-      appBarTheme: const AppBarTheme(
-        titleTextStyle: AppFonts.titleDarkThemeStyle
+      appBarTheme: AppBarTheme(
+        titleTextStyle: AppFonts.bold_25.copyWith(
+          color: AppColors.white,
+        ),
       ),
       textTheme: const TextTheme(
         titleSmall: AppFonts.bold_14
