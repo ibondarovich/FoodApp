@@ -1,5 +1,5 @@
-import 'package:core/core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 part 'dish_entity.freezed.dart';
 part 'dish_entity.g.dart';

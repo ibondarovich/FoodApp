@@ -1,7 +1,7 @@
 import 'package:domain/domain.dart';
 import 'package:equatable/equatable.dart';
 
-class CartItemModel extends Equatable{
+class CartItemModel extends Equatable {
   final DishModel dishModel;
   final int quantity;
 
@@ -10,13 +10,16 @@ class CartItemModel extends Equatable{
     required this.quantity,
   });
 
-  CartItemModel copyWith(DishModel? dishModel, int? quantity){
+  CartItemModel copyWith({
+    DishModel? dishModel,
+    int? quantity,
+  }) {
     return CartItemModel(
       dishModel: dishModel ?? this.dishModel,
       quantity: quantity ?? this.quantity,
     );
   }
-  
+
   @override
   List<Object?> get props => [dishModel, quantity];
 }
