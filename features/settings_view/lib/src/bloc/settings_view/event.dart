@@ -22,3 +22,11 @@ class OnSetScaleFactor extends SettingsViewEvent {
 }
 
 class OnGetScaleFactor extends SettingsViewEvent {}
+
+class OnLaunchUrlEvent extends SettingsViewEvent {
+  final String url;
+
+  OnLaunchUrlEvent({
+    required this.url,
+  });
+}

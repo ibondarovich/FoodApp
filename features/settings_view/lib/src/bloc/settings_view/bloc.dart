@@ -26,6 +26,7 @@ class SettingsViewBloc extends Bloc<SettingsViewEvent, SettingsViewState> {
     on<OnSwitchThemeEvent>(_onSetTheme); 
     on<OnSetScaleFactor>(_onSetScaleFactor);
     on<OnGetScaleFactor>(_onGetScaleFactor);
+    on<OnLaunchUrlEvent>(_onLaunchUrl);
 
     add(InitEvent());
     add(OnGetScaleFactor());
@@ -42,14 +43,30 @@ class SettingsViewBloc extends Bloc<SettingsViewEvent, SettingsViewState> {
   }
 
   void _onSetScaleFactor(
-      OnSetScaleFactor event, Emitter<SettingsViewState> emit) {
+    OnSetScaleFactor event,
+    Emitter<SettingsViewState> emit,
+  ) {
     _saveScaleFactorUseCase.execute(event.scaleFactor);
     emit(state.copyWith(scaleFactor: event.scaleFactor));
   }
 
   void _onGetScaleFactor(
-      OnGetScaleFactor event, Emitter<SettingsViewState> emit) {
+    OnGetScaleFactor event,
+    Emitter<SettingsViewState> emit,
+  ) {
     final result = _fetchScaleFactorUseCase.execute(const NoParams());
     emit(state.copyWith(scaleFactor: result));
+  }
+
+  void _onLaunchUrl(
+    OnLaunchUrlEvent event,
+    Emitter<SettingsViewState> emit,
+  ) async {
+    final Uri url = Uri.parse(event.url);
+    await launchUrl(
+      url,
+      mode: LaunchMode.inAppWebView,
+      webViewConfiguration: const WebViewConfiguration(enableJavaScript: true),
+    );
   }
 }

@@ -82,12 +82,10 @@ class SettingsViewScreen extends StatelessWidget{
                     color: AppColors.white,
                   ),
                   onTap: () async {
-                    final Uri url = Uri.parse(UrlConstants.contactUsUrl);
-                    await launchUrl(
-                      url,
-                      mode: LaunchMode.inAppWebView,
-                      webViewConfiguration:
-                          const WebViewConfiguration(enableJavaScript: true),
+                    BlocProvider.of<SettingsViewBloc>(context).add(
+                      OnLaunchUrlEvent(
+                        url: UrlConstants.contactUsUrl,
+                      ),
                     );
                   },
                 ),
