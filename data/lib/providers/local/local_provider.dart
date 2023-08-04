@@ -7,6 +7,9 @@ abstract class LocalProvider{
   Future<void> updateCartItem(CartItemEntity input);
   Future<void> saveAllDishes(List<DishEntity> input);
   Future<void> saveScaleFactor(double input);
+  Future<void> saveUser(String input);
+  bool checkUser();
+  Future<void> removeUser();
   List<CartItemEntity> getAllCartItems();
   List<DishEntity> getAllDishes();
   void removeCartItem(int id);

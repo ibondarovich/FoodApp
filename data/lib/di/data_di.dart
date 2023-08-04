@@ -6,35 +6,46 @@ import 'package:data/providers/remote/remote_provider.dart';
 import 'package:data/repositories/cart_repository_impl.dart';
 import 'package:data/repositories/dish_repository_impl.dart';
 import 'package:data/repositories/settings_repository_impl.dart';
+import 'package:data/repositories/user_repository_impl.dart';
 import 'package:domain/domain.dart';
 
 final DataDI dataDI = DataDI();
 
 class DataDI {
   Future<void> initDependencies() async {
-    _initRemoteDataService();
+    _initServices();
+    _initRemoteDataProvider();
     _initNetworking();
     _initData();
   }
 
-  void _initRemoteDataService() {
+  void _initServices() {
+    appLocator.registerLazySingleton<AuthService>(
+      () => AuthService(),
+    );
+  }
+
+  void _initRemoteDataProvider() {
     appLocator.registerLazySingleton<RemoteProvider>(
       () => FirebaseProvider(
         firebaseInstance: FirebaseFirestore.instance,
+        firebaseAuthInstance: FirebaseAuth.instance,
+        googleSignIn: GoogleSignIn(),
       ),
     );
 
     appLocator.registerLazySingleton<LocalProvider>(
       () => HiveProvider(
-        cartHiveBox: Hive.box(StringConstants.hiveBoxCartName), 
-        menuHiveBox: Hive.box(StringConstants.hiveBoxMenuName), 
-        settingsHiveBox: Hive.box(StringConstants.hiveBoxSettingsName), 
+        cartHiveBox: Hive.box(StringConstants.hiveBoxCartName),
+        menuHiveBox: Hive.box(StringConstants.hiveBoxMenuName),
+        settingsHiveBox: Hive.box(StringConstants.hiveBoxSettingsName),
         scaleFactorHiveBox: Hive.box(StringConstants.hiveBoxScaleFactorName),
+        userHiveBox: Hive.box(StringConstants.hiveBoxUser),
       ),
     );
   }
 
-  void _initNetworking(){
+  void _initNetworking() {
     appLocator.registerLazySingleton<Connectivity>(
       () => Connectivity(),
     );
@@ -49,10 +60,10 @@ class DataDI {
   void _initData() {
     appLocator.registerLazySingleton<DishRepository>(
       () => DishRepositoryImpl(
-        remoteProvider: appLocator.get<RemoteProvider>(), 
-        localProvier: appLocator.get<LocalProvider>(), 
+        remoteProvider: appLocator.get<RemoteProvider>(),
+        localProvier: appLocator.get<LocalProvider>(),
         networkInfo: NetworkInfo(
-          connectivity: appLocator.get<Connectivity>()
+          connectivity: appLocator.get<Connectivity>(),
         ),
       ),
     );
@@ -96,7 +107,7 @@ class DataDI {
     appLocator.registerLazySingleton<SettingsRepository>(
       () => SettingsRepositoryImpl(
         localProvider: appLocator.get<LocalProvider>(),
-      ), 
+      ),
     );
 
     appLocator.registerLazySingleton<FetchThemeUseCase>(
@@ -120,6 +131,49 @@ class DataDI {
     appLocator.registerLazySingleton(
       () => FetchScaleFactorUseCase(
         settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<UserRepository>(
+      () => UserRepositoryImpl(
+        remoteProvider: appLocator.get<RemoteProvider>(),
+        localProvider: appLocator.get<LocalProvider>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => CreateUserUseCase(
+        userRepository: appLocator.get<UserRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => SignInWithGooleUseCase(
+        userRepository: appLocator.get<UserRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => SignOutUseCase(
+        userRepository: appLocator.get<UserRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => SignInUseCase(
+        userRepository: appLocator.get<UserRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => CheckUserUseCase(
+        userRepository: appLocator.get<UserRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => SaveUserUseCase(
+        userRepository: appLocator.get<UserRepository>(),
       ),
     );
   }

@@ -9,12 +9,14 @@ class HiveProvider implements LocalProvider {
   final Box<DishEntity> menuHiveBox;
   final Box<bool> settingsHiveBox;
   final Box<double> scaleFactorHiveBox;
+  final Box<String> userHiveBox;
 
   HiveProvider({
     required this.menuHiveBox,
     required this.cartHiveBox,
     required this.settingsHiveBox,
     required this.scaleFactorHiveBox,
+    required this.userHiveBox,
   });
 
   @override
@@ -74,5 +76,20 @@ class HiveProvider implements LocalProvider {
   @override
   Future<void> saveScaleFactor(double input) async {
     await scaleFactorHiveBox.put(StringConstants.hiveBoxScaleFactorName, input);
+  }
+  
+  @override
+  bool checkUser() {
+    return userHiveBox.isNotEmpty;
+  }
+  
+  @override
+  Future<void> saveUser(String input) async {
+    await userHiveBox.put('uid', input);
+  }
+  
+  @override
+  Future<void> removeUser() async {
+    await userHiveBox.clear();
   }
 }
