@@ -41,7 +41,6 @@ class LogInState extends State<LogInWidget> {
                       padding: const EdgeInsets.only(
                         left: AppDimens.padding12,
                         bottom: AppDimens.padding20,
-                        top: AppDimens.padding35,
                       ),
                       child: const Column(
                         children: <Widget>[
@@ -118,9 +117,6 @@ class LogInState extends State<LogInWidget> {
                             hintText: StringConstants.enterPassword,
                             controller: passwordController,
                             obscureText: true,
-                            margin: const EdgeInsets.only(
-                              bottom: AppDimens.padding50,
-                            ),
                             onChanged: (String value) => {
                               BlocProvider.of<AuthenticationViewBloc>(context)
                                   .add(
@@ -156,7 +152,7 @@ class LogInState extends State<LogInWidget> {
                         bottom: AppDimens.padding20,
                         right: AppDimens.padding45,
                         left: AppDimens.padding45,
-                        top: AppDimens.margin90,
+                        top: AppDimens.padding45,
                       ),
                       padding: const EdgeInsets.all(AppDimens.padding20),
                     ),
