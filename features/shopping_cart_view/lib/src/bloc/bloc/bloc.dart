@@ -29,6 +29,7 @@ class ShoppingCartViewBloc extends Bloc<ShoppingCartViewEvent, CartPageState> {
     on<OnIncreaseQuantityEvent>(_onIncreaseQuantity);
     on<OnReduceQuantityEvent>(_onReduceQuantity);
     on<OnNavigateToMenuPageEvent>(_onNavigateToMenuPage);
+
     add(OnShowCartItems());
   }
 
@@ -114,7 +115,7 @@ class ShoppingCartViewBloc extends Bloc<ShoppingCartViewEvent, CartPageState> {
     OnNavigateToMenuPageEvent event,
     Emitter<CartPageState> emit,
   ) {
-    event.context.router.navigate(const EmptyRoute());
+    AutoRouter.of(event.context).navigate(const EmptyRoute());
   }
 
   double getTotalPrice(List<CartItemModel> items) {

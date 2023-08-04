@@ -11,10 +11,12 @@ class FoodApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SettingsViewBloc(
-        fetchThemeUseCase: appLocator.get<FetchThemeUseCase>(), 
-        saveThemeUseCase: appLocator.get<SaveThemeUseCase>(), 
+        fetchThemeUseCase: appLocator.get<FetchThemeUseCase>(),
+        saveThemeUseCase: appLocator.get<SaveThemeUseCase>(),
         fetchScaleFactorUseCase: appLocator.get<FetchScaleFactorUseCase>(),
-        saveScaleFactorUseCase: appLocator.get<SaveScaleFactorUseCase>(),
+        saveScaleFactorUseCase: appLocator.get<SaveScaleFactorUseCase>(), 
+        signOutUseCase: appLocator.get<SignOutUseCase>(), 
+        authService: appLocator.get<AuthService>(),
       ),
       child: BlocBuilder<SettingsViewBloc, SettingsViewState>(
         builder: (BuildContext context, SettingsViewState state) {
@@ -22,10 +24,12 @@ class FoodApp extends StatelessWidget {
             routerDelegate: appLocator.get<AppRouter>().delegate(),
             routeInformationParser:
                 appLocator.get<AppRouter>().defaultRouteParser(),
-            theme: state.isDark? AppTheme.dark : AppTheme.light,
+            theme: state.isDark ? AppTheme.dark : AppTheme.light,
             builder: (context, child) {
               return MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaleFactor: state.scaleFactor),
+                data: MediaQuery.of(context).copyWith(
+                  textScaleFactor: state.scaleFactor,
+                ),
                 child: child!,
               );
             },

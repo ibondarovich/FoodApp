@@ -18,6 +18,18 @@ class AppTheme {
       iconTheme: const IconThemeData(
         color: AppColors.black,
       ),
+      inputDecorationTheme: const InputDecorationTheme(
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.shadowBlack,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.shadowBlack,
+          ),
+        ), 
+      ),
     );
   }
 
@@ -35,6 +47,18 @@ class AppTheme {
       ),
       iconTheme: const IconThemeData(
         color: AppColors.white,
+      ),
+      inputDecorationTheme: const InputDecorationTheme(
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.shadowWhite,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.shadowWhite,
+          ),
+        ), 
       ),
     );
   }

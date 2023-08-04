@@ -1,10 +1,13 @@
+import 'package:authentication_view/authentication_view.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
 import 'package:detailed_dish_view/detailed_dish_view.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:home/home.dart';
+import 'package:main_view/main_view.dart';
 import 'package:menu_view/menu_view.dart';
+import 'package:navigation/src/app_router/auth_guard.dart';
 import 'package:order_history_view/order_history_view.dart';
 import 'package:settings_view/settings_view.dart';
 import 'package:shopping_cart_view/shopping_cart_view.dart';
@@ -16,44 +19,59 @@ part 'app_router.gr.dart';
   routes: <AutoRoute>[
     AutoRoute(
       path: '/',
-      page: HomeScreen,
+      page: MainViewScreen,
+      initial: true,
       children: <AutoRoute>[
         AutoRoute(
-          name: 'EmptyRoute',
-          path: 'empty_route',
-          page: EmptyRouterPage,
+          page: AuthScreen,
+          name: 'AuthRoute',
+          path: 'auth_route',
+        ),
+        AutoRoute(
+          path: 'home',
+          guards: [AuthGuard],
+          page: HomeScreen,
           children: <AutoRoute>[
             AutoRoute(
-              initial: true,
-              path: 'menu',
-              page: MenuViewScreen,
+              name: 'EmptyRoute',
+              path: 'empty_route',
+              page: EmptyRouterPage,
+              children: <AutoRoute>[
+                AutoRoute(
+                  initial: true,
+                  path: 'menu',
+                  page: MenuViewScreen,
+                ),
+                AutoRoute(
+                  page: DetailedDishScreen,
+                  path: 'detailed_dish'
+                ),
+                RedirectRoute(
+                  path: 'detailed_dish', 
+                  redirectTo: 'menu'
+                ),
+              ]
             ),
             AutoRoute(
-              page: DetailedDishScreen,
-              path: 'detailed_dish'
+              path: 'settings',
+              page: SettingsViewScreen,
             ),
-            RedirectRoute(
-              path: 'detailed_dish', 
-              redirectTo: 'menu'
+            AutoRoute(
+              path: 'cart',
+              page: ShoppingCartScreen,
+              maintainState: false,
+            ),
+            AutoRoute(
+              path: 'history',
+              page: OrderHistoryScreen,
             ),
           ]
         ),
-        AutoRoute(
-          path: 'settings',
-          page: SettingsViewScreen,
-        ),
-        AutoRoute(
-          path: 'cart',
-          page: ShoppingCartScreen,
-          maintainState: false,
-        ),
-        AutoRoute(
-          path: 'history',
-          page: OrderHistoryScreen,
-        ),
-      ]
+      ],
     ),
   ],
 )
 
-class AppRouter extends _$AppRouter {}
+class AppRouter extends _$AppRouter {
+  AppRouter({required super.authGuard});
+}

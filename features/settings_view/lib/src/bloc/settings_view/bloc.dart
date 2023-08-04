@@ -9,21 +9,28 @@ part 'state.dart';
 class SettingsViewBloc extends Bloc<SettingsViewEvent, SettingsViewState> {
   final SaveThemeUseCase _saveThemeUseCase;
   final FetchThemeUseCase _fetchThemeUseCase;
+  final SignOutUseCase _signOutUseCase;
   final SaveScaleFactorUseCase _saveScaleFactorUseCase;
   final FetchScaleFactorUseCase _fetchScaleFactorUseCase;
+  final AuthService _authService;
 
   SettingsViewBloc({
     required SaveThemeUseCase saveThemeUseCase,
     required FetchThemeUseCase fetchThemeUseCase,
     required SaveScaleFactorUseCase saveScaleFactorUseCase,
     required FetchScaleFactorUseCase fetchScaleFactorUseCase,
-  }) : _saveThemeUseCase = saveThemeUseCase,
-      _fetchThemeUseCase = fetchThemeUseCase,
-      _fetchScaleFactorUseCase = fetchScaleFactorUseCase,
-      _saveScaleFactorUseCase = saveScaleFactorUseCase,
-  super(SettingsViewState(isDark: false)) {
+    required SignOutUseCase signOutUseCase,
+    required AuthService authService,
+  })  : _saveThemeUseCase = saveThemeUseCase,
+        _fetchThemeUseCase = fetchThemeUseCase,
+        _fetchScaleFactorUseCase = fetchScaleFactorUseCase,
+        _saveScaleFactorUseCase = saveScaleFactorUseCase,
+        _signOutUseCase = signOutUseCase,
+        _authService = authService,
+        super(SettingsViewState(isDark: false)) {
     on<InitEvent>(_init);
-    on<OnSwitchThemeEvent>(_onSetTheme); 
+    on<OnSignOutEvent>(_onSignOut);
+    on<OnSwitchThemeEvent>(_onSetTheme);
     on<OnSetScaleFactor>(_onSetScaleFactor);
     on<OnGetScaleFactor>(_onGetScaleFactor);
     on<OnLaunchUrlEvent>(_onLaunchUrl);
@@ -32,7 +39,7 @@ class SettingsViewBloc extends Bloc<SettingsViewEvent, SettingsViewState> {
     add(OnGetScaleFactor());
   }
 
-  void _init(InitEvent event, Emitter<SettingsViewState> emit){
+  void _init(InitEvent event, Emitter<SettingsViewState> emit) {
     final bool result = _fetchThemeUseCase.execute(const NoParams());
     emit(SettingsViewState(isDark: result));
   }
@@ -68,5 +75,13 @@ class SettingsViewBloc extends Bloc<SettingsViewEvent, SettingsViewState> {
       mode: LaunchMode.inAppWebView,
       webViewConfiguration: const WebViewConfiguration(enableJavaScript: true),
     );
+  }
+
+  void _onSignOut(
+    OnSignOutEvent event,
+    Emitter<SettingsViewState> emit,
+  ) async {
+    await _signOutUseCase.execute(const NoParams());
+    _authService.authenticated = false;
   }
 }
