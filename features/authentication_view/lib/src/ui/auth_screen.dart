@@ -1,12 +1,11 @@
 import 'package:authentication_view/src/bloc/bloc/bloc.dart';
 import 'package:authentication_view/src/ui/components/login.dart';
+import 'package:authentication_view/src/ui/components/signup.dart';
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:navigation/navigation.dart';
-
-import 'components/signup.dart';
 
 class AuthScreen extends StatelessWidget{
   const AuthScreen({super.key});
@@ -14,7 +13,6 @@ class AuthScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Image.asset(

@@ -2,7 +2,6 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class AppTextField extends StatelessWidget {
-  final String? Function(String?)? validator;
   final String? hintText;
   final bool obscureText;
   final double borderRadius;
@@ -21,7 +20,6 @@ class AppTextField extends StatelessWidget {
     this.icon,
     this.margin,
     this.errorText,
-    this.validator,
     this.onChanged,
   });
 
@@ -32,7 +30,6 @@ class AppTextField extends StatelessWidget {
       child: TextFormField(
         onChanged: onChanged,
         controller: controller,
-        validator: validator,
         decoration: InputDecoration(
           errorText: errorText,
           icon: icon,
