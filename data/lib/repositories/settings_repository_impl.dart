@@ -15,12 +15,12 @@ class SettingsRepositoryImpl extends SettingsRepository{
   
   @override
   bool fetchTheme() {
-    return _localProvider.getTheme();
+    return _localProvider.fetchTheme();
   }
   
   @override
   double fetchScaleFactor() {
-    return _localProvider.getScaleFactor();
+    return _localProvider.fetchScaleFactor();
   }
   
   @override

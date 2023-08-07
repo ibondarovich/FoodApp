@@ -21,11 +21,11 @@ class DishRepositoryImpl implements DishRepository{
   @override
   Future<List<DishModel>> fetchAllDishes() async{
     if(await _networkInfo.isConnected){
-      final List<DishEntity> result = await _remoteProvider.getAllDishes();
+      final List<DishEntity> result = await _remoteProvider.fetchAllDishes();
       await _localProvider.saveAllDishes(result);   
       return result.map((item) => DishMapper.toModel(item)).toList();
     } else {
-      final List<DishEntity> result = _localProvider.getAllDishes();
+      final List<DishEntity> result = _localProvider.fetchAllDishes();
       return result.map((item) => DishMapper.toModel(item)).toList();
     } 
   }

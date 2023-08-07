@@ -17,7 +17,7 @@ class FirebaseProvider implements RemoteProvider {
         _googleSignIn = googleSignIn;
 
   @override
-  Future<List<DishEntity>> getAllDishes() async {
+  Future<List<DishEntity>> fetchAllDishes() async {
     final dishesCollection = _firebaseInstance.collection(
       StringConstants.firebaseTableName,
     );

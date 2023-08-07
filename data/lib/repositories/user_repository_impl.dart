@@ -38,8 +38,8 @@ class UserRepositoryImpl extends UserRepository {
   }
   
   @override
-  bool checkUser() {
-    return _localProvider.checkUser();
+  bool isUserExists() {
+    return _localProvider.isUserExists();
   }
   
   @override

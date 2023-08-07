@@ -9,12 +9,12 @@ part 'state.dart';
 
 class MainViewBloc extends Bloc<MainViewEvent, MainViewState> {
   final AuthService _authService;
-  final CheckUserUseCase _getUserUseCase;
+  final CheckUserExistenceUseCase _getUserUseCase;
   final AppRouter _appRouter = appLocator.get<AppRouter>();
 
   MainViewBloc({
     required AuthService authService,
-    required CheckUserUseCase getUserUseCase,
+    required CheckUserExistenceUseCase getUserUseCase,
   })  : _authService = authService,
         _getUserUseCase = getUserUseCase,
         super(MainViewBlocInitial()) {

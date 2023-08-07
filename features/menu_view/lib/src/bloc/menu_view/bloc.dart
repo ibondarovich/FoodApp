@@ -8,15 +8,15 @@ part 'event.dart';
 part 'state.dart';
 
 class MenuViewBloc extends Bloc<MenuViewEvent, MenuState> {
-  final FetchAllDishesUseCase _getAllDishesUseCase;
+  final FetchAllDishesUseCase _fetchAllDishesUseCase;
   final SaveCartItemUseCase _saveCartItemUseCase;
   final NetworkInfo _networkInfo;
 
   MenuViewBloc({
     required SaveCartItemUseCase saveCartItemUseCase,
-    required FetchAllDishesUseCase getAllDishesUseCase,
+    required FetchAllDishesUseCase fetchAllDishesUseCase,
     required NetworkInfo networkInfo
-  })  : _getAllDishesUseCase = getAllDishesUseCase,
+  })  : _fetchAllDishesUseCase = fetchAllDishesUseCase,
         _saveCartItemUseCase = saveCartItemUseCase,
         _networkInfo = networkInfo,
         super(MenuState(dishes: <DishModel>[],)) {
@@ -38,7 +38,7 @@ class MenuViewBloc extends Bloc<MenuViewEvent, MenuState> {
   void _init(InitEvent event, Emitter<MenuState> emit) async {
     emit(state.copyWith(isLoading: true));
     try {
-      final List<DishModel> dishes = await _getAllDishesUseCase.execute(
+      final List<DishModel> dishes = await _fetchAllDishesUseCase.execute(
         const NoParams(),
       );
       emit(state.copyWith(dishes: dishes, isLoading: false));

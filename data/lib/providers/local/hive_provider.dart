@@ -21,7 +21,7 @@ class HiveProvider implements LocalProvider {
   });
 
   @override
-  List<CartItemEntity> getAllCartItems() {
+  List<CartItemEntity> fetchAllCartItems() {
     return cartHiveBox.values.toList();
   }
 
@@ -54,7 +54,7 @@ class HiveProvider implements LocalProvider {
   }
   
   @override
-  List<DishEntity> getAllDishes() {
+  List<DishEntity> fetchAllDishes() {
     return menuHiveBox.values.toList();
   }
   
@@ -64,12 +64,12 @@ class HiveProvider implements LocalProvider {
   }
 
   @override
-  bool getTheme() {
+  bool fetchTheme() {
     return settingsHiveBox.get(StringConstants.hiveBoxThemeName) ?? false;
   }
   
   @override
-  double getScaleFactor() {
+  double fetchScaleFactor() {
     return scaleFactorHiveBox.get(StringConstants.hiveBoxScaleFactorName) ??
         AppDimens.textScales.first;
   }
@@ -80,7 +80,7 @@ class HiveProvider implements LocalProvider {
   }
   
   @override
-  bool checkUser() {
+  bool isUserExists() {
     return userHiveBox.isNotEmpty;
   }
   

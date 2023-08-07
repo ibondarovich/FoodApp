@@ -8,11 +8,11 @@ abstract class LocalProvider{
   Future<void> saveAllDishes(List<DishEntity> input);
   Future<void> saveScaleFactor(double input);
   Future<void> saveUser(String input);
-  bool checkUser();
+  bool isUserExists();
   Future<void> removeUser();
-  List<CartItemEntity> getAllCartItems();
-  List<DishEntity> getAllDishes();
+  List<CartItemEntity> fetchAllCartItems();
+  List<DishEntity> fetchAllDishes();
   void removeCartItem(int id);
-  double getScaleFactor();
-  bool getTheme();
+  double fetchScaleFactor();
+  bool fetchTheme();
 }

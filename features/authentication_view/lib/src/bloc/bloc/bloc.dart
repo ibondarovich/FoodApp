@@ -14,7 +14,7 @@ class AuthenticationViewBloc
   final SignInWithGooleUseCase _signInWithGooleUseCase;
   final SignInUseCase _signInUseCase;
   final SaveUserUseCase _saveUserUseCase;
-  final CheckUserUseCase _checkUserUseCase;
+  final CheckUserExistenceUseCase _checkUserExistenceUseCase;
   final AuthService _authService;
   final AppRouter _appRouter;
 
@@ -25,13 +25,13 @@ class AuthenticationViewBloc
     required AuthService authService,
     required SaveUserUseCase saveUserUseCase,
     required AppRouter appRouter,
-    required CheckUserUseCase checkUserUseCase,
+    required CheckUserExistenceUseCase checkUserExistenceUseCase,
   })  : _createUserUseCase = createUserUseCase,
         _signInWithGooleUseCase = signInWithGooleUseCase,
         _signInUseCase = signInUseCase,
         _authService = authService,
         _saveUserUseCase = saveUserUseCase,
-        _checkUserUseCase = checkUserUseCase,
+        _checkUserExistenceUseCase = checkUserExistenceUseCase,
         _appRouter = appRouter,
         super(
           AuthenticationViewState(
@@ -76,7 +76,7 @@ class AuthenticationViewBloc
           ),
         );
         await _saveUserUseCase.execute(result);
-        _authService.authenticated = _checkUserUseCase.execute(
+        _authService.authenticated = _checkUserExistenceUseCase.execute(
           const NoParams(),
         );
         _appRouter.push(const HomeRoute());
@@ -101,7 +101,7 @@ class AuthenticationViewBloc
       );
       emit(state.copyWith(isLoading: true));
       await _saveUserUseCase.execute(result);
-      _authService.authenticated = _checkUserUseCase.execute(
+      _authService.authenticated = _checkUserExistenceUseCase.execute(
         const NoParams(),
       );
       _appRouter.push(const HomeRoute());
@@ -129,7 +129,7 @@ class AuthenticationViewBloc
           ),
         );
         await _saveUserUseCase.execute(result);
-        _authService.authenticated = _checkUserUseCase.execute(
+        _authService.authenticated = _checkUserExistenceUseCase.execute(
           const NoParams(),
         );
         _appRouter.push(const HomeRoute());

@@ -21,7 +21,7 @@ class MenuViewScreen extends StatelessWidget {
       ),
       body: BlocProvider<MenuViewBloc>(
         create: (BuildContext context) => MenuViewBloc(
-          getAllDishesUseCase: appLocator.get<FetchAllDishesUseCase>(),
+          fetchAllDishesUseCase: appLocator.get<FetchAllDishesUseCase>(),
           saveCartItemUseCase: appLocator.get<SaveCartItemUseCase>(), 
           networkInfo: appLocator.get<NetworkInfo>(),
         ),

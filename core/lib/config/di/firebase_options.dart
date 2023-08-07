@@ -26,10 +26,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -58,5 +55,16 @@ class DefaultFirebaseOptions {
     messagingSenderId: '137927868263',
     projectId: 'food-delivery-40493',
     storageBucket: 'food-delivery-40493.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyBVI8aaS5vge2Hhyuluuzu_M5owdFMwR-c',
+    appId: '1:137927868263:ios:8e446781b908a79fd639c2',
+    messagingSenderId: '137927868263',
+    projectId: 'food-delivery-40493',
+    storageBucket: 'food-delivery-40493.appspot.com',
+    androidClientId: '137927868263-l9hsvtelnmhr1fgbqv5533traa2nicr3.apps.googleusercontent.com',
+    iosClientId: '137927868263-7c1rnkdl9cg10d9cq0ef9m1nm42qgcgu.apps.googleusercontent.com',
+    iosBundleId: 'com.example.foodDeliveryApp',
   );
 }

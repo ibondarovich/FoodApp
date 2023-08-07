@@ -11,7 +11,7 @@ class MainViewScreen extends StatelessWidget {
       lazy: false,
       create: (context) => MainViewBloc(
         authService: appLocator.get<AuthService>(),
-        getUserUseCase: appLocator.get<CheckUserUseCase>(),
+        getUserUseCase: appLocator.get<CheckUserExistenceUseCase>(),
       ),
       child: const AutoRouter(),
     );

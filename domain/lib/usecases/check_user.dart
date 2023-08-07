@@ -1,14 +1,14 @@
 import 'package:domain/domain.dart';
 
-class CheckUserUseCase extends UseCase<NoParams, bool> {
+class CheckUserExistenceUseCase extends UseCase<NoParams, bool> {
   final UserRepository _userRepository;
 
-  CheckUserUseCase({
+  CheckUserExistenceUseCase({
     required UserRepository userRepository,
   }) : _userRepository = userRepository;
 
   @override
   bool execute(NoParams input) {
-    return _userRepository.checkUser();
+    return _userRepository.isUserExists();
   }
 }

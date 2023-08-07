@@ -31,7 +31,7 @@ class AuthScreen extends StatelessWidget{
           authService: appLocator.get<AuthService>(), 
           saveUserUseCase: appLocator.get<SaveUserUseCase>(),
           appRouter: appLocator.get<AppRouter>(), 
-          checkUserUseCase: appLocator.get<CheckUserUseCase>(),
+          checkUserExistenceUseCase: appLocator.get<CheckUserExistenceUseCase>(),
         ),
         child: BlocConsumer<AuthenticationViewBloc, AuthenticationViewState>(
           listener: (BuildContext context, AuthenticationViewState state) => {

@@ -12,7 +12,7 @@ class CartRepositoryImpl implements CartRepository{
 
   @override
   List<CartItemModel> fetchAllCartItems() {
-    final List<CartItemEntity> response =  _provider.getAllCartItems();  
+    final List<CartItemEntity> response =  _provider.fetchAllCartItems();  
     return response.map((entity) => CartItemMapper.toModel(entity)).toList();
   }
 

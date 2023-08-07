@@ -170,7 +170,7 @@ class DataDI {
     );
 
     appLocator.registerLazySingleton(
-      () => CheckUserUseCase(
+      () => CheckUserExistenceUseCase(
         userRepository: appLocator.get<UserRepository>(),
       ),
     );
