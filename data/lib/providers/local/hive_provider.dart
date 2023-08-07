@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:data/entity/cart_item_entity/cart_item_entity.dart';
 import 'package:data/entity/dish_entity/dish_entity.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'local_provider.dart';
 
 class HiveProvider implements LocalProvider {

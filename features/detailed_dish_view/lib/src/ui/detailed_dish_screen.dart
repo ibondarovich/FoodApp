@@ -18,8 +18,10 @@ class DetailedDishScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text(StringConstants.appBarTitle,
-            style: Theme.of(context).appBarTheme.titleTextStyle),
+        title: Text(
+          StringConstants.appBarTitle,
+          style: Theme.of(context).appBarTheme.titleTextStyle,
+        ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: AppDimens.elevetion0,
         centerTitle: true,
@@ -140,7 +142,7 @@ class DetailedDishScreen extends StatelessWidget {
                 color: AppColors.white,
               ),
             );
-          }
+          },
         ),
       ),
     );

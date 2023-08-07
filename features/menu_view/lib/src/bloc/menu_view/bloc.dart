@@ -27,6 +27,7 @@ class MenuViewBloc extends Bloc<MenuViewEvent, MenuState> {
     on<OnCheckConnection>(_onCheckInternetConnection);
     on<OnShowMessageEvent>(_onChangeMessageVIsibility);
     on<OnNavigateToDetailedPage>(_onNavigateToDetailedPage);
+    
     add(InitEvent());
 
     _networkInfo.connectivity.onConnectivityChanged.listen((event) {
@@ -60,7 +61,7 @@ class MenuViewBloc extends Bloc<MenuViewEvent, MenuState> {
       );
       emit(state.copyWith(isShowSnakbar: false));
     } catch (e) {
-      emit(state.copyWith(errorMessage: e.toString()));
+      emit(state.copyWith(errorMessage: e.toString(), isDishAdded: false));
     }
   }
 
