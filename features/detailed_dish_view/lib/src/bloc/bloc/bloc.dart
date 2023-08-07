@@ -8,6 +8,7 @@ part 'state.dart';
 class DetailedDishViewBloc
     extends Bloc<DetailedDishViewEvent, DetailedDishViewState> {
   final SaveCartItemUseCase _saveCartItemUseCase;
+
   DetailedDishViewBloc({
     required SaveCartItemUseCase saveCartItemUseCase,
   })  : _saveCartItemUseCase = saveCartItemUseCase,

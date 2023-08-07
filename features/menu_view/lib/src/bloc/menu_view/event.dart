@@ -20,3 +20,23 @@ class OnChangeItemQuantity extends MenuViewEvent {
     required this.quantity,
   });
 }
+
+class OnCheckConnection extends MenuViewEvent {}
+
+class OnShowMessageEvent extends MenuViewEvent {
+  final bool isVisible;
+
+  OnShowMessageEvent({
+    required this.isVisible,
+  });
+}
+
+class OnNavigateToDetailedPage extends MenuViewEvent {
+  final BuildContext context;
+  final DishModel dishModel;
+
+  OnNavigateToDetailedPage({
+    required this.context,
+    required this.dishModel,
+  });
+}

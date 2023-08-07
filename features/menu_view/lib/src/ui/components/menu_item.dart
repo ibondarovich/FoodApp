@@ -3,11 +3,10 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:menu_view/src/bloc/menu_view/bloc.dart';
-import 'package:navigation/navigation.dart';
 
-class MenuItem extends StatelessWidget{
+class MenuItem extends StatelessWidget {
   final DishModel dishModel;
-  
+
   const MenuItem({
     super.key,
     required this.dishModel,
@@ -18,12 +17,12 @@ class MenuItem extends StatelessWidget{
     return Container(
       alignment: Alignment.center,
       margin: const EdgeInsets.only(
-        left: AppDimens.containerMargin10, 
-        right: AppDimens.containerMargin10, 
-        bottom: AppDimens.containerMargin10),
+          left: AppDimens.containerMargin10,
+          right: AppDimens.containerMargin10,
+          bottom: AppDimens.containerMargin10),
       padding: const EdgeInsets.only(
-        right: AppDimens.containerPadding5, 
-        left: AppDimens.containerPadding5),
+          right: AppDimens.containerPadding5,
+          left: AppDimens.containerPadding5),
       decoration: BoxDecoration(
         border: Border.all(
           color: Theme.of(context).cardColor,
@@ -38,14 +37,15 @@ class MenuItem extends StatelessWidget{
             spreadRadius: AppDimens.spreadRadiusShadow,
             blurRadius: AppDimens.blurRadiusShadow20,
           ),
-        ]
+        ],
       ),
       child: Column(
         children: <Widget>[
           InkWell(
-            onTap: () => context.pushRoute(
-              DetailedDishRoute(
-                dishModel: dishModel, 
+            onTap: () => BlocProvider.of<MenuViewBloc>(context).add(
+              OnNavigateToDetailedPage(
+                context: context,
+                dishModel: dishModel,
               ),
             ),
             child: Container(
@@ -53,7 +53,7 @@ class MenuItem extends StatelessWidget{
               child: AppImage(
                 imageURL: dishModel.url,
               ),
-            ), 
+            ),
           ),
           const SizedBox(height: AppDimens.verticalSpacing5),
           Align(
@@ -63,9 +63,7 @@ class MenuItem extends StatelessWidget{
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
-          const SizedBox(
-            height: AppDimens.verticalSpacing5
-          ),
+          const SizedBox(height: AppDimens.verticalSpacing5),
           FittedBox(
             fit: BoxFit.contain,
             child: Row(
@@ -77,17 +75,16 @@ class MenuItem extends StatelessWidget{
                   ),
                 ),
                 const SizedBox(
-                  width: AppDimens.horizontalSpacing, 
+                  width: AppDimens.horizontalSpacing,
                 ),
                 AppButton(
                   title: StringConstants.addToCartString,
                   onTap: () {
-                    BlocProvider.of<MenuViewBloc>(context).add(
-                      OnSaveItemEvent(dishModel: dishModel)
-                    );
+                    BlocProvider.of<MenuViewBloc>(context)
+                        .add(OnSaveItemEvent(dishModel: dishModel));
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        behavior: SnackBarBehavior.floating, 
+                        behavior: SnackBarBehavior.floating,
                         duration: const Duration(seconds: 1),
                         backgroundColor: AppColors.transparent,
                         elevation: AppDimens.elevetion0,
@@ -100,10 +97,9 @@ class MenuItem extends StatelessWidget{
                             ),
                           ),
                           child: const Text(
-                            StringConstants.addedToCartSnackBarTitle
-                          ),
+                              StringConstants.addedToCartSnackBarTitle),
                         ),
-                      ), 
+                      ),
                     );
                   },
                   boxDecoration: const BoxDecoration(
@@ -116,7 +112,7 @@ class MenuItem extends StatelessWidget{
                     color: AppColors.white,
                   ),
                 ),
-              ]
+              ],
             ),
           ),
         ],

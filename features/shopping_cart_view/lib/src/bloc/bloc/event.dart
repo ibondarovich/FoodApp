@@ -27,4 +27,12 @@ class OnReduceQuantityEvent extends ShoppingCartViewEvent {
   });
 }
 
+class OnNavigateToMenuPageEvent extends ShoppingCartViewEvent {
+  final BuildContext context;
+
+  OnNavigateToMenuPageEvent({
+    required this.context,
+  });
+}
+
 class OnShowCartItems extends ShoppingCartViewEvent {}

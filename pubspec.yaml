@@ -19,6 +19,8 @@ dependencies:
     path: ./navigation
   settings_view:
     path: ./features/settings_view
+  domain:
+    path: ./domain
 
 dev_dependencies:
   flutter_test:

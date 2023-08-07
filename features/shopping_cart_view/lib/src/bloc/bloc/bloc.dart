@@ -1,6 +1,8 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:navigation/navigation.dart';
 
 part 'event.dart';
 part 'state.dart';
@@ -26,6 +28,8 @@ class ShoppingCartViewBloc extends Bloc<ShoppingCartViewEvent, CartPageState> {
     on<OnDeleteItemEvent>(_onDeleteItem);
     on<OnIncreaseQuantityEvent>(_onIncreaseQuantity);
     on<OnReduceQuantityEvent>(_onReduceQuantity);
+    on<OnNavigateToMenuPageEvent>(_onNavigateToMenuPage);
+
     add(OnShowCartItems());
   }
 
@@ -62,10 +66,12 @@ class ShoppingCartViewBloc extends Bloc<ShoppingCartViewEvent, CartPageState> {
       const NoParams(),
     );
     double totalPrice = getTotalPrice(items);
-    emit(state.copyWith(
-      items: items,
-      totalPrice: totalPrice,
-    ));
+    emit(
+      state.copyWith(
+        items: items,
+        totalPrice: totalPrice,
+      ),
+    );
   }
 
   void _onIncreaseQuantity(
@@ -74,15 +80,19 @@ class ShoppingCartViewBloc extends Bloc<ShoppingCartViewEvent, CartPageState> {
   ) {
     int index = state.items.indexOf(event.cartItemModel);
     final int newQuantity = event.cartItemModel.quantity + 1;
-    state.items[index] = event.cartItemModel
-        .copyWith(event.cartItemModel.dishModel, newQuantity);
+    state.items[index] = event.cartItemModel.copyWith(
+      dishModel: event.cartItemModel.dishModel,
+      quantity: newQuantity,
+    );
     try {
       _updateCartItemQuantity.execute(state.items[index]);
       double totalPrice = getTotalPrice(state.items);
-      emit(state.copyWith(
-        items: state.items,
-        totalPrice: totalPrice,
-      ));
+      emit(
+        state.copyWith(
+          items: state.items,
+          totalPrice: totalPrice,
+        ),
+      );
     } catch (e) {
       emit(state.copyWith(errorMessage: e.toString()));
     }
@@ -95,8 +105,10 @@ class ShoppingCartViewBloc extends Bloc<ShoppingCartViewEvent, CartPageState> {
     if (event.cartItemModel.quantity > 1) {
       final int index = state.items.indexOf(event.cartItemModel);
       final int newQuantity = event.cartItemModel.quantity - 1;
-      state.items[index] = event.cartItemModel
-          .copyWith(event.cartItemModel.dishModel, newQuantity);
+      state.items[index] = event.cartItemModel.copyWith(
+        dishModel: event.cartItemModel.dishModel,
+        quantity: newQuantity,
+      );
       try {
         _updateCartItemQuantity.execute(state.items[index]);
         double totalPrice = getTotalPrice(state.items);
@@ -105,6 +117,13 @@ class ShoppingCartViewBloc extends Bloc<ShoppingCartViewEvent, CartPageState> {
         emit(state.copyWith(errorMessage: e.toString()));
       }
     }
+  }
+
+  void _onNavigateToMenuPage(
+    OnNavigateToMenuPageEvent event,
+    Emitter<CartPageState> emit,
+  ) {
+    event.context.router.navigate(const EmptyRoute());
   }
 
   double getTotalPrice(List<CartItemModel> items) {

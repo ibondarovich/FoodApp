@@ -27,37 +27,37 @@ class HomeScreen extends StatelessWidget {
             fetchAllCartItemsUseCase:
                 appLocator.get<FetchAllCartItemsUseCase>(),
           ),
-          child: BlocBuilder<HomeViewBloc, OnChangeCartQuntityState>(
-            builder: (context, state) {
-              Bloc.observer = HomeBlocObserver(context: context);
-              return BottomNavigationBar(
-                currentIndex: tabsRouter.activeIndex,
-                onTap: tabsRouter.setActiveIndex,
-                selectedItemColor: AppColors.primaryColor,
-                unselectedItemColor: Theme.of(context).iconTheme.color,
-                items: <BottomNavigationBarItem>[
-                  const BottomNavigationBarItem(
-                    icon: AppIcons.restaurantMenu,
-                    label: StringConstants.navigationBarMenu,
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Badge(
-                      label: Text('${state.quantity}'),
-                      child: AppIcons.shoppingBasket,
-                    ),
-                    label: StringConstants.navigationBarCart,
-                  ),
-                  const BottomNavigationBarItem(
-                    icon: AppIcons.orderHistory,
-                    label: StringConstants.navigationBarOrderHistory,
-                  ),
-                  const BottomNavigationBarItem(
-                    icon: AppIcons.settings,
-                    label: StringConstants.navigationBarSettings,
-                  ),
-                ],
-              );
-            },
+          child: BottomNavigationBar(
+            currentIndex: tabsRouter.activeIndex,
+            onTap: tabsRouter.setActiveIndex,
+            selectedItemColor: AppColors.primaryColor,
+            unselectedItemColor: Theme.of(context).iconTheme.color,
+            items: <BottomNavigationBarItem>[
+              const BottomNavigationBarItem(
+                icon: AppIcons.restaurantMenu,
+                label: StringConstants.navigationBarMenu,
+              ),
+              BottomNavigationBarItem(
+                icon: BlocBuilder<HomeViewBloc, OnChangeCartQuntityState>(
+                  builder: (context, state) {
+                  Bloc.observer = HomeBlocObserver(context: context);
+                    return
+                      Badge(
+                        label: Text('${state.quantity}'),
+                        child: AppIcons.shoppingBasket,
+                      );
+                  }), 
+                label: StringConstants.navigationBarCart,
+              ),
+              const BottomNavigationBarItem(
+                icon: AppIcons.orderHistory,
+                label: StringConstants.navigationBarOrderHistory,
+              ),
+              const BottomNavigationBarItem(
+                icon: AppIcons.settings,
+                label: StringConstants.navigationBarSettings,
+              ),
+            ],
           ),
         );
       },

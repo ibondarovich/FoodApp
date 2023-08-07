@@ -1,6 +1,6 @@
-import 'package:core/core.dart';
 import 'package:data/entity/dish_entity/dish_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 part 'cart_item_entity.freezed.dart';
 part 'cart_item_entity.g.dart';

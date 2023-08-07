@@ -2,6 +2,7 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:navigation/navigation.dart';
 
 part 'event.dart';
 part 'state.dart';
@@ -9,17 +10,29 @@ part 'state.dart';
 class MenuViewBloc extends Bloc<MenuViewEvent, MenuState> {
   final FetchAllDishesUseCase _getAllDishesUseCase;
   final SaveCartItemUseCase _saveCartItemUseCase;
+  final NetworkInfo _networkInfo;
 
   MenuViewBloc({
     required SaveCartItemUseCase saveCartItemUseCase,
     required FetchAllDishesUseCase getAllDishesUseCase,
+    required NetworkInfo networkInfo
   })  : _getAllDishesUseCase = getAllDishesUseCase,
         _saveCartItemUseCase = saveCartItemUseCase,
-        super(MenuState(dishes: <DishModel>[])) {
+        _networkInfo = networkInfo,
+        super(MenuState(dishes: <DishModel>[],)) {
+
     on<InitEvent>(_init);
     on<OnSaveItemEvent>(_onSaveItem);
     on<OnChangeItemQuantity>(_onChangeItemQuantity);
+    on<OnCheckConnection>(_onCheckInternetConnection);
+    on<OnShowMessageEvent>(_onChangeMessageVIsibility);
+    on<OnNavigateToDetailedPage>(_onNavigateToDetailedPage);
+    
     add(InitEvent());
+
+    _networkInfo.connectivity.onConnectivityChanged.listen((event) {
+      add(OnCheckConnection());
+    });
   }
 
   void _init(InitEvent event, Emitter<MenuState> emit) async {
@@ -29,6 +42,7 @@ class MenuViewBloc extends Bloc<MenuViewEvent, MenuState> {
         const NoParams(),
       );
       emit(state.copyWith(dishes: dishes, isLoading: false));
+      add(OnCheckConnection());
     } catch (e) {
       emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
     }
@@ -45,9 +59,9 @@ class MenuViewBloc extends Bloc<MenuViewEvent, MenuState> {
           quantity: 1,
         ),
       );
-      emit(state.copyWith());
+      emit(state.copyWith(isShowSnakbar: false));
     } catch (e) {
-      emit(state.copyWith(errorMessage: e.toString()));
+      emit(state.copyWith(errorMessage: e.toString(), isDishAdded: false));
     }
   }
 
@@ -56,5 +70,35 @@ class MenuViewBloc extends Bloc<MenuViewEvent, MenuState> {
     Emitter<MenuState> emit,
   ) {
     emit(state.copyWith(cartQuantity: event.quantity + 1));
+  }
+
+  void _onChangeMessageVIsibility(
+    OnShowMessageEvent event,
+    Emitter<MenuState> emit,
+  ){
+    emit(state.copyWith(isShowSnakbar: event.isVisible));
+  }
+
+  void _onCheckInternetConnection(
+    OnCheckConnection event,
+    Emitter<MenuState> emit,
+  ) async {
+    final bool result = await _networkInfo.isConnected;
+    if(result){
+      emit(state.copyWith(isShowSnakbar: false));
+    } else {
+      emit(state.copyWith(isShowSnakbar: true));
+    }
+  }
+
+  void _onNavigateToDetailedPage(
+    OnNavigateToDetailedPage event,
+    Emitter<MenuState> emit,
+  ) {
+    event.context.router.push(
+      DetailedDishRoute(
+        dishModel: event.dishModel,
+      ),
+    );
   }
 }
