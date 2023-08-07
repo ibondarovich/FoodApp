@@ -9,3 +9,5 @@ export 'di/app_di.dart';
 export 'config/di/firebase_options.dart';
 export 'package:connectivity_plus/connectivity_plus.dart';
 export 'network/check_internet_connection.dart';
+export 'package:url_launcher/url_launcher.dart';
+export 'constants/url_constants.dart';

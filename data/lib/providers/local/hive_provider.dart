@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:core_ui/core_ui.dart';
 import 'package:data/entity/cart_item_entity/cart_item_entity.dart';
 import 'package:data/entity/dish_entity/dish_entity.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -8,11 +9,13 @@ class HiveProvider implements LocalProvider {
   final Box<CartItemEntity> cartHiveBox;
   final Box<DishEntity> menuHiveBox;
   final Box<bool> settingsHiveBox;
+  final Box<double> scaleFactorHiveBox;
 
   HiveProvider({
     required this.menuHiveBox,
     required this.cartHiveBox,
     required this.settingsHiveBox,
+    required this.scaleFactorHiveBox,
   });
 
   @override
@@ -61,5 +64,16 @@ class HiveProvider implements LocalProvider {
   @override
   bool getTheme() {
     return settingsHiveBox.get(StringConstants.hiveBoxThemeName) ?? false;
+  }
+  
+  @override
+  double getScaleFactor() {
+    return scaleFactorHiveBox.get(StringConstants.hiveBoxScaleFactorName) ??
+        AppDimens.textScales.first;
+  }
+  
+  @override
+  Future<void> saveScaleFactor(double input) async {
+    await scaleFactorHiveBox.put(StringConstants.hiveBoxScaleFactorName, input);
   }
 }

@@ -17,4 +17,14 @@ class SettingsRepositoryImpl extends SettingsRepository{
   bool fetchTheme() {
     return _localProvider.getTheme();
   }
+  
+  @override
+  double fetchScaleFactor() {
+    return _localProvider.getScaleFactor();
+  }
+  
+  @override
+  Future<void> saveScaleFactor(double input) async {
+    await _localProvider.saveScaleFactor(input);
+  }
 }

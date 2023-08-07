@@ -29,14 +29,16 @@ class DataDI {
 
     appLocator.registerLazySingleton<LocalProvider>(
       () => HiveProvider(
-        cartHiveBox: Hive.box<CartItemEntity>(StringConstants.hiveBoxCartName), 
-        menuHiveBox: Hive.box<DishEntity>(StringConstants.hiveBoxMenuName), 
+        cartHiveBox: Hive.box<CartItemEntity>(StringConstants.hiveBoxCartName),
+        menuHiveBox: Hive.box<DishEntity>(StringConstants.hiveBoxMenuName),
         settingsHiveBox: Hive.box<bool>(StringConstants.hiveBoxSettingsName),
+        scaleFactorHiveBox:
+            Hive.box<double>(StringConstants.hiveBoxScaleFactorName),
       ),
     );
   }
 
-  void _initNetworking(){
+  void _initNetworking() {
     appLocator.registerLazySingleton<Connectivity>(
       () => Connectivity(),
     );
@@ -51,11 +53,9 @@ class DataDI {
   void _initData() {
     appLocator.registerLazySingleton<DishRepository>(
       () => DishRepositoryImpl(
-        remoteProvider: appLocator.get<RemoteProvider>(), 
-        localProvier: appLocator.get<LocalProvider>(), 
-        networkInfo: NetworkInfo(
-          connectivity: appLocator.get<Connectivity>()
-        ),
+        remoteProvider: appLocator.get<RemoteProvider>(),
+        localProvier: appLocator.get<LocalProvider>(),
+        networkInfo: NetworkInfo(connectivity: appLocator.get<Connectivity>()),
       ),
     );
 
@@ -98,7 +98,7 @@ class DataDI {
     appLocator.registerLazySingleton<SettingsRepository>(
       () => SettingsRepositoryImpl(
         localProvider: appLocator.get<LocalProvider>(),
-      ), 
+      ),
     );
 
     appLocator.registerLazySingleton<FetchThemeUseCase>(
@@ -109,6 +109,18 @@ class DataDI {
 
     appLocator.registerLazySingleton(
       () => SaveThemeUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => SaveScaleFactorUseCase(
+        settingsRepository: appLocator.get<SettingsRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => FetchScaleFactorUseCase(
         settingsRepository: appLocator.get<SettingsRepository>(),
       ),
     );
