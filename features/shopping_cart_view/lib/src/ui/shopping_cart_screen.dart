@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:navigation/navigation.dart';
 import 'package:shopping_cart_view/shopping_cart_view.dart';
 import 'package:shopping_cart_view/src/ui/components/cart_item.dart';
 import 'package:shopping_cart_view/src/ui/components/empty_cart_screen.dart';

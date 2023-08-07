@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
-import 'package:navigation/navigation.dart';
 
 part 'event.dart';
 part 'state.dart';

@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:navigation/src/app_router/app_router.dart';
 import 'package:navigation/src/app_router/auth_guard.dart';
 
 final NavigationDI navigationDI = NavigationDI();

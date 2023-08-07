@@ -3,7 +3,6 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:navigation/navigation.dart';
 
 part 'event.dart';
 part 'state.dart';
@@ -66,7 +65,9 @@ class AuthenticationViewBloc
     OnSignUpEvent event,
     Emitter<AuthenticationViewState> emit,
   ) async {
-    if (isValidated()) {
+    final bool result =
+        isValidated(state.emailValidationError, state.passwordValidationError);
+    if (result) {
       try {
         emit(state.copyWith(isLoading: true));
         final String result = await _createUserUseCase.execute(
@@ -119,7 +120,9 @@ class AuthenticationViewBloc
     OnSignInEvent event,
     Emitter<AuthenticationViewState> emit,
   ) async {
-    if (isValidated()) {
+     final bool result =
+        isValidated(state.emailValidationError, state.passwordValidationError);
+    if (result) {
       try {
         emit(state.copyWith(isLoading: true));
         final String result = await _signInUseCase.execute(
@@ -186,30 +189,5 @@ class AuthenticationViewBloc
         ),
       );
     }
-  }
-
-  String? emailValidation(String email) {
-    if (email.isEmpty) {
-      return 'Please enter an email';
-    }
-    if (!RegExp('^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]').hasMatch(email)) {
-      return 'Please enter a valid email';
-    }
-    return null;
-  }
-
-  String? passwordValidation(String password) {
-    if (password.isEmpty) {
-      return 'Please enter a password';
-    }
-    if (password.length < 6) {
-      return 'Too short password';
-    }
-    return null;
-  }
-
-  bool isValidated() {
-    return state.emailValidationError.isEmpty &&
-        state.passwordValidationError.isEmpty;
   }
 }

@@ -1,7 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:navigation/src/app_router/app_router.dart';
 
 class AuthGuard extends AutoRedirectGuard {
   final AuthService authService;
