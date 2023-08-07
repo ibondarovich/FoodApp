@@ -39,10 +39,11 @@ class DataDI {
 
     appLocator.registerLazySingleton<LocalProvider>(
       () => HiveProvider(
-        cartHiveBox: Hive.box<CartItemEntity>(StringConstants.hiveBoxCartName), 
-        menuHiveBox: Hive.box<DishEntity>(StringConstants.hiveBoxMenuName), 
+        cartHiveBox: Hive.box<CartItemEntity>(StringConstants.hiveBoxCartName),
+        menuHiveBox: Hive.box<DishEntity>(StringConstants.hiveBoxMenuName),
         settingsHiveBox: Hive.box<bool>(StringConstants.hiveBoxSettingsName),
-        scaleFactorHiveBox: Hive.box<double>(StringConstants.hiveBoxScaleFactorName),
+        scaleFactorHiveBox:
+            Hive.box<double>(StringConstants.hiveBoxScaleFactorName),
         userHiveBox: Hive.box<String>(StringConstants.hiveBoxUser),
       ),
     );
