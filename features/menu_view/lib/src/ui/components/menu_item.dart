@@ -24,20 +24,21 @@ class MenuItem extends StatelessWidget {
           right: AppDimens.containerPadding5,
           left: AppDimens.containerPadding5),
       decoration: BoxDecoration(
-          border: Border.all(
-            color: Theme.of(context).cardColor,
-            width: AppDimens.borderWidth,
-            style: BorderStyle.solid,
-          ),
-          borderRadius: BorderRadius.circular(AppDimens.borderRadius15),
+        border: Border.all(
           color: Theme.of(context).cardColor,
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: Theme.of(context).shadowColor,
-              spreadRadius: AppDimens.spreadRadiusShadow,
-              blurRadius: AppDimens.blurRadiusShadow20,
-            ),
-          ]),
+          width: AppDimens.borderWidth,
+          style: BorderStyle.solid,
+        ),
+        borderRadius: BorderRadius.circular(AppDimens.borderRadius15),
+        color: Theme.of(context).cardColor,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Theme.of(context).shadowColor,
+            spreadRadius: AppDimens.spreadRadiusShadow,
+            blurRadius: AppDimens.blurRadiusShadow20,
+          ),
+        ],
+      ),
       child: Column(
         children: <Widget>[
           InkWell(
@@ -65,52 +66,54 @@ class MenuItem extends StatelessWidget {
           const SizedBox(height: AppDimens.verticalSpacing5),
           FittedBox(
             fit: BoxFit.contain,
-            child: Row(children: <Widget>[
-              Text(
-                '${dishModel.price}\$',
-                style: AppFonts.bold_20.copyWith(
-                  color: AppColors.lightOrange,
-                ),
-              ),
-              const SizedBox(
-                width: AppDimens.horizontalSpacing,
-              ),
-              AppButton(
-                title: StringConstants.addToCartString,
-                onTap: () {
-                  BlocProvider.of<MenuViewBloc>(context)
-                      .add(OnSaveItemEvent(dishModel: dishModel));
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      behavior: SnackBarBehavior.floating,
-                      duration: const Duration(seconds: 1),
-                      backgroundColor: AppColors.transparent,
-                      elevation: AppDimens.elevetion0,
-                      content: Container(
-                        padding: const EdgeInsets.all(AppDimens.padding20),
-                        decoration: const BoxDecoration(
-                          color: AppColors.lightOrange,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(AppDimens.padding20),
-                          ),
-                        ),
-                        child: const Text(
-                            StringConstants.addedToCartSnackBarTitle),
-                      ),
-                    ),
-                  );
-                },
-                boxDecoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(AppDimens.padding35),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  '${dishModel.price}\$',
+                  style: AppFonts.bold_20.copyWith(
+                    color: AppColors.lightOrange,
                   ),
-                  gradient: AppColors.primaryGradient,
                 ),
-                textStyle: AppFonts.bold_14.copyWith(
-                  color: AppColors.white,
+                const SizedBox(
+                  width: AppDimens.horizontalSpacing,
                 ),
-              ),
-            ]),
+                AppButton(
+                  title: StringConstants.addToCartString,
+                  onTap: () {
+                    BlocProvider.of<MenuViewBloc>(context)
+                        .add(OnSaveItemEvent(dishModel: dishModel));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        behavior: SnackBarBehavior.floating,
+                        duration: const Duration(seconds: 1),
+                        backgroundColor: AppColors.transparent,
+                        elevation: AppDimens.elevetion0,
+                        content: Container(
+                          padding: const EdgeInsets.all(AppDimens.padding20),
+                          decoration: const BoxDecoration(
+                            color: AppColors.lightOrange,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(AppDimens.padding20),
+                            ),
+                          ),
+                          child: const Text(
+                              StringConstants.addedToCartSnackBarTitle),
+                        ),
+                      ),
+                    );
+                  },
+                  boxDecoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(AppDimens.padding35),
+                    ),
+                    gradient: AppColors.primaryGradient,
+                  ),
+                  textStyle: AppFonts.bold_14.copyWith(
+                    color: AppColors.white,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

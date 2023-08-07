@@ -5,12 +5,10 @@ class MenuState {
   final String errorMessage;
   final bool isLoading;
   final bool isDishAdded;
- // final bool isConnected;
   final bool isShowSnakbar;
 
   MenuState({
     required this.dishes,
-    //this.isConnected = false,
     this.errorMessage = '',
     this.isLoading = false,
     this.isDishAdded = false,
@@ -23,7 +21,6 @@ class MenuState {
     String? errorMessage,
     bool? isLoading,
     bool? isDishAdded,
-    //bool? isConnected,
     bool? isShowSnakbar,
   }) {
     return MenuState(
@@ -31,7 +28,6 @@ class MenuState {
       errorMessage: errorMessage ?? this.errorMessage,
       isLoading: isLoading ?? this.isLoading,
       isDishAdded: isDishAdded ?? this.isDishAdded,
-    //  isConnected: isConnected ?? this.isConnected,
       isShowSnakbar: isShowSnakbar ?? this.isShowSnakbar,
     );
   }

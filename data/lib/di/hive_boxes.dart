@@ -1,6 +1,7 @@
 import 'package:core/core.dart';
 import 'package:data/entity/cart_item_entity/cart_item_entity.dart';
 import 'package:data/entity/dish_entity/dish_entity.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 HiveBoxes hiveBoxes = HiveBoxes();
 
