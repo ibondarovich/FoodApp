@@ -6,7 +6,7 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
-class AuthScreen extends StatelessWidget{
+class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
 
   @override
@@ -25,40 +25,22 @@ class AuthScreen extends StatelessWidget{
       body: BlocProvider(
         create: (BuildContext context) => AuthenticationViewBloc(
           createUserUseCase: appLocator.get<CreateUserUseCase>(),
-          signInWithGooleUseCase: appLocator.get<SignInWithGooleUseCase>(), 
-          signInUseCase: appLocator.get<SignInUseCase>(), 
-          authService: appLocator.get<AuthService>(), 
+          signInWithGooleUseCase: appLocator.get<SignInWithGooleUseCase>(),
+          signInUseCase: appLocator.get<SignInUseCase>(),
+          authService: appLocator.get<AuthService>(),
           saveUserUseCase: appLocator.get<SaveUserUseCase>(),
-          appRouter: appLocator.get<AppRouter>(), 
-          checkUserExistenceUseCase: appLocator.get<CheckUserExistenceUseCase>(),
+          appRouter: appLocator.get<AppRouter>(),
+          checkUserExistenceUseCase:
+              appLocator.get<CheckUserExistenceUseCase>(),
         ),
         child: BlocConsumer<AuthenticationViewBloc, AuthenticationViewState>(
           listener: (BuildContext context, AuthenticationViewState state) => {
-            if(state.authStatus.isNotEmpty){
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  SnackBar(
-                    behavior: SnackBarBehavior.floating,
-                    duration: const Duration(seconds: 4),
-                    backgroundColor: AppColors.transparent,
-                    elevation: AppDimens.elevetion0,
-                    content: Container(
-                      padding: const EdgeInsets.all(AppDimens.padding20),
-                      decoration: const BoxDecoration(
-                        color: AppColors.red,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(AppDimens.padding20),
-                        ),
-                      ),
-                      child: Text(state.authStatus),
-                    ),
-                  ),
-                ),
+            if (state.authStatus.isNotEmpty){
+              showAppSnackBar(context: context, title: state.authStatus),
             }
           },
           builder: (BuildContext context, AuthenticationViewState state) {
-            if(state.isLoginScreenShowing){
+            if (state.isLoginScreenShowing) {
               return const LogInWidget();
             } else {
               return const SignUpWidget();
