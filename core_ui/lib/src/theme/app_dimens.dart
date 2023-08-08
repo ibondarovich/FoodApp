@@ -43,6 +43,4 @@ class AppDimens {
   static const double imageSize100 = 100;
 
   static const Offset boxShadowOffset = Offset(0, 20);
-
-  static const List<double> textScales = [0.7, 1, 1.5];
 }

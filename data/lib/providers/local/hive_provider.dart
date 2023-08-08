@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:core_ui/core_ui.dart';
 import 'package:data/entity/cart_item_entity/cart_item_entity.dart';
 import 'package:data/entity/dish_entity/dish_entity.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -52,12 +51,12 @@ class HiveProvider implements LocalProvider {
     await Future.wait(
         input.map((item) async => await menuHiveBox.put(item.id, item)));
   }
-  
+
   @override
   List<DishEntity> fetchAllDishes() {
     return menuHiveBox.values.toList();
   }
-  
+
   @override
   Future<void> saveTheme(bool input) async {
     await settingsHiveBox.put(StringConstants.hiveBoxThemeName, input);
@@ -67,28 +66,28 @@ class HiveProvider implements LocalProvider {
   bool fetchTheme() {
     return settingsHiveBox.get(StringConstants.hiveBoxThemeName) ?? false;
   }
-  
+
   @override
   double fetchScaleFactor() {
     return scaleFactorHiveBox.get(StringConstants.hiveBoxScaleFactorName) ??
-        AppDimens.textScales.first;
+        TextScaleType.small.value;
   }
-  
+
   @override
   Future<void> saveScaleFactor(double input) async {
     await scaleFactorHiveBox.put(StringConstants.hiveBoxScaleFactorName, input);
   }
-  
+
   @override
   bool isUserExists() {
     return userHiveBox.isNotEmpty;
   }
-  
+
   @override
   Future<void> saveUser(String input) async {
     await userHiveBox.put('uid', input);
   }
-  
+
   @override
   Future<void> removeUser() async {
     await userHiveBox.clear();
