@@ -1,4 +1,3 @@
-import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class AppImageButton extends StatelessWidget {
@@ -13,7 +12,7 @@ class AppImageButton extends StatelessWidget {
   final Alignment alignment;
   final double borderRadius;
   final Color? color;
-  final Image image;
+  final Widget image;
 
   const AppImageButton({
     super.key,

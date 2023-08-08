@@ -103,8 +103,8 @@ class SignUpState extends State<SignUpWidget> {
                           decoration: TextDecoration.underline,
                         ),
                         color: AppColors.white,
-                        image: Image.asset(
-                          'assets/img/google.png',
+                        image: const AppImage(
+                          filePath: AppImages.googleImg,
                           scale: 0.5,
                         ),
                         width: MediaQuery.of(context).size.width,

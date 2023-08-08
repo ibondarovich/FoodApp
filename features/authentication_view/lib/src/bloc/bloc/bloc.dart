@@ -69,7 +69,7 @@ class AuthenticationViewBloc
         isValidated(state.emailValidationError, state.passwordValidationError);
     if (result) {
       try {
-        emit(state.copyWith(isLoading: true));
+        emit(state.copyWith(isLoading: true, authStatus: ''));
         final String result = await _createUserUseCase.execute(
           UserModel(
             email: event.email,
@@ -100,7 +100,7 @@ class AuthenticationViewBloc
       final String result = await _signInWithGooleUseCase.execute(
         const NoParams(),
       );
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(isLoading: true, authStatus: ''));
       await _saveUserUseCase.execute(result);
       _authService.authenticated = _checkUserExistenceUseCase.execute(
         const NoParams(),
@@ -124,7 +124,7 @@ class AuthenticationViewBloc
         isValidated(state.emailValidationError, state.passwordValidationError);
     if (result) {
       try {
-        emit(state.copyWith(isLoading: true));
+        emit(state.copyWith(isLoading: true, authStatus: ''));
         final String result = await _signInUseCase.execute(
           UserModel(
             email: event.email,

@@ -51,7 +51,7 @@ class MenuItem extends StatelessWidget {
             child: Container(
               height: AppDimens.containerHeight120,
               child: AppImage(
-                imageURL: dishModel.url,
+                filePath: dishModel.url,
               ),
             ),
           ),

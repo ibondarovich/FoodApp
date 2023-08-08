@@ -55,7 +55,7 @@ class CartItem extends StatelessWidget {
           child: Row(
             children: <Widget>[
               AppImage(
-                imageURL: cartItem.dishModel.url,
+                filePath: cartItem.dishModel.url,
                 alignment: Alignment.centerLeft,
                 width: AppDimens.imageSize100,
               ),

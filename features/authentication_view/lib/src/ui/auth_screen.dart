@@ -14,8 +14,8 @@ class AuthScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Image.asset(
-          'assets/img/logo.png',
+        title: const AppImage(
+          filePath: AppImages.logoImg,
           scale: 2,
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
