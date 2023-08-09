@@ -107,7 +107,7 @@ class LogInState extends State<LogInWidget> {
                         color: AppColors.white,
                         image: const AppImage(
                           filePath: AppImages.googleImg,
-                          scale: 0.5,
+                          scale: AppDimens.scale,
                         ),
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height / 13,

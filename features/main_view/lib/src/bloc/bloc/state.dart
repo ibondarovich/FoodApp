@@ -1,6 +1,21 @@
 part of 'bloc.dart';
 
-@immutable
-abstract class MainViewState {}
+class MainState {
+  final bool isDark;
+  final double textScale;
 
-class MainViewBlocInitial extends MainViewState {}
+  MainState({
+    required this.isDark,
+    required this.textScale,
+  });
+
+  MainState copyWith({
+    required bool? isDark,
+    required double? textScale,
+  }) {
+    return MainState(
+      isDark: isDark ?? this.isDark,
+      textScale: textScale ?? this.textScale,
+    );
+  }
+}

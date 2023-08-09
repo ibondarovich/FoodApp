@@ -26,7 +26,10 @@ class SettingsViewBloc extends Bloc<SettingsViewEvent, SettingsViewState> {
         _saveScaleFactorUseCase = saveScaleFactorUseCase,
         _signOutUseCase = signOutUseCase,
         _authService = authService,
-        super(SettingsViewState(isDark: false)) {
+        super(SettingsViewState(
+          isDark: false,
+          scaleFactor: TextScaleType.small.value,
+        )) {
     on<InitEvent>(_init);
     on<OnSignOutEvent>(_onSignOut);
     on<OnSwitchThemeEvent>(_onSetTheme);
@@ -40,7 +43,7 @@ class SettingsViewBloc extends Bloc<SettingsViewEvent, SettingsViewState> {
 
   void _init(InitEvent event, Emitter<SettingsViewState> emit) {
     final bool result = _fetchThemeUseCase.execute(const NoParams());
-    emit(SettingsViewState(isDark: result));
+    emit(state.copyWith(isDark: result));
   }
 
   void _onSetTheme(OnSwitchThemeEvent event, Emitter<SettingsViewState> emit) {

@@ -5,3 +5,4 @@ export 'app_circular_icon_button.dart';
 export 'app_image_button.dart';
 export 'app_text_button.dart';
 export 'app_snackbar.dart';
+export 'settings_widget.dart';

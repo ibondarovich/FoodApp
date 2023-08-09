@@ -42,5 +42,11 @@ class AppDimens {
 
   static const double imageSize100 = 100;
 
+  static const double thickness1 = 1;
+
+  static const int divisions2 = 2;
+
+  static const double scale = 0.5;
+
   static const Offset boxShadowOffset = Offset(0, 20);
 }

@@ -6,7 +6,7 @@ class SettingsViewState {
   
   SettingsViewState({
     required this.isDark,
-    this.scaleFactor = 1,
+    required this.scaleFactor,
   });
 
   SettingsViewState copyWith({

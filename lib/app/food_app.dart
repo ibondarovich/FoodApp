@@ -1,37 +1,46 @@
 import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
-import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:settings_view/settings_view.dart';
 
-class FoodApp extends StatelessWidget {
+class FoodApp extends StatefulWidget {
   const FoodApp({super.key});
+
+  @override
+  State<StatefulWidget> createState() => FoodAppState();
+}
+
+class FoodAppState extends State<FoodApp> {
+  bool _isDark = false;
+  double _scaleFactor = TextScaleType.small.value;
+
+  void _setTheme(bool value) {
+    setState(() {
+      _isDark = value;
+    });
+  }
+
+  void _setScaleFactor(double value) {
+    setState(() {
+      _scaleFactor = value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SettingsViewBloc(
-        fetchThemeUseCase: appLocator.get<FetchThemeUseCase>(),
-        saveThemeUseCase: appLocator.get<SaveThemeUseCase>(),
-        fetchScaleFactorUseCase: appLocator.get<FetchScaleFactorUseCase>(),
-        saveScaleFactorUseCase: appLocator.get<SaveScaleFactorUseCase>(), 
-        signOutUseCase: appLocator.get<SignOutUseCase>(), 
-        authService: appLocator.get<AuthService>(),
-      ),
-      child: BlocBuilder<SettingsViewBloc, SettingsViewState>(
-        builder: (BuildContext context, SettingsViewState state) {
-          return MaterialApp.router(
-            routerDelegate: appLocator.get<AppRouter>().delegate(),
-            routeInformationParser:
-                appLocator.get<AppRouter>().defaultRouteParser(),
-            theme: state.isDark ? AppTheme.dark : AppTheme.light,
-            builder: (context, child) {
-              return MediaQuery(
-                data: MediaQuery.of(context).copyWith(
-                  textScaleFactor: state.scaleFactor,
-                ),
-                child: child!,
-              );
-            },
+    return SettingsWidget(
+      setTheme: _setTheme,
+      setTextScale: _setScaleFactor,
+      child: MaterialApp.router(
+        routerDelegate: appLocator.get<AppRouter>().delegate(),
+        routeInformationParser:
+            appLocator.get<AppRouter>().defaultRouteParser(),
+        theme: _isDark ? AppTheme.dark : AppTheme.light,
+        builder: (context, child) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(
+              textScaleFactor: _scaleFactor,
+            ),
+            child: child!,
           );
         },
       ),
