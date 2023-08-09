@@ -1,13 +1,13 @@
 import 'package:core/core.dart';
 import 'package:data/entity/dish_entity/dish_entity.dart';
 import 'package:data/mappers/dish_mapper.dart';
-import 'package:data/providers/local/local_provider.dart';
+import 'package:data/providers/local/dish_data_provider.dart';
 import 'package:data/providers/remote/remote_provider.dart';
 import 'package:domain/domain.dart';
 
 class DishRepositoryImpl implements DishRepository{
   final RemoteProvider _remoteProvider;
-  final LocalProvider _localProvider;
+  final DishDataProvider _localProvider;
   final NetworkInfo _networkInfo;
 
   DishRepositoryImpl({

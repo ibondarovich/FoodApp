@@ -1,16 +1,16 @@
 import 'package:data/entity/user_entity/user_entity.dart';
 import 'package:data/mappers/signin_user_mapper.dart';
-import 'package:data/providers/local/local_provider.dart';
+import 'package:data/providers/local/user_data_provider.dart';
 import 'package:data/providers/remote/remote_provider.dart';
 import 'package:domain/domain.dart';
 
 class UserRepositoryImpl extends UserRepository {
   final RemoteProvider _remoteProvider;
-  final LocalProvider _localProvider;
+  final UserDataProvider _localProvider;
 
   UserRepositoryImpl({
     required RemoteProvider remoteProvider,
-    required LocalProvider localProvider,
+    required UserDataProvider localProvider,
   }) : _remoteProvider = remoteProvider,
       _localProvider = localProvider;
 

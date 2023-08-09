@@ -1,8 +1,14 @@
 import 'package:core/core.dart';
 import 'package:data/entity/cart_item_entity/cart_item_entity.dart';
 import 'package:data/entity/dish_entity/dish_entity.dart';
-import 'package:data/providers/local/hive_provider.dart';
-import 'package:data/providers/local/local_provider.dart';
+import 'package:data/providers/local/cart_data_provider.dart';
+import 'package:data/providers/local/cart_data_provider_impl.dart';
+import 'package:data/providers/local/dish_data_provider.dart';
+import 'package:data/providers/local/dish_data_provider_impl.dart';
+import 'package:data/providers/local/theme_data_provider.dart';
+import 'package:data/providers/local/theme_data_provider_impl.dart';
+import 'package:data/providers/local/user_data_provider.dart';
+import 'package:data/providers/local/user_data_provider_impl.dart';
 import 'package:data/providers/remote/firebase_provider.dart';
 import 'package:data/providers/remote/remote_provider.dart';
 import 'package:data/repositories/cart_repository_impl.dart';
@@ -17,8 +23,9 @@ final DataDI dataDI = DataDI();
 class DataDI {
   Future<void> initDependencies() async {
     _initServices();
-    _initRemoteDataProvider();
+    _initDataProviders();
     _initNetworking();
+    _initRepositories();
     _initData();
   }
 
@@ -28,7 +35,7 @@ class DataDI {
     );
   }
 
-  void _initRemoteDataProvider() {
+  void _initDataProviders() {
     appLocator.registerLazySingleton<RemoteProvider>(
       () => FirebaseProvider(
         firebaseInstance: FirebaseFirestore.instance,
@@ -37,14 +44,29 @@ class DataDI {
       ),
     );
 
-    appLocator.registerLazySingleton<LocalProvider>(
-      () => HiveProvider(
-        cartHiveBox: Hive.box<CartItemEntity>(StringConstants.hiveBoxCartName),
+    appLocator.registerLazySingleton<DishDataProvider>(
+      () => DishDataProviderImpl(
         menuHiveBox: Hive.box<DishEntity>(StringConstants.hiveBoxMenuName),
+      ),
+    );
+
+    appLocator.registerLazySingleton<CartDataProvider>(
+      () => CartDataProviderImpl(
+        cartHiveBox: Hive.box<CartItemEntity>(StringConstants.hiveBoxCartName),
+      ),
+    );
+
+    appLocator.registerLazySingleton<UserDataProvider>(
+      () => UserDataProviderImpl(
+        userHiveBox: Hive.box<String>(StringConstants.hiveBoxUser),
+      ),
+    );
+
+    appLocator.registerLazySingleton<ThemeDataProvider>(
+      () => ThemeDataProviderImpl(
         settingsHiveBox: Hive.box<bool>(StringConstants.hiveBoxSettingsName),
         scaleFactorHiveBox:
             Hive.box<double>(StringConstants.hiveBoxScaleFactorName),
-        userHiveBox: Hive.box<String>(StringConstants.hiveBoxUser),
       ),
     );
   }
@@ -61,11 +83,11 @@ class DataDI {
     );
   }
 
-  void _initData() {
+  void _initRepositories() {
     appLocator.registerLazySingleton<DishRepository>(
       () => DishRepositoryImpl(
         remoteProvider: appLocator.get<RemoteProvider>(),
-        localProvier: appLocator.get<LocalProvider>(),
+        localProvier: appLocator.get<DishDataProvider>(),
         networkInfo: NetworkInfo(
           connectivity: appLocator.get<Connectivity>(),
         ),
@@ -74,10 +96,26 @@ class DataDI {
 
     appLocator.registerLazySingleton<CartRepository>(
       () => CartRepositoryImpl(
-        provider: appLocator.get<LocalProvider>(),
+        provider: appLocator.get<CartDataProvider>(),
       ),
     );
 
+    appLocator.registerLazySingleton<SettingsRepository>(
+      () => SettingsRepositoryImpl(
+        localProvider: appLocator.get<ThemeDataProvider>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<UserRepository>(
+      () => UserRepositoryImpl(
+        remoteProvider: appLocator.get<RemoteProvider>(),
+        localProvider: appLocator.get<UserDataProvider>(),
+      ),
+    );
+
+  }
+
+  void _initData() {
     appLocator.registerLazySingleton<FetchAllDishesUseCase>(
       () => FetchAllDishesUseCase(
         dishRepository: appLocator.get<DishRepository>(),
@@ -108,12 +146,6 @@ class DataDI {
       ),
     );
 
-    appLocator.registerLazySingleton<SettingsRepository>(
-      () => SettingsRepositoryImpl(
-        localProvider: appLocator.get<LocalProvider>(),
-      ),
-    );
-
     appLocator.registerLazySingleton<FetchThemeUseCase>(
       () => FetchThemeUseCase(
         settingsRepository: appLocator.get<SettingsRepository>(),
@@ -137,14 +169,7 @@ class DataDI {
         settingsRepository: appLocator.get<SettingsRepository>(),
       ),
     );
-
-    appLocator.registerLazySingleton<UserRepository>(
-      () => UserRepositoryImpl(
-        remoteProvider: appLocator.get<RemoteProvider>(),
-        localProvider: appLocator.get<LocalProvider>(),
-      ),
-    );
-
+    
     appLocator.registerLazySingleton(
       () => CreateUserUseCase(
         userRepository: appLocator.get<UserRepository>(),

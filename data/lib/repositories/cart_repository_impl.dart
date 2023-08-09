@@ -1,13 +1,13 @@
 import 'package:data/entity/cart_item_entity/cart_item_entity.dart';
 import 'package:data/mappers/cart_item_mapper.dart';
-import 'package:data/providers/local/local_provider.dart';
+import 'package:data/providers/local/cart_data_provider.dart';
 import 'package:domain/domain.dart';
 
 class CartRepositoryImpl implements CartRepository{
-  final LocalProvider _provider;
+  final CartDataProvider _provider;
 
   CartRepositoryImpl({
-    required LocalProvider provider
+    required CartDataProvider provider
   }) : _provider = provider;
 
   @override
