@@ -1,6 +1,6 @@
 part of 'bloc.dart';
 
 @immutable
-abstract class HomeViewEvent {}
+abstract class HomeEvent {}
 
-class OnChangeCartQuntityEvent extends HomeViewEvent{}
+class OnChangeCartQuntityEvent extends HomeEvent{}

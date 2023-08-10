@@ -1,16 +1,16 @@
-import 'package:authentication_view/authentication_view.dart';
+import 'package:authentication/authentication.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
-import 'package:detailed_dish_view/detailed_dish_view.dart';
+import 'package:detailed_dish/detailed_dish.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:home/home.dart';
-import 'package:main_view/main_view.dart';
-import 'package:menu_view/menu_view.dart';
+import 'package:main/main.dart';
+import 'package:menu/menu.dart';
 import 'package:navigation/src/app_router/auth_guard.dart';
-import 'package:order_history_view/order_history_view.dart';
-import 'package:settings_view/settings_view.dart';
-import 'package:shopping_cart_view/shopping_cart_view.dart';
+import 'package:order_history/order_history.dart';
+import 'package:settings/settings.dart';
+import 'package:shopping_cart/shopping_cart.dart';
 
 part 'app_router.gr.dart';
 
@@ -19,7 +19,7 @@ part 'app_router.gr.dart';
   routes: <AutoRoute>[
     AutoRoute(
       path: '/',
-      page: MainViewScreen,
+      page: MainScreen,
       initial: true,
       children: <AutoRoute>[
         AutoRoute(
@@ -54,7 +54,7 @@ part 'app_router.gr.dart';
             ),
             AutoRoute(
               path: 'settings',
-              page: SettingsViewScreen,
+              page: SettingsScreen,
             ),
             AutoRoute(
               path: 'cart',

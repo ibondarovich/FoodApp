@@ -15,14 +15,14 @@ class HomeScreen extends StatelessWidget {
         EmptyRoute(),
         ShoppingCartRoute(),
         OrderHistoryRoute(),
-        SettingsViewRoute(),
+        SettingsRoute(),
       ],
       bottomNavigationBuilder: (
         BuildContext context,
         TabsRouter tabsRouter,
       ) {
         return BlocProvider(
-          create: (context) => HomeViewBloc(
+          create: (context) => HomeBloc(
             fetchAllCartItemsUseCase:
                 appLocator.get<FetchAllCartItemsUseCase>(),
           ),
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                 label: StringConstants.navigationBarMenu,
               ),
               BottomNavigationBarItem(
-                icon: BlocBuilder<HomeViewBloc, OnChangeCartQuntityState>(
+                icon: BlocBuilder<HomeBloc, OnChangeCartQuntityState>(
                   builder: (context, state) {
                   Bloc.observer = HomeBlocObserver(context: context);
                     return
