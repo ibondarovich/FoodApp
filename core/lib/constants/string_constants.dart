@@ -11,7 +11,7 @@ class StringConstants {
   static const String hiveBoxSettingsName = 'Settings';
   static const String hiveBoxScaleFactorName = 'ScaleFactor';
   static const String hiveBoxThemeName = 'Theme';
-  static const String hiveBoxUser = 'User';
+  static const String hiveBoxUserName = 'User';
 
   static const String navigationBarMenu = 'Menu';
   static const String navigationBarSettings = 'Settings';
@@ -46,4 +46,9 @@ class StringConstants {
   static const String enterPassword = 'Enter password';
   static const String signInWithGoogleText = 'Sign-in with Google' ;
   static const String signOutTitle = 'Sign out';
+
+  static const String enterEmailValidation = 'Please enter an email';
+  static const String enterValidEmailValidation = 'Please enter a valid email';
+  static const String enterPasswordValidationValidation = 'Please enter a password';
+  static const String shortPasswordValidation = 'Too short password';
 }

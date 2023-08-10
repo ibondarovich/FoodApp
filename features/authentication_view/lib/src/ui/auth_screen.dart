@@ -16,7 +16,7 @@ class AuthScreen extends StatelessWidget {
       appBar: AppBar(
         title: const AppImage(
           filePath: AppImages.logoImg,
-          scale: 2,
+          scale: AppDimens.scale2,
         ),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: AppDimens.elevetion0,

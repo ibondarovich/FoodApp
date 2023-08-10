@@ -14,8 +14,8 @@ class LogInWidget extends StatefulWidget {
 }
 
 class LogInState extends State<LogInWidget> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +60,7 @@ class LogInState extends State<LogInWidget> {
                         ),
                         onChanged: (String value) => {
                           BlocProvider.of<AuthenticationViewBloc>(context)
-                              .add(
-                            OnEmailChanged(value: value),
-                          ),
+                              .add(OnEmailChanged(value: value)),
                         },
                         errorText: state.emailValidationError.isEmpty
                             ? null
@@ -85,9 +83,7 @@ class LogInState extends State<LogInWidget> {
                         obscureText: true,
                         onChanged: (String value) => {
                           BlocProvider.of<AuthenticationViewBloc>(context)
-                              .add(
-                            OnPasswordChanged(value: value),
-                          ),
+                              .add(OnPasswordChanged(value: value))
                         },
                         errorText: state.passwordValidationError.isEmpty
                             ? null

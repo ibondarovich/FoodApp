@@ -11,6 +11,6 @@ class HiveBoxes{
     await Hive.openBox<DishEntity>(StringConstants.hiveBoxMenuName);
     await Hive.openBox<bool>(StringConstants.hiveBoxSettingsName);
     await Hive.openBox<double>(StringConstants.hiveBoxScaleFactorName);
-    await Hive.openBox<String>(StringConstants.hiveBoxUser);
+    await Hive.openBox<String>(StringConstants.hiveBoxUserName);
   }
 }

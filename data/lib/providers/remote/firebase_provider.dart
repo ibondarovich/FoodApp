@@ -29,15 +29,14 @@ class FirebaseProvider implements RemoteProvider {
 
     final List<DishEntity> result = response.docs
         .map(
-          (doc) => DishEntity.fromJson(
-            doc.data(),
-          ),
+          (QueryDocumentSnapshot<Map<String, dynamic>> doc) =>
+              DishEntity.fromJson(doc.data()),
         )
         .toList();
 
     return result;
   }
-  
+
   @override
   Future<String> createUserWithEmailAndPassword(UserEntity userEntity) async {
     final UserCredential result =
@@ -51,7 +50,8 @@ class FirebaseProvider implements RemoteProvider {
 
   @override
   Future<String> signInWithGoogle() async {
-    final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+    final GoogleSignInAccount? googleSignInAccount =
+        await _googleSignIn.signIn();
     final GoogleSignInAuthentication? googleSignInAuthentication =
         await googleSignInAccount?.authentication;
     final AuthCredential credential = GoogleAuthProvider.credential(
@@ -63,13 +63,13 @@ class FirebaseProvider implements RemoteProvider {
     final String uid = userCredential.user?.uid ?? '';
     return uid;
   }
-  
+
   @override
   Future<void> signOut() async {
-    await _firebaseAuthInstance.signOut();  
-    await _googleSignIn.signOut();  
+    await _firebaseAuthInstance.signOut();
+    await _googleSignIn.signOut();
   }
-  
+
   @override
   Future<String> signIn(UserEntity userEntity) async {
     final UserCredential userCredential =
