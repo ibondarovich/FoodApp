@@ -1,4 +1,4 @@
-name: home
+name: menu
 description: A new Flutter package project.
 version: 0.0.1
 publish_to: none
@@ -15,14 +15,8 @@ dependencies:
     path: ../../core_ui
   core:
     path: ../../core
-  menu:
-    path: ../menu
   domain:
     path: ../../domain
-  shopping_cart:
-    path: ../shopping_cart
-  detailed_dish:
-    path: ../detailed_dish
 
 dev_dependencies:
   flutter_test:

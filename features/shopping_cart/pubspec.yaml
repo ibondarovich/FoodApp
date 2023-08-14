@@ -1,4 +1,4 @@
-name: home
+name: shopping_cart
 description: A new Flutter package project.
 version: 0.0.1
 publish_to: none
@@ -11,18 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  core_ui:
-    path: ../../core_ui
   core:
     path: ../../core
-  menu:
-    path: ../menu
+  core_ui:
+    path: ../../core_ui
   domain:
     path: ../../domain
-  shopping_cart:
-    path: ../shopping_cart
-  detailed_dish:
-    path: ../detailed_dish
 
 dev_dependencies:
   flutter_test:

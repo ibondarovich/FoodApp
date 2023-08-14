@@ -1,4 +1,4 @@
-name: home
+name: authentication
 description: A new Flutter package project.
 version: 0.0.1
 publish_to: none
@@ -15,14 +15,8 @@ dependencies:
     path: ../../core_ui
   core:
     path: ../../core
-  menu:
-    path: ../menu
   domain:
     path: ../../domain
-  shopping_cart:
-    path: ../shopping_cart
-  detailed_dish:
-    path: ../detailed_dish
 
 dev_dependencies:
   flutter_test:
@@ -30,3 +24,4 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
+  uses-material-design: true

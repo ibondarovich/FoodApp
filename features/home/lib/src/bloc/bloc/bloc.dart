@@ -5,10 +5,10 @@ import 'package:meta/meta.dart';
 part 'event.dart';
 part 'state.dart';
 
-class HomeViewBloc extends Bloc<HomeViewEvent, OnChangeCartQuntityState> {
+class HomeBloc extends Bloc<HomeEvent, OnChangeCartQuntityState> {
   final FetchAllCartItemsUseCase _fetchAllCartItemsUseCase;
 
-  HomeViewBloc({required FetchAllCartItemsUseCase fetchAllCartItemsUseCase})
+  HomeBloc({required FetchAllCartItemsUseCase fetchAllCartItemsUseCase})
       : _fetchAllCartItemsUseCase = fetchAllCartItemsUseCase,
         super(OnChangeCartQuntityState(quantity: 0)) {
     on<OnChangeCartQuntityEvent>(_onChangeCartQuantity);
