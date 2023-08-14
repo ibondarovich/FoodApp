@@ -5,6 +5,9 @@ class StringConstants {
   static const String firebaseDocumentName = 'Dish';
   static const String firebaseCollectionName = 'Item';
   static const String firebaseTableName = 'Menu';
+  static const String firebaseUser = 'User';
+  static const String firebaseOrder = 'Order';
+  static const String firebaseCategory = 'Category';
 
   static const String hiveBoxCartName = 'Cart';
   static const String hiveBoxMenuName = 'Menu';
@@ -30,6 +33,14 @@ class StringConstants {
   static const String emptyCartTitle = 'Your cart is empty...';
   static const String addedToCartSnackBarTitle = 'Item was added to cart';
 
+  static const String yourOrdersTitle = 'Your orders';
+  static const String completeBannerTitle = 'Complete';
+  static const String timeTitle = 'Time';
+  static const String orderTitle = 'Order';
+  static const String emptyOrderHistoryTitle =
+      'You haven\'t ordered anything yet...';
+  static const String orderAcceptedTitle = 'Your order is accepted!';
+
   static const String internetConnectionError =
       'You have some problems with internet connection!';
   static const String logInScreenText =
@@ -44,6 +55,6 @@ class StringConstants {
   static const String enterEmail = 'Enter email';
   static const String password = 'Password';
   static const String enterPassword = 'Enter password';
-  static const String signInWithGoogleText = 'Sign-in with Google' ;
+  static const String signInWithGoogleText = 'Sign-in with Google';
   static const String signOutTitle = 'Sign out';
 }

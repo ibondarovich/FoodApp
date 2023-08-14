@@ -8,25 +8,32 @@ part 'state.dart';
 
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
   final FetchAllDishesUseCase _fetchAllDishesUseCase;
+  final FetchCategoriesUseCase _fetchCategoriesUseCase;
   final SaveCartItemUseCase _saveCartItemUseCase;
   final NetworkInfo _networkInfo;
 
   MenuBloc({
     required SaveCartItemUseCase saveCartItemUseCase,
     required FetchAllDishesUseCase fetchAllDishesUseCase,
-    required NetworkInfo networkInfo
+    required NetworkInfo networkInfo,
+    required FetchCategoriesUseCase fetchCategoriesUseCase,
   })  : _fetchAllDishesUseCase = fetchAllDishesUseCase,
+        _fetchCategoriesUseCase = fetchCategoriesUseCase,
         _saveCartItemUseCase = saveCartItemUseCase,
         _networkInfo = networkInfo,
-        super(MenuState(dishes: <DishModel>[],)) {
-
+        super(MenuState(
+          dishes: <DishModel>[],
+          categories: [],
+          dishesOfSelectedCategory: [],
+        )) {
     on<InitEvent>(_init);
     on<OnSaveItemEvent>(_onSaveItem);
     on<OnChangeItemQuantity>(_onChangeItemQuantity);
     on<OnCheckConnection>(_onCheckInternetConnection);
     on<OnShowMessageEvent>(_onChangeMessageVIsibility);
     on<OnNavigateToDetailedPage>(_onNavigateToDetailedPage);
-    
+    on<OnSetSelectedCategoryIndex>(_onSetSelectedCategoryIndex);
+
     add(InitEvent());
 
     _networkInfo.connectivity.onConnectivityChanged.listen((event) {
@@ -40,7 +47,17 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
       final List<DishModel> dishes = await _fetchAllDishesUseCase.execute(
         const NoParams(),
       );
-      emit(state.copyWith(dishes: dishes, isLoading: false));
+      final List<CategoryModel> categories =
+          await _fetchCategoriesUseCase.execute(
+        const NoParams(),
+      );
+      emit(
+        state.copyWith(
+          dishes: dishes,
+          categories: categories,
+          isLoading: false,
+        ),
+      );
       add(OnCheckConnection());
     } catch (e) {
       emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
@@ -74,7 +91,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
   void _onChangeMessageVIsibility(
     OnShowMessageEvent event,
     Emitter<MenuState> emit,
-  ){
+  ) {
     emit(state.copyWith(isShowSnakbar: event.isVisible));
   }
 
@@ -83,7 +100,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     Emitter<MenuState> emit,
   ) async {
     final bool result = await _networkInfo.isConnected;
-    if(result){
+    if (result) {
       emit(state.copyWith(isShowSnakbar: false));
     } else {
       emit(state.copyWith(isShowSnakbar: true));
@@ -97,6 +114,21 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     event.context.router.push(
       DetailedDishRoute(
         dishModel: event.dishModel,
+      ),
+    );
+  }
+
+  void _onSetSelectedCategoryIndex(
+    OnSetSelectedCategoryIndex event,
+    Emitter<MenuState> emit,
+  ) {
+    final int categoryId = state.categories[event.index].id;
+    final List<DishModel> newDishes =
+        state.dishes.where((dish) => categoryId == dish.categoryId).toList();
+    emit(
+      state.copyWith(
+        selectedCategoryIndex: event.index,
+        dishesOfSelectedCategory: newDishes,
       ),
     );
   }

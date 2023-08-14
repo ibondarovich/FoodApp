@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:domain/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -10,14 +11,20 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
   final FetchAllCartItemsUseCase _fetchAllCartItemsUseCase;
   final RemoveCartItemUseCase _removeCartItemUseCase;
   final UpdateCartItemQuantity _updateCartItemQuantity;
+  final SaveOrderUseCase _saveOrderUseCase;
+  final ClearCartUseCase _clearCartUseCase;
 
   ShoppingCartBloc({
     required FetchAllCartItemsUseCase fetchAllCartItemsUseCase,
     required RemoveCartItemUseCase removeCartItemUseCase,
     required UpdateCartItemQuantity updateCartItemQuantity,
+    required SaveOrderUseCase saveOrderUseCase,
+    required ClearCartUseCase clearCartUseCase,
   })  : _fetchAllCartItemsUseCase = fetchAllCartItemsUseCase,
         _removeCartItemUseCase = removeCartItemUseCase,
         _updateCartItemQuantity = updateCartItemQuantity,
+        _saveOrderUseCase = saveOrderUseCase,
+        _clearCartUseCase = clearCartUseCase,
         super(
           CartPageState(
             items: <CartItemModel>[],
@@ -28,6 +35,8 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
     on<OnIncreaseQuantityEvent>(_onIncreaseQuantity);
     on<OnReduceQuantityEvent>(_onReduceQuantity);
     on<OnNavigateToMenuPageEvent>(_onNavigateToMenuPage);
+    on<OnSaveOrderEvent>(_onSaveOrderEvent);
+    on<OnClearCartEvent>(_onClearCartEvent);
 
     add(OnShowCartItems());
   }
@@ -41,7 +50,6 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
       List<CartItemModel> items = _fetchAllCartItemsUseCase.execute(
         const NoParams(),
       );
-
       double totalPrice = getTotalPrice(items);
 
       emit(
@@ -123,6 +131,29 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
     Emitter<CartPageState> emit,
   ) {
     AutoRouter.of(event.context).navigate(const EmptyRoute());
+  }
+
+  void _onSaveOrderEvent(
+    OnSaveOrderEvent event,
+    Emitter<CartPageState> emit,
+  ) async {
+    await _saveOrderUseCase.execute(
+      OrderModel(
+        id: DateTime.now().millisecondsSinceEpoch,
+        dateTimeOfIssuance: DateTime.now(),
+        price: getTotalPrice(event.cartItems),
+        orderedItems: event.cartItems,
+      ),
+    );
+    add(OnClearCartEvent());
+  }
+
+  void _onClearCartEvent(
+    OnClearCartEvent event,
+    Emitter<CartPageState> emit,
+  ) async {
+    await _clearCartUseCase.execute(const NoParams());
+    add(OnShowCartItems());
   }
 
   double getTotalPrice(List<CartItemModel> items) {

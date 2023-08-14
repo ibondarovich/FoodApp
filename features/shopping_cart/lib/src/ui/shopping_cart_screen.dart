@@ -7,19 +7,19 @@ import 'package:shopping_cart/shopping_cart.dart';
 import 'components/cart_item.dart';
 import 'components/empty_cart_screen.dart';
 
-class ShoppingCartScreen extends StatefulWidget{
+class ShoppingCartScreen extends StatefulWidget {
   const ShoppingCartScreen({super.key});
 
   @override
   State<StatefulWidget> createState() => ShoppingCartScreenState();
 }
 
-class ShoppingCartScreenState extends State<ShoppingCartScreen>{
+class ShoppingCartScreenState extends State<ShoppingCartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar (
+      appBar: AppBar(
         title: Text(
           StringConstants.appBarTitle,
           style: Theme.of(context).appBarTheme.titleTextStyle,
@@ -30,16 +30,18 @@ class ShoppingCartScreenState extends State<ShoppingCartScreen>{
       ),
       body: BlocProvider(
         create: (context) => ShoppingCartBloc(
-          fetchAllCartItemsUseCase: appLocator.get<FetchAllCartItemsUseCase>(), 
+          fetchAllCartItemsUseCase: appLocator.get<FetchAllCartItemsUseCase>(),
           removeCartItemUseCase: appLocator.get<RemoveCartItemUseCase>(),
-          updateCartItemQuantity: appLocator.get<UpdateCartItemQuantity>(), 
+          updateCartItemQuantity: appLocator.get<UpdateCartItemQuantity>(),
+          saveOrderUseCase: appLocator.get<SaveOrderUseCase>(),
+          clearCartUseCase: appLocator.get<ClearCartUseCase>(),
         ),
         child: BlocBuilder<ShoppingCartBloc, CartPageState>(
           builder: (BuildContext context, CartPageState state) {
-            if(state.isLoading){
+            if (state.isLoading) {
               return const AppLoaderWidget();
-            } else{
-              if(state.items.isNotEmpty){
+            } else {
+              if (state.items.isNotEmpty) {
                 return Column(
                   children: <Widget>[
                     Container(
@@ -54,27 +56,28 @@ class ShoppingCartScreenState extends State<ShoppingCartScreen>{
                           style: AppFonts.bold_21,
                         ),
                       ),
-                    ),  
+                    ),
                     Expanded(
                       child: Container(
                         margin: const EdgeInsets.only(
                           top: AppDimens.padding20,
                         ),
                         child: ListView.builder(
+                          physics: const BouncingScrollPhysics(),
                           itemCount: state.items.length,
                           itemBuilder: (BuildContext context, int index) {
                             return CartItem(
                               cartItem: state.items[index],
                             );
-                          }
-                        )
+                          },
+                        ),
                       ),
                     ),
                     Container(
                       padding: const EdgeInsets.all(AppDimens.padding20),
                       child: BlocBuilder<ShoppingCartBloc, CartPageState>(
                         builder: (context, state) {
-                          if(state.items.isNotEmpty){
+                          if (state.items.isNotEmpty) {
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
@@ -90,11 +93,22 @@ class ShoppingCartScreenState extends State<ShoppingCartScreen>{
                             );
                           }
                           return Container();
-                        }
-                      )
+                        },
+                      ),
                     ),
                     AppButton(
-                      onTap: () {}, //TODO payment logic
+                      onTap: () {
+                        BlocProvider.of<ShoppingCartBloc>(context).add(
+                          OnSaveOrderEvent(
+                            cartItems: state.items,
+                          ),
+                        );
+                        showAppSnackBar(
+                          context: context,
+                          title: StringConstants.orderAcceptedTitle,
+                          titleType: TitleTypeEnum.informational,
+                        );
+                      },
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height / 13,
                       margin: const EdgeInsets.only(
@@ -109,14 +123,13 @@ class ShoppingCartScreenState extends State<ShoppingCartScreen>{
                     ),
                   ],
                 );
-              }
-              else{
+              } else {
                 return EmptyCartScreen();
               }
             }
-          }
-        )
-      )
+          },
+        ),
+      ),
     );
   }
 }

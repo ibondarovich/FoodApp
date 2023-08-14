@@ -1,5 +1,6 @@
-abstract class UserDataProvider{
+abstract class UserDataProvider {
   Future<void> saveUser(String input);
-  bool isUserExists();
   Future<void> removeUser();
+  String fetchUserId();
+  bool isUserExists();
 }

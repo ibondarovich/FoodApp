@@ -35,4 +35,14 @@ class OnNavigateToMenuPageEvent extends ShoppingCartEvent {
   });
 }
 
+class OnSaveOrderEvent extends ShoppingCartEvent {
+  final List<CartItemModel> cartItems;
+
+  OnSaveOrderEvent({
+    required this.cartItems,
+  });
+}
+
 class OnShowCartItems extends ShoppingCartEvent {}
+
+class OnClearCartEvent extends ShoppingCartEvent {}

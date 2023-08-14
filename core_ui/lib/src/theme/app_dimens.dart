@@ -49,4 +49,6 @@ class AppDimens {
   static const double scale = 0.5;
 
   static const Offset boxShadowOffset = Offset(0, 20);
+
+  static const double indent50 = 50;
 }

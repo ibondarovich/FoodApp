@@ -105,7 +105,7 @@ class AuthenticationBloc
       _authService.authenticated = _checkUserExistenceUseCase.execute(
         const NoParams(),
       );
-      _appRouter.push(const HomeRoute());
+      _appRouter.replace(const HomeRoute());
     } on FirebaseAuthException catch (e) {
       emit(
         state.copyWith(
@@ -135,7 +135,7 @@ class AuthenticationBloc
         _authService.authenticated = _checkUserExistenceUseCase.execute(
           const NoParams(),
         );
-        _appRouter.push(const HomeRoute());
+        _appRouter.replace(const HomeRoute());
       } on FirebaseAuthException catch (e) {
         emit(
           state.copyWith(

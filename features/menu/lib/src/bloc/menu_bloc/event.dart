@@ -40,3 +40,11 @@ class OnNavigateToDetailedPage extends MenuEvent {
     required this.dishModel,
   });
 }
+
+class OnSetSelectedCategoryIndex extends MenuEvent {
+  final int index;
+
+  OnSetSelectedCategoryIndex({
+    required this.index,
+  });
+}

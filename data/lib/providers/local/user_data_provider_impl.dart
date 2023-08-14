@@ -7,7 +7,7 @@ class UserDataProviderImpl implements UserDataProvider {
   UserDataProviderImpl({
     required this.userHiveBox,
   });
-  
+
   @override
   bool isUserExists() {
     return userHiveBox.isNotEmpty;
@@ -21,5 +21,10 @@ class UserDataProviderImpl implements UserDataProvider {
   @override
   Future<void> removeUser() async {
     await userHiveBox.clear();
+  }
+
+  @override
+  String fetchUserId() {
+    return userHiveBox.get('uid') ?? '';
   }
 }
