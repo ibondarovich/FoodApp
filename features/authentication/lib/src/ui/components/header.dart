@@ -2,14 +2,15 @@ import 'package:core_ui/core_ui.dart';
 import 'package:flutter/material.dart';
 
 class AuthHeader extends StatelessWidget {
-  final String mainTitle;
-  final String secondaryTitle;
+  final String _mainTitle;
+  final String _secondaryTitle;
 
   const AuthHeader({
     super.key,
-    required this.mainTitle,
-    required this.secondaryTitle,
-  });
+    required String mainTitle,
+    required String secondaryTitle,
+  })  : _mainTitle = mainTitle,
+        _secondaryTitle = secondaryTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class AuthHeader extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                mainTitle,
+                _mainTitle,
                 textAlign: TextAlign.left,
                 style: AppFonts.bold_25,
               ),
@@ -36,7 +37,7 @@ class AuthHeader extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              secondaryTitle,
+              _secondaryTitle,
             ),
           ),
         ],

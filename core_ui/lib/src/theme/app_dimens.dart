@@ -47,6 +47,7 @@ class AppDimens {
   static const int divisions2 = 2;
 
   static const double scale = 0.5;
+  static const double scale2 = 2;
 
   static const Offset boxShadowOffset = Offset(0, 20);
 

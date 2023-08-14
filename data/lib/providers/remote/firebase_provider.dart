@@ -31,9 +31,8 @@ class FirebaseProvider implements RemoteProvider {
 
     final List<DishEntity> result = response.docs
         .map(
-          (doc) => DishEntity.fromJson(
-            doc.data(),
-          ),
+          (QueryDocumentSnapshot<Map<String, dynamic>> doc) =>
+              DishEntity.fromJson(doc.data()),
         )
         .toList();
 

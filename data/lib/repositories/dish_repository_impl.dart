@@ -5,7 +5,7 @@ import 'package:data/providers/local/dish_data_provider.dart';
 import 'package:data/providers/remote/remote_provider.dart';
 import 'package:domain/domain.dart';
 
-class DishRepositoryImpl implements DishRepository{
+class DishRepositoryImpl implements DishRepository {
   final RemoteProvider _remoteProvider;
   final DishDataProvider _localProvider;
   final NetworkInfo _networkInfo;
@@ -19,14 +19,14 @@ class DishRepositoryImpl implements DishRepository{
         _networkInfo = networkInfo;
 
   @override
-  Future<List<DishModel>> fetchAllDishes() async{
-    if(await _networkInfo.isConnected){
+  Future<List<DishModel>> fetchAllDishes() async {
+    if (await _networkInfo.isConnected) {
       final List<DishEntity> result = await _remoteProvider.fetchAllDishes();
-      await _localProvider.saveAllDishes(result);   
-      return result.map((item) => DishMapper.toModel(item)).toList();
+      await _localProvider.saveAllDishes(result);
+      return result.map((DishEntity item) => DishMapper.toModel(item)).toList();
     } else {
       final List<DishEntity> result = _localProvider.fetchAllDishes();
-      return result.map((item) => DishMapper.toModel(item)).toList();
-    } 
+      return result.map((DishEntity item) => DishMapper.toModel(item)).toList();
+    }
   }
 }

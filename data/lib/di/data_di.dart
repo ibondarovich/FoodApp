@@ -60,7 +60,7 @@ class DataDI {
 
     appLocator.registerLazySingleton<UserDataProvider>(
       () => UserDataProviderImpl(
-        userHiveBox: Hive.box<String>(StringConstants.hiveBoxUser),
+        userHiveBox: Hive.box<String>(StringConstants.hiveBoxUserName),
       ),
     );
 

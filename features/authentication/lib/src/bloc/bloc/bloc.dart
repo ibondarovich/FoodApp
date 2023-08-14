@@ -65,8 +65,10 @@ class AuthenticationBloc
     OnSignUpEvent event,
     Emitter<AuthenticationState> emit,
   ) async {
-    final bool result =
-        isValidated(state.emailValidationError, state.passwordValidationError);
+    final bool result = isValidated(
+      state.emailValidationError,
+      state.passwordValidationError,
+    );
     if (result) {
       try {
         emit(state.copyWith(isLoading: true, authStatus: ''));
@@ -120,8 +122,10 @@ class AuthenticationBloc
     OnSignInEvent event,
     Emitter<AuthenticationState> emit,
   ) async {
-    final bool result =
-        isValidated(state.emailValidationError, state.passwordValidationError);
+    final bool result = isValidated(
+      state.emailValidationError,
+      state.passwordValidationError,
+    );
     if (result) {
       try {
         emit(state.copyWith(isLoading: true, authStatus: ''));

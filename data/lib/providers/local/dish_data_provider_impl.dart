@@ -12,7 +12,10 @@ class DishDataProviderImpl implements DishDataProvider {
   @override
   Future<void> saveAllDishes(List<DishEntity> input) async {
     await Future.wait(
-        input.map((item) async => await menuHiveBox.put(item.id, item)));
+      input.map(
+        (DishEntity item) async => await menuHiveBox.put(item.id, item),
+      ),
+    );
   }
 
   @override
