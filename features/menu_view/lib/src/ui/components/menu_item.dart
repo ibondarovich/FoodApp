@@ -51,7 +51,7 @@ class MenuItem extends StatelessWidget {
             child: Container(
               height: AppDimens.containerHeight120,
               child: AppImage(
-                imageURL: dishModel.url,
+                filePath: dishModel.url,
               ),
             ),
           ),
@@ -80,26 +80,13 @@ class MenuItem extends StatelessWidget {
                 AppButton(
                   title: StringConstants.addToCartString,
                   onTap: () {
-                    BlocProvider.of<MenuViewBloc>(context)
-                        .add(OnSaveItemEvent(dishModel: dishModel));
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        behavior: SnackBarBehavior.floating,
-                        duration: const Duration(seconds: 1),
-                        backgroundColor: AppColors.transparent,
-                        elevation: AppDimens.elevetion0,
-                        content: Container(
-                          padding: const EdgeInsets.all(AppDimens.padding20),
-                          decoration: const BoxDecoration(
-                            color: AppColors.lightOrange,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(AppDimens.padding20),
-                            ),
-                          ),
-                          child: const Text(
-                              StringConstants.addedToCartSnackBarTitle),
-                        ),
-                      ),
+                    BlocProvider.of<MenuViewBloc>(context).add(
+                      OnSaveItemEvent(dishModel: dishModel),
+                    );
+                    showAppSnackBar(
+                      context: context,
+                      title: StringConstants.addedToCartSnackBarTitle,
+                      titleType: TitleTypeEnum.informational,
                     );
                   },
                   boxDecoration: const BoxDecoration(

@@ -17,3 +17,12 @@ export 'package:domain/usecases/save_theme.dart';
 export 'package:domain/usecases/fetch_theme.dart';
 export 'package:domain/usecases/fetch_scale_factor.dart';
 export 'package:domain/usecases/save_scale_factor.dart';
+
+export 'package:domain/repositories/user_repository.dart';
+export 'package:domain/models/user_model.dart';
+export 'package:domain/usecases/create_user.dart';
+export 'package:domain/usecases/sign_in_with_google.dart';
+export 'package:domain/usecases/sign_in.dart';
+export 'package:domain/usecases/sign_out.dart';
+export 'package:domain/usecases/check_user.dart';
+export 'package:domain/usecases/save_user.dart';

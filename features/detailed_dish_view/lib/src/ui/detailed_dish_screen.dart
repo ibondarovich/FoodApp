@@ -51,7 +51,7 @@ class DetailedDishScreen extends StatelessWidget {
                     color: Theme.of(context).cardColor,
                   ),
                   child: AppImage(
-                    imageURL: dishModel.url,
+                    filePath: dishModel.url,
                   ),
                 ),
               ),

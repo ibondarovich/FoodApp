@@ -31,7 +31,7 @@ class ShoppingCartScreenState extends State<ShoppingCartScreen>{
         create: (context) => ShoppingCartViewBloc(
           fetchAllCartItemsUseCase: appLocator.get<FetchAllCartItemsUseCase>(), 
           removeCartItemUseCase: appLocator.get<RemoveCartItemUseCase>(),
-          updateCartItemQuantity: appLocator.get<UpdateCartItemQuantity>(),
+          updateCartItemQuantity: appLocator.get<UpdateCartItemQuantity>(), 
         ),
         child: BlocBuilder<ShoppingCartViewBloc, CartPageState>(
           builder: (BuildContext context, CartPageState state) {

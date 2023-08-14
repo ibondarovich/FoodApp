@@ -30,3 +30,5 @@ class OnLaunchUrlEvent extends SettingsViewEvent {
     required this.url,
   });
 }
+
+class OnSignOutEvent extends SettingsViewEvent {}

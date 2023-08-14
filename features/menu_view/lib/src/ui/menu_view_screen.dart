@@ -21,34 +21,17 @@ class MenuViewScreen extends StatelessWidget {
       ),
       body: BlocProvider<MenuViewBloc>(
         create: (BuildContext context) => MenuViewBloc(
-          getAllDishesUseCase: appLocator.get<FetchAllDishesUseCase>(),
-          saveCartItemUseCase: appLocator.get<SaveCartItemUseCase>(), 
+          fetchAllDishesUseCase: appLocator.get<FetchAllDishesUseCase>(),
+          saveCartItemUseCase: appLocator.get<SaveCartItemUseCase>(),
           networkInfo: appLocator.get<NetworkInfo>(),
         ),
         child: BlocConsumer<MenuViewBloc, MenuState>(
           listener: (context, state) {
             if (state.isShowSnakbar == true) {
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  SnackBar(
-                    behavior: SnackBarBehavior.floating,
-                    duration: const Duration(seconds: 4),
-                    backgroundColor: AppColors.transparent,
-                    elevation: AppDimens.elevetion0,
-                    content: Container(
-                      padding: const EdgeInsets.all(AppDimens.padding20),
-                      decoration: const BoxDecoration(
-                        color: AppColors.red,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(AppDimens.padding20),
-                        ),
-                      ),
-                      child:
-                          const Text(StringConstants.internetConnectionError),
-                    ),
-                  ),
-                );
+              showAppSnackBar(
+                context: context,
+                title: StringConstants.internetConnectionError,
+              );
             }
           },
           builder: (BuildContext context, MenuState state) {
@@ -77,7 +60,7 @@ class MenuViewScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
                 );
               }
             }

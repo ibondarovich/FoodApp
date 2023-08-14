@@ -9,12 +9,12 @@
       "client_info": {
         "mobilesdk_app_id": "1:137927868263:android:58d8210b0e6e1323d639c2",
         "android_client_info": {
-          "package_name": "com.example.food_app"
+          "package_name": "com.example.food_delivery_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "137927868263-j91npgumjci8u17b6d1r35aeqv8a74fs.apps.googleusercontent.com",
+          "client_id": "137927868263-mh1u469j7urgfr11nta88cl3lnhp7sih.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +29,57 @@
             {
               "client_id": "137927868263-j91npgumjci8u17b6d1r35aeqv8a74fs.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "137927868263-7c1rnkdl9cg10d9cq0ef9m1nm42qgcgu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.foodDeliveryApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137927868263:android:28fdbfcdae284dcbd639c2",
+        "android_client_info": {
+          "package_name": "com.food_app.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137927868263-l9hsvtelnmhr1fgbqv5533traa2nicr3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.food_app.app",
+            "certificate_hash": "018cbd21efd1641592934bec69ff4543f5d59676"
+          }
+        },
+        {
+          "client_id": "137927868263-mh1u469j7urgfr11nta88cl3lnhp7sih.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBALpziRZXjwp-jVUINInFJXoOEfauBQF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137927868263-j91npgumjci8u17b6d1r35aeqv8a74fs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "137927868263-7c1rnkdl9cg10d9cq0ef9m1nm42qgcgu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.foodDeliveryApp"
+              }
             }
           ]
         }

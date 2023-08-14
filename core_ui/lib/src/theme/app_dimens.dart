@@ -25,21 +25,29 @@ class AppDimens {
   static const double horizontalSpacing30 = 30;
   static const double horizontalSpacing50 = 50;
 
-
   static const double padding3 = 3;
   static const double padding8 = 8;
   static const double padding10 = 10;
+  static const double padding12 = 12;
   static const double padding15 = 15;
   static const double padding20 = 20;
   static const double padding35 = 35;
   static const double padding40 = 40;
   static const double padding45 = 45;
+  static const double padding50 = 50;
+
+  static const double margin90 = 90;
 
   static const double iconSize16 = 16;
 
   static const double imageSize100 = 100;
 
-  static const Offset boxShadowOffset = Offset(0, 20);
+  static const double thickness1 = 1;
 
-  static const List<double> textScales = [0.7, 1, 1.5];
+  static const int divisions2 = 2;
+
+  static const double scale = 0.5;
+  static const double scale2 = 2;
+
+  static const Offset boxShadowOffset = Offset(0, 20);
 }

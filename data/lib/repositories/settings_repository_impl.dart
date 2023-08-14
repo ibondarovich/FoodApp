@@ -1,11 +1,11 @@
-import 'package:data/providers/local/local_provider.dart';
+import 'package:data/providers/local/theme_data_provider.dart';
 import 'package:domain/domain.dart';
 
 class SettingsRepositoryImpl extends SettingsRepository{
-  final LocalProvider _localProvider;
+  final ThemeDataProvider _localProvider;
 
   SettingsRepositoryImpl({
-    required LocalProvider localProvider
+    required ThemeDataProvider localProvider
   }) : _localProvider = localProvider;
   
   @override
@@ -15,12 +15,12 @@ class SettingsRepositoryImpl extends SettingsRepository{
   
   @override
   bool fetchTheme() {
-    return _localProvider.getTheme();
+    return _localProvider.fetchTheme();
   }
   
   @override
   double fetchScaleFactor() {
-    return _localProvider.getScaleFactor();
+    return _localProvider.fetchScaleFactor();
   }
   
   @override

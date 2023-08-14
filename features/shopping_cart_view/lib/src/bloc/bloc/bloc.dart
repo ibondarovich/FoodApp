@@ -2,7 +2,6 @@ import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:navigation/navigation.dart';
 
 part 'event.dart';
 part 'state.dart';
@@ -123,7 +122,7 @@ class ShoppingCartViewBloc extends Bloc<ShoppingCartViewEvent, CartPageState> {
     OnNavigateToMenuPageEvent event,
     Emitter<CartPageState> emit,
   ) {
-    event.context.router.navigate(const EmptyRoute());
+    AutoRouter.of(event.context).navigate(const EmptyRoute());
   }
 
   double getTotalPrice(List<CartItemModel> items) {

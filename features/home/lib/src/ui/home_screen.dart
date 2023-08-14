@@ -3,7 +3,6 @@ import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:home/src/bloc/bloc/bloc.dart';
-import 'package:navigation/navigation.dart';
 import '../bloc/bloc/bloc_observer.dart';
 
 class HomeScreen extends StatelessWidget {

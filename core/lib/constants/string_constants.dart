@@ -1,4 +1,4 @@
-class StringConstants{
+class StringConstants {
   static const String addToCartString = 'Add to cart';
   static const String ingredientsTitle = 'Ingredients';
   static const String appBarTitle = 'Food app';
@@ -11,7 +11,7 @@ class StringConstants{
   static const String hiveBoxSettingsName = 'Settings';
   static const String hiveBoxScaleFactorName = 'ScaleFactor';
   static const String hiveBoxThemeName = 'Theme';
-
+  static const String hiveBoxUserName = 'User';
 
   static const String navigationBarMenu = 'Menu';
   static const String navigationBarSettings = 'Settings';
@@ -32,4 +32,23 @@ class StringConstants{
 
   static const String internetConnectionError =
       'You have some problems with internet connection!';
+  static const String logInScreenText =
+      'Good to see you again, enter your details\nbelow to continue ordering.';
+  static const String signUpScreen =
+      'Welcome friend, enter your details so lets get\n'
+      'started in ordering food.';
+
+  static const String createAccount = 'Create an account';
+  static const String loginToAccount = 'Login to your account';
+  static const String emailAddress = 'Email Address';
+  static const String enterEmail = 'Enter email';
+  static const String password = 'Password';
+  static const String enterPassword = 'Enter password';
+  static const String signInWithGoogleText = 'Sign-in with Google' ;
+  static const String signOutTitle = 'Sign out';
+
+  static const String enterEmailValidation = 'Please enter an email';
+  static const String enterValidEmailValidation = 'Please enter a valid email';
+  static const String enterPasswordValidationValidation = 'Please enter a password';
+  static const String shortPasswordValidation = 'Too short password';
 }

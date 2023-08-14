@@ -11,8 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  navigation:
-    path: ../../navigation
   core_ui:
     path: ../../core_ui
   core:
