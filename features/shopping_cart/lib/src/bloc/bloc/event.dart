@@ -44,5 +44,3 @@ class OnSaveOrderEvent extends ShoppingCartEvent {
 }
 
 class OnShowCartItems extends ShoppingCartEvent {}
-
-class OnClearCartEvent extends ShoppingCartEvent {}

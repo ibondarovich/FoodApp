@@ -1,3 +1,4 @@
+import 'package:core/constants/string_constants.dart';
 import 'package:data/providers/local/user_data_provider.dart';
 import 'package:hive/hive.dart';
 
@@ -15,7 +16,7 @@ class UserDataProviderImpl implements UserDataProvider {
 
   @override
   Future<void> saveUser(String input) async {
-    await userHiveBox.put('uid', input);
+    await userHiveBox.put(StringConstants.uid, input);
   }
 
   @override
@@ -25,6 +26,6 @@ class UserDataProviderImpl implements UserDataProvider {
 
   @override
   String fetchUserId() {
-    return userHiveBox.get('uid') ?? '';
+    return userHiveBox.get(StringConstants.uid) ?? '';
   }
 }

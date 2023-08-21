@@ -124,7 +124,8 @@ class DataDI {
 
     appLocator.registerLazySingleton<CategoryRepository>(
       () => CategoryRepositoryImpl(
-          remoteProvider: appLocator.get<RemoteProvider>()),
+        remoteProvider: appLocator.get<RemoteProvider>(),
+      ),
     );
   }
 
@@ -238,7 +239,9 @@ class DataDI {
     );
 
     appLocator.registerLazySingleton(
-      () => ClearCartUseCase(cartRepository: appLocator.get<CartRepository>()),
+      () => ClearCartUseCase(
+        cartRepository: appLocator.get<CartRepository>(),
+      ),
     );
 
     appLocator.registerLazySingleton(

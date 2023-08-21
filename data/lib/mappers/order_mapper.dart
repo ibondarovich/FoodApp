@@ -1,6 +1,9 @@
-import 'package:data/entity/order_entity/order_entity.dart';
-import 'package:data/mappers/cart_item_mapper.dart';
+import 'package:domain/domain.dart';
 import 'package:domain/models/order_model.dart';
+
+import '../entity/cart_item_entity/cart_item_entity.dart';
+import '../entity/order_entity/order_entity.dart';
+import 'cart_item_mapper.dart';
 
 abstract class OrderMapper {
   static OrderModel toModel(OrderEntity entity) {
@@ -10,7 +13,7 @@ abstract class OrderMapper {
       price: entity.price,
       orderedItems: entity.orderedItems
           .map(
-            (e) => CartItemMapper.toModel(e),
+            (CartItemEntity e) => CartItemMapper.toModel(e),
           )
           .toList(),
     );
@@ -23,7 +26,7 @@ abstract class OrderMapper {
       price: model.price,
       orderedItems: model.orderedItems
           .map(
-            (e) => CartItemMapper.toEntity(e),
+            (CartItemModel e) => CartItemMapper.toEntity(e),
           )
           .toList(),
     );

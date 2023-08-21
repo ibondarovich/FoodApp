@@ -23,20 +23,21 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
         _networkInfo = networkInfo,
         super(MenuState(
           dishes: <DishModel>[],
-          categories: [],
-          dishesOfSelectedCategory: [],
+          categories: <CategoryModel>[],
+          dishesOfSelectedCategory: <DishModel>[],
         )) {
     on<InitEvent>(_init);
     on<OnSaveItemEvent>(_onSaveItem);
     on<OnChangeItemQuantity>(_onChangeItemQuantity);
     on<OnCheckConnection>(_onCheckInternetConnection);
-    on<OnShowMessageEvent>(_onChangeMessageVIsibility);
+    on<OnShowMessageEvent>(_onChangeMessageVisibility);
     on<OnNavigateToDetailedPage>(_onNavigateToDetailedPage);
     on<OnSetSelectedCategoryIndex>(_onSetSelectedCategoryIndex);
 
     add(InitEvent());
 
-    _networkInfo.connectivity.onConnectivityChanged.listen((event) {
+    _networkInfo.connectivity.onConnectivityChanged
+        .listen((ConnectivityResult event) {
       add(OnCheckConnection());
     });
   }
@@ -88,7 +89,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     emit(state.copyWith(cartQuantity: event.quantity + 1));
   }
 
-  void _onChangeMessageVIsibility(
+  void _onChangeMessageVisibility(
     OnShowMessageEvent event,
     Emitter<MenuState> emit,
   ) {
@@ -123,8 +124,9 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     Emitter<MenuState> emit,
   ) {
     final int categoryId = state.categories[event.index].id;
-    final List<DishModel> newDishes =
-        state.dishes.where((dish) => categoryId == dish.categoryId).toList();
+    final List<DishModel> newDishes = state.dishes
+        .where((DishModel dish) => categoryId == dish.categoryId)
+        .toList();
     emit(
       state.copyWith(
         selectedCategoryIndex: event.index,

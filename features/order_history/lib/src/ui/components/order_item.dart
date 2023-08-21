@@ -9,8 +9,8 @@ class OrderItem extends StatelessWidget {
   final OrderModel orderModel;
 
   const OrderItem({
-    super.key,
     required this.orderModel,
+    super.key,
   });
 
   @override
@@ -46,8 +46,9 @@ class OrderItem extends StatelessWidget {
               children: <Widget>[
                 Align(
                   alignment: Alignment.centerLeft,
-                  child:
-                      Text('${StringConstants.orderTitle} #${orderModel.id}'),
+                  child: Text(
+                    '${StringConstants.orderTitle} #${orderModel.id}',
+                  ),
                 ),
                 const Divider(
                   indent: AppDimens.indent50,
@@ -58,17 +59,15 @@ class OrderItem extends StatelessWidget {
                     top: AppDimens.padding10,
                     bottom: AppDimens.padding10,
                   ),
-                  child: Container(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: orderModel.orderedItems.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return CartItem(
-                          cartItem: orderModel.orderedItems[index],
-                        );
-                      },
-                    ),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: orderModel.orderedItems.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return CartItem(
+                        cartItem: orderModel.orderedItems[index],
+                      );
+                    },
                   ),
                 ),
                 const Divider(
@@ -84,9 +83,7 @@ class OrderItem extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    '${StringConstants.timeTitle}: ${
-                      DateFormat('dd-MM-yyyy HH:mm').
-                      format(orderModel.dateTimeOfIssuance)}',
+                    '${StringConstants.timeTitle}: ${DateFormat('dd-MM-yyyy HH:mm').format(orderModel.dateTimeOfIssuance)}',
                   ),
                 ),
               ],

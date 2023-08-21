@@ -63,4 +63,6 @@ class StringConstants {
   static const String enterPasswordValidationValidation =
       'Please enter a password';
   static const String shortPasswordValidation = 'Too short password';
+
+  static const String uid = 'uid';
 }

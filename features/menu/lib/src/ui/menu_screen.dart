@@ -2,7 +2,7 @@ import 'package:core/core.dart';
 import 'package:core_ui/core_ui.dart';
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:menu/menu.dart';
+import '../../menu.dart';
 import 'components/category_item.dart';
 import 'components/menu_item.dart';
 
@@ -28,7 +28,7 @@ class MenuViewScreen extends StatelessWidget {
           fetchCategoriesUseCase: appLocator.get<FetchCategoriesUseCase>(),
         ),
         child: BlocConsumer<MenuBloc, MenuState>(
-          listener: (context, state) {
+          listener: (BuildContext context, MenuState state) {
             if (state.isShowSnakbar == true) {
               showAppSnackBar(
                 context: context,
@@ -46,7 +46,7 @@ class MenuViewScreen extends StatelessWidget {
                     BlocProvider.of<MenuBloc>(context).add(InitEvent());
                   },
                   child: Column(
-                    children: [
+                    children: <Widget>[
                       SizedBox(
                         height: MediaQuery.sizeOf(context).height / 15,
                         child: ListView.builder(
@@ -81,15 +81,16 @@ class MenuViewScreen extends StatelessWidget {
                       Expanded(
                         child: SingleChildScrollView(
                           physics: const BouncingScrollPhysics(),
-                          padding:
-                              const EdgeInsets.only(top: AppDimens.padding15),
+                          padding: const EdgeInsets.only(
+                            top: AppDimens.padding15,
+                          ),
                           scrollDirection: Axis.vertical,
                           child: Wrap(
                             children: List.generate(
                               state.dishesOfSelectedCategory.isEmpty
                                   ? state.dishes.length
                                   : state.dishesOfSelectedCategory.length,
-                              (index) => SizedBox(
+                              (int index) => SizedBox(
                                 width: MediaQuery.of(context).size.width / 2,
                                 child: MenuItem(
                                   dishModel: state

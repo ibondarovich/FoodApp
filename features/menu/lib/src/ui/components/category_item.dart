@@ -12,11 +12,11 @@ class CategoryItem extends StatelessWidget {
   const CategoryItem({
     required this.isSelected, 
     required this.title,
-    super.key,
     this.color,
     this.padding, 
     this.selectedColor, 
     this.onTap,
+    super.key,
   });
 
   @override

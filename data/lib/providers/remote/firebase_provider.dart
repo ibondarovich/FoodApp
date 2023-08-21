@@ -20,9 +20,8 @@ class FirebaseProvider implements RemoteProvider {
 
   @override
   Future<List<DishEntity>> fetchAllDishes() async {
-    final dishesCollection = _firebaseInstance.collection(
-      StringConstants.firebaseTableName,
-    );
+    final CollectionReference<Map<String, dynamic>> dishesCollection =
+        _firebaseInstance.collection(StringConstants.firebaseTableName);
 
     final QuerySnapshot<Map<String, dynamic>> response = await dishesCollection
         .doc(StringConstants.firebaseDocumentName)
@@ -89,8 +88,7 @@ class FirebaseProvider implements RemoteProvider {
         .collection(StringConstants.firebaseUser)
         .doc(uid)
         .collection(StringConstants.firebaseOrder);
-    final Map<String, dynamic> json = orderEntity.toJson();
-    response.doc(orderEntity.id.toString()).set(json);
+    await response.doc(orderEntity.id.toString()).set(orderEntity.toJson());
   }
 
   @override
@@ -102,12 +100,8 @@ class FirebaseProvider implements RemoteProvider {
         .get();
 
     final List<OrderEntity> result = response.docs
-        .map(
-          (QueryDocumentSnapshot<Map<String, dynamic>> doc) =>
-              OrderEntity.fromJson(
-            doc.data(),
-          ),
-        )
+        .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) =>
+            OrderEntity.fromJson(doc.data()))
         .toList();
 
     return result;
@@ -124,11 +118,8 @@ class FirebaseProvider implements RemoteProvider {
         await dishesCollection.get();
 
     final List<CategoryEntity> result = response.docs
-        .map(
-          (doc) => CategoryEntity.fromJson(
-            doc.data(),
-          ),
-        )
+        .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) =>
+            CategoryEntity.fromJson(doc.data()))
         .toList();
 
     return result;
