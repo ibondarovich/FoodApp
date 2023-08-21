@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:domain/domain.dart';
+import 'package:domain/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -10,14 +11,20 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
   final FetchAllCartItemsUseCase _fetchAllCartItemsUseCase;
   final RemoveCartItemUseCase _removeCartItemUseCase;
   final UpdateCartItemQuantity _updateCartItemQuantity;
+  final SaveOrderUseCase _saveOrderUseCase;
+  final ClearCartUseCase _clearCartUseCase;
 
   ShoppingCartBloc({
     required FetchAllCartItemsUseCase fetchAllCartItemsUseCase,
     required RemoveCartItemUseCase removeCartItemUseCase,
     required UpdateCartItemQuantity updateCartItemQuantity,
+    required SaveOrderUseCase saveOrderUseCase,
+    required ClearCartUseCase clearCartUseCase,
   })  : _fetchAllCartItemsUseCase = fetchAllCartItemsUseCase,
         _removeCartItemUseCase = removeCartItemUseCase,
         _updateCartItemQuantity = updateCartItemQuantity,
+        _saveOrderUseCase = saveOrderUseCase,
+        _clearCartUseCase = clearCartUseCase,
         super(
           CartPageState(
             items: <CartItemModel>[],
@@ -28,6 +35,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
     on<OnIncreaseQuantityEvent>(_onIncreaseQuantity);
     on<OnReduceQuantityEvent>(_onReduceQuantity);
     on<OnNavigateToMenuPageEvent>(_onNavigateToMenuPage);
+    on<OnSaveOrderEvent>(_onSaveOrderEvent);
 
     add(OnShowCartItems());
   }
@@ -38,11 +46,10 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
   ) {
     emit(state.copyWith(isLoading: true));
     try {
-      List<CartItemModel> items = _fetchAllCartItemsUseCase.execute(
+      final List<CartItemModel> items = _fetchAllCartItemsUseCase.execute(
         const NoParams(),
       );
-
-      double totalPrice = getTotalPrice(items);
+      final double totalPrice = getTotalPrice(items);
 
       emit(
         state.copyWith(
@@ -61,10 +68,10 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
     Emitter<CartPageState> emit,
   ) {
     _removeCartItemUseCase.execute(event.id);
-    List<CartItemModel> items = _fetchAllCartItemsUseCase.execute(
+    final List<CartItemModel> items = _fetchAllCartItemsUseCase.execute(
       const NoParams(),
     );
-    double totalPrice = getTotalPrice(items);
+    final double totalPrice = getTotalPrice(items);
     emit(
       state.copyWith(
         items: items,
@@ -77,7 +84,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
     OnIncreaseQuantityEvent event,
     Emitter<CartPageState> emit,
   ) {
-    int index = state.items.indexOf(event.cartItemModel);
+    final int index = state.items.indexOf(event.cartItemModel);
     final int newQuantity = event.cartItemModel.quantity + 1;
     state.items[index] = event.cartItemModel.copyWith(
       dishModel: event.cartItemModel.dishModel,
@@ -85,7 +92,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
     );
     try {
       _updateCartItemQuantity.execute(state.items[index]);
-      double totalPrice = getTotalPrice(state.items);
+      final double totalPrice = getTotalPrice(state.items);
       emit(
         state.copyWith(
           items: state.items,
@@ -110,7 +117,7 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
       );
       try {
         _updateCartItemQuantity.execute(state.items[index]);
-        double totalPrice = getTotalPrice(state.items);
+        final double totalPrice = getTotalPrice(state.items);
         emit(state.copyWith(items: state.items, totalPrice: totalPrice));
       } catch (e) {
         emit(state.copyWith(errorMessage: e.toString()));
@@ -125,10 +132,29 @@ class ShoppingCartBloc extends Bloc<ShoppingCartEvent, CartPageState> {
     AutoRouter.of(event.context).navigate(const EmptyRoute());
   }
 
+  void _onSaveOrderEvent(
+    OnSaveOrderEvent event,
+    Emitter<CartPageState> emit,
+  ) async {
+    await _saveOrderUseCase.execute(
+      OrderModel(
+        id: DateTime.now().millisecondsSinceEpoch,
+        dateTimeOfIssuance: DateTime.now(),
+        price: getTotalPrice(event.cartItems),
+        orderedItems: event.cartItems,
+      ),
+    );
+    await _clearCartUseCase.execute(const NoParams());
+    final List<CartItemModel> items = _fetchAllCartItemsUseCase.execute(
+      const NoParams(),
+    );
+    emit(state.copyWith(items: items));
+  }
+
   double getTotalPrice(List<CartItemModel> items) {
     return items.fold(
       0,
-      (previousValue, element) =>
+      (double previousValue, CartItemModel element) =>
           previousValue + element.dishModel.price * element.quantity,
     );
   }

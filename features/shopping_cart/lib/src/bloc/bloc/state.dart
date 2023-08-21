@@ -7,6 +7,7 @@ class CartPageState {
   final List<CartItemModel> items;
   final double totalPrice;
   final String errorMessage;
+  final String informationMessage;
   final bool isLoading;
 
   CartPageState({
@@ -14,6 +15,7 @@ class CartPageState {
     this.totalPrice = 0,
     this.errorMessage = '',
     this.isLoading = false,
+    this.informationMessage ='',
   });
 
   CartPageState copyWith({
@@ -21,12 +23,14 @@ class CartPageState {
     double? totalPrice,
     String? errorMessage,
     bool? isLoading,
+    String? informationMessage,
   }) {
     return CartPageState(
       items: items ?? this.items,
       totalPrice: totalPrice ?? this.totalPrice,
       errorMessage: errorMessage ?? this.errorMessage,
       isLoading: isLoading ?? this.isLoading,
+      informationMessage: informationMessage ?? this.informationMessage,
     );
   }
 }

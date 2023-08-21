@@ -64,6 +64,7 @@ part 'app_router.gr.dart';
             AutoRoute(
               path: 'history',
               page: OrderHistoryScreen,
+              maintainState: false,
             ),
           ]
         ),

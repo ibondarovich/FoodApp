@@ -6,7 +6,8 @@ part 'cart_item_entity.freezed.dart';
 part 'cart_item_entity.g.dart';
 
 @freezed
-class CartItemEntity with _$CartItemEntity{
+class CartItemEntity with _$CartItemEntity {
+  @JsonSerializable(explicitToJson: true)
   @HiveType(typeId: 0, adapterName: 'CartItemEntityAdapter')
   factory CartItemEntity({
     @HiveField(0) required DishEntity dishEntity,

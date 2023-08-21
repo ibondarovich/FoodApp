@@ -12,7 +12,9 @@ import 'package:data/providers/local/user_data_provider_impl.dart';
 import 'package:data/providers/remote/firebase_provider.dart';
 import 'package:data/providers/remote/remote_provider.dart';
 import 'package:data/repositories/cart_repository_impl.dart';
+import 'package:data/repositories/category_repository_impl.dart';
 import 'package:data/repositories/dish_repository_impl.dart';
+import 'package:data/repositories/order_repository_impl.dart';
 import 'package:data/repositories/settings_repository_impl.dart';
 import 'package:data/repositories/user_repository_impl.dart';
 import 'package:domain/domain.dart';
@@ -113,6 +115,18 @@ class DataDI {
       ),
     );
 
+    appLocator.registerLazySingleton<OrderRepository>(
+      () => OrderRepositoryImpl(
+        remoteProvider: appLocator.get<RemoteProvider>(),
+        userDataProvider: appLocator.get<UserDataProvider>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton<CategoryRepository>(
+      () => CategoryRepositoryImpl(
+        remoteProvider: appLocator.get<RemoteProvider>(),
+      ),
+    );
   }
 
   void _initData() {
@@ -169,7 +183,7 @@ class DataDI {
         settingsRepository: appLocator.get<SettingsRepository>(),
       ),
     );
-    
+
     appLocator.registerLazySingleton(
       () => CreateUserUseCase(
         userRepository: appLocator.get<UserRepository>(),
@@ -203,6 +217,36 @@ class DataDI {
     appLocator.registerLazySingleton(
       () => SaveUserUseCase(
         userRepository: appLocator.get<UserRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => FetchUserIdUseCase(
+        userRepository: appLocator.get<UserRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => FetchOrdersUseCase(
+        orderRepository: appLocator.get<OrderRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => SaveOrderUseCase(
+        orderRepository: appLocator.get<OrderRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => ClearCartUseCase(
+        cartRepository: appLocator.get<CartRepository>(),
+      ),
+    );
+
+    appLocator.registerLazySingleton(
+      () => FetchCategoriesUseCase(
+        categoryRepository: appLocator.get<CategoryRepository>(),
       ),
     );
   }
