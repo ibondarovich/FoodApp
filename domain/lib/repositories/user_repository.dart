@@ -6,5 +6,6 @@ abstract class UserRepository {
   Future<void> signOut();
   Future<String> signIn(UserModel model);
   Future<void> saveUser(String input);
+  String fetchUserId();
   bool isUserExists();
 }

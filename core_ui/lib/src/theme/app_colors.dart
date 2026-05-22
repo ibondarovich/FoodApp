@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AppColors{
+class AppColors {
   static const Color primaryColor = Color(0xFFFF774C);
   static const Color lightOrange = Color(0xFFF9881F);
   static const Color white = Color(0xFFFFFFFF);
@@ -11,6 +11,7 @@ class AppColors{
   static const Color darkThemeBackground = Color(0xFF302F2F);
   static const Color black = Color(0xFF000000);
   static const Color red = Color(0xFFF44437);
+  static const Color green = Color(0xFF85BB72);
   static const LinearGradient primaryGradient = LinearGradient(
     colors: <Color>[
       lightOrange,

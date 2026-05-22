@@ -5,7 +5,7 @@ part 'dish_entity.freezed.dart';
 part 'dish_entity.g.dart';
 
 @freezed
-class DishEntity with _$DishEntity{
+class DishEntity with _$DishEntity {
   @HiveType(typeId: 1, adapterName: 'DishEntityAdapter')
   factory DishEntity({
     @HiveField(0) required int id,
@@ -14,6 +14,7 @@ class DishEntity with _$DishEntity{
     @HiveField(3) required num price,
     @HiveField(4) required String description,
     @HiveField(5) required List<String> ingredients,
+    @HiveField(6) required int categoryId,
   }) = _DishEntity;
 
   factory DishEntity.fromJson(Map<String, dynamic> json) =>

@@ -17,3 +17,4 @@ export 'service/auth_service.dart';
 export 'validation/validation.dart';
 export 'package:navigation/navigation.dart';
 export 'enums/text_scale_enum.dart';
+export 'package:intl/intl.dart';

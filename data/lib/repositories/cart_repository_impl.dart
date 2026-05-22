@@ -33,4 +33,9 @@ class CartRepositoryImpl implements CartRepository {
     final CartItemEntity entity = CartItemMapper.toEntity(model);
     return await _provider.updateCartItem(entity);
   }
+
+  @override
+  Future<void> clearCart() async {
+    await _provider.clearCart();
+  }
 }

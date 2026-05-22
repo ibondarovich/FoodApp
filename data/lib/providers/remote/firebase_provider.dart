@@ -1,5 +1,7 @@
 import 'package:core/core.dart';
+import 'package:data/entity/category_entity/category_entity.dart';
 import 'package:data/entity/dish_entity/dish_entity.dart';
+import 'package:data/entity/order_entity/order_entity.dart';
 import 'package:data/entity/user_entity/user_entity.dart';
 import 'package:data/providers/remote/remote_provider.dart';
 
@@ -18,9 +20,8 @@ class FirebaseProvider implements RemoteProvider {
 
   @override
   Future<List<DishEntity>> fetchAllDishes() async {
-    final dishesCollection = _firebaseInstance.collection(
-      StringConstants.firebaseTableName,
-    );
+    final CollectionReference<Map<String, dynamic>> dishesCollection =
+        _firebaseInstance.collection(StringConstants.firebaseTableName);
 
     final QuerySnapshot<Map<String, dynamic>> response = await dishesCollection
         .doc(StringConstants.firebaseDocumentName)
@@ -79,5 +80,48 @@ class FirebaseProvider implements RemoteProvider {
     );
     final String uid = userCredential.user?.uid ?? '';
     return uid;
+  }
+
+  @override
+  Future<void> addOrder(OrderEntity orderEntity, String uid) async {
+    final CollectionReference<Map<String, dynamic>> response = _firebaseInstance
+        .collection(StringConstants.firebaseUser)
+        .doc(uid)
+        .collection(StringConstants.firebaseOrder);
+    await response.doc(orderEntity.id.toString()).set(orderEntity.toJson());
+  }
+
+  @override
+  Future<List<OrderEntity>> fetchOrders(String uid) async {
+    final QuerySnapshot<Map<String, dynamic>> response = await _firebaseInstance
+        .collection(StringConstants.firebaseUser)
+        .doc(uid)
+        .collection(StringConstants.firebaseOrder)
+        .get();
+
+    final List<OrderEntity> result = response.docs
+        .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) =>
+            OrderEntity.fromJson(doc.data()))
+        .toList();
+
+    return result;
+  }
+
+  @override
+  Future<List<CategoryEntity>> fetchCategories() async {
+    final CollectionReference<Map<String, dynamic>> dishesCollection =
+        _firebaseInstance.collection(
+      StringConstants.firebaseCategory,
+    );
+
+    final QuerySnapshot<Map<String, dynamic>> response =
+        await dishesCollection.get();
+
+    final List<CategoryEntity> result = response.docs
+        .map((QueryDocumentSnapshot<Map<String, dynamic>> doc) =>
+            CategoryEntity.fromJson(doc.data()))
+        .toList();
+
+    return result;
   }
 }

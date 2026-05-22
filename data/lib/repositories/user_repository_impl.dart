@@ -46,4 +46,9 @@ class UserRepositoryImpl extends UserRepository {
   Future<void> saveUser(String input) async {
     await _localProvider.saveUser(input);
   }
+  
+  @override
+  String fetchUserId() {
+    return _localProvider.fetchUserId();
+  }
 }
